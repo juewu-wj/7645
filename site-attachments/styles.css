@@ -4,3 +4,16 @@
 .navbar-brand > img {
   max-height: 80px;
 }
+
+/* --- Add this to the bottom of your file --- */
+
+/* Change hyperlinks to UF Blue */
+a {
+  color: #0021A5;
+}
+
+/* Change hyperlinks to UF Orange when hovering */
+a:hover {
+  color: #FA4616;
+  text-decoration: none; /* Optional: removes underline on hover */
+}
