@@ -7,17 +7,17 @@
 
 /* --- UF BRANDING COLORS --- */
 
-/* 1. Change text inside backticks ` ` to UF Blue */
+/* 1. Change text inside backticks ` ` to Orange */
 code {
-  color: #0021A5 !important;
+  color: #D13200 !important;
 }
 
-/* 2. Links are UF Orange by default */
+/* 2. Links are UF Blue by default */
 a {
-  color: #FA4616;
+  color: #0021A5;
 }
 
-/* 3. Links turn UF Blue when you hover over them */
+/* 3. Links turn Orange when you hover over them */
 a:hover {
-  color: #0021A5;
+  color: #D13200;
 }
