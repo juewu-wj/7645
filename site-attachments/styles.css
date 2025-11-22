@@ -5,15 +5,19 @@
   max-height: 80px;
 }
 
-/* --- Add this to the bottom of your file --- */
+/* --- UF BRANDING COLORS --- */
 
-/* Change hyperlinks to UF Blue */
-a {
-  color: #0021A5;
+/* 1. Headers (##, ###) stay UF Blue */
+h1, h2, h3, h4, h5, h6 {
+  color: #0021A5 !important;
 }
 
-/* Change hyperlinks to UF Orange when hovering */
+/* 2. Links are UF Orange by default */
+a {
+  color: #FA4616 !important;
+}
+
+/* 3. Links turn UF Blue when you hover over them */
 a:hover {
-  color: #FA4616;
-  text-decoration: none; /* Optional: removes underline on hover */
+  color: #0021A5 !important;
 }
