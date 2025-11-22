@@ -15,9 +15,9 @@ project:
     - "archive/spring-2024.zip"
     
 website:
-  title: "EDH 7916"
-  site-url: "https://capaldi.info/7916"
-  description: "Course website for EDH 7916 at the University of Florida"
+  title: "EDH 7645"
+  site-url: "https://juewu-wj.github.io/7645"
+  description: "Course website for EDH 7645 at the University of Florida"
   image: "apple-touch-icon.png"
   favicon: "apple-touch-icon.png"
   twitter-card: true
@@ -54,10 +54,10 @@ website:
         href: https://quarto.org/docs/websites
       - icon: github
         aria-label: Website Code Available Here
-        href: https://github.com/ttalVlatt/7916
+        href: https://github.com/juewu-wj/7645
     left:
-      - text: "M.J. Capaldi"
-        href: https://capaldi.info
+      - text: "Jue Wu"
+        href: https://juewu-wj.github.io/
 
       
 format:

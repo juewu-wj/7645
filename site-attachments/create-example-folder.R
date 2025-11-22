@@ -67,12 +67,12 @@ for(i in dup_folders) {
 ##'[Create example folder]
 
 ## Delete the old example folder to remake it
-if(dir.exists(file.path(output, "EDH-7916"))) {
+if(dir.exists(file.path(output, "EDH-7645"))) {
   ## Delete old unzipped example folder
-  unlink(file.path(output, "EDH-7916"), recursive = T)
+  unlink(file.path(output, "EDH-7645"), recursive = T)
 }
 
-example <- file.path(output, "EDH-7916")
+example <- file.path(output, "EDH-7645")
 dir.create(example)
 
 ##'[Create data sub-folder]
@@ -155,34 +155,34 @@ setwd(example)
 files <- list.files(full.names = T, recursive = T)
 ## Then zip from this new wd (the default root)
 ## Can't just set the root here, as the files need to be listed from the same wd
-zip::zip(file.path("..", "EDH-7916.zip"),
+zip::zip(file.path("..", "EDH-7645.zip"),
          files = files,
          mode = "mirror")
 ## Reset working directory back to project folder
 setwd(file.path("..", ".."))
 
-##'[Update git EDH-7916 with Fresh Scripts]
+##'[Update git EDH-7645 with Fresh Scripts]
 
 ## Delete old temp (fail-safe, should have already been un-linked)
 # if(dir.exists(file.path("..", "temp"))) {
 #   unlink(file.path("..", "temp"), recursive = T)
 # }
 
-## Copy fresh temp folder using EDH-7916 from website rendering
-# fs::dir_copy(file.path(output, "EDH-7916"),  #example,
+## Copy fresh temp folder using EDH-7645 from website rendering
+# fs::dir_copy(file.path(output, "EDH-7645"),  #example,
 #              new_path = file.path("..", "temp"),
 #              overwrite = TRUE)
 
-## Delete old EDH-7916
-if(dir.exists("EDH-7916")) {
-  unlink("EDH-7916", recursive = T)
+## Delete old EDH-7645
+if(dir.exists("EDH-7645")) {
+  unlink("EDH-7645", recursive = T)
 }
 
 ## Send git commands directly to terminal
 system("
-   git clone git@github.com:ttalVlatt/EDH-7916.git;
-   cp -r _site/EDH-7916/* EDH-7916;
-   cd EDH-7916;
+   git clone git@github.com:juewu-wj/EDH-7645.git;
+   cp -r _site/EDH-7645/* EDH-7645;
+   cd EDH-7645;
    git add .;
    git commit -m 'update scripts';
    git push origin
@@ -194,7 +194,7 @@ system("
 
 
 ## Use git commands directly to terminal
-# system("cd ../EDH-7916;
+# system("cd ../EDH-7645;
 #        git init;
 #        touch .gitignore;
 #        echo '.DS_Store' >> .gitignore;
@@ -202,9 +202,9 @@ system("
 #        echo '.Rproj.user/' >> .gitignore;
 #        git add .;
 #        git commit -m 'update scripts';
-#        git remote add EDH-7916 https://github.com/ttalVlatt/EDH-7916;
-#        git push -u --force EDH-7916 main;
-#        cd ../7916") 
+#        git remote add EDH-7645 https://github.com/juewu-wj/EDH-7645;
+#        git push -u --force EDH-7645 main;
+#        cd ../7645") 
 
   
        # git init;
@@ -214,30 +214,30 @@ system("
        # echo '.Rproj.user/' >> .gitignore;
        # git add .;
        # git commit -m 'update scripts';
-       # git remote add EDH-7916 https://github.com/ttalVlatt/EDH-7916;
-       # git push -u --force EDH-7916 main;
-       # cd ../7916")
+       # git remote add EDH-7645 https://github.com/juewu-wj/EDH-7645;
+       # git push -u --force EDH-7645 main;
+       # cd ../7645")
 
 
 # writeLines(paste("This repo was last updated", Sys.time()),
 #            "Last-Updated.txt")
 
-## Clone down the EDH-7916 folder to Desktop if not there
-# if(!dir.exists("../EDH-7916")) {
+## Clone down the EDH-7645 folder to Desktop if not there
+# if(!dir.exists("../EDH-7645")) {
 # 
-#   git2r::clone("https://github.com/ttalVlatt/EDH-7916", "../EDH-7916")
+#   git2r::clone("https://github.com/juewu-wj/EDH-7645", "../EDH-7645")
 #   
 # }
 
-## Copies files over from created EDH-7916 to cloned repo
-# fs::dir_copy(file.path("_site", "EDH-7916"),  #example,
-#              new_path = file.path("..", "EDH-7916"),
+## Copies files over from created EDH-7645 to cloned repo
+# fs::dir_copy(file.path("_site", "EDH-7645"),  #example,
+#              new_path = file.path("..", "EDH-7645"),
 #              overwrite = TRUE)
 
 # file.copy()
 
-## Back out of 7916 repo into new student repo
-# setwd(file.path("..", "EDH-7916"))
+## Back out of 7645 repo into new student repo
+# setwd(file.path("..", "EDH-7645"))
 
 ## Initialize new folder as a git repo
 ## git2r::init()
@@ -263,9 +263,9 @@ system("
 
 
 
-## Add the EDH-7916 remote repo as the remote_url
-# git2r::remote_add(name = "EDH-7916",
-#                   url = "https://github.com/ttalVlatt/EDH-7916")
+## Add the EDH-7645 remote repo as the remote_url
+# git2r::remote_add(name = "EDH-7645",
+#                   url = "https://github.com/juewu-wj/EDH-7645")
 # 
 # git2r::repository_head()
 
