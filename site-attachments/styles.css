@@ -7,17 +7,12 @@
 
 /* --- UF BRANDING COLORS --- */
 
-/* 1. Headers (##, ###) stay UF Blue */
-h1, h2, h3, h4, h5, h6 {
-  color: #0021A5 !important;
-}
-
-/* 2. Links are UF Orange by default */
+/* 1. Links are UF Orange by default */
 a {
-  color: #FA4616 !important;
+  color: #FA4616;
 }
 
-/* 3. Links turn UF Blue when you hover over them */
+/* 2. Links turn UF Blue when you hover over them */
 a:hover {
-  color: #0021A5 !important;
+  color: #0021A5;
 }
