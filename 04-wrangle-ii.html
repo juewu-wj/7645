@@ -338,7 +338,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page">Lesson</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">IPEDS Application</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">Assignment</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page">Lesson</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Assignment</a></li></ul>
 <div class="tab-content">
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
 <p><a href="./r-scripts/04-wrangle-ii.R"><i class="fa-solid fa-code" aria-label="code"></i> R Code</a></p>
@@ -351,7 +351,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 <li>As part of this, we often will need to;
 <ul>
-<li><strong>reshape</strong> our data, pivoting from wide to long form (or vice versa).</li>
+<li><strong>reshaping</strong> our data, pivoting from wide to long form (or vice versa).</li>
 </ul></li>
 <li>We’ll go through each individually below.</li>
 </ul>
@@ -504,7 +504,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>Data that are the result of the <em>exact</em> same data collecting process across locations or time may be appended. In education research, administrative data are often recorded each term or year, meaning you can build a panel data set by appending. The NCES IPEDS data files <em>generally</em> work like this
 <ul>
-<li>Note on IPEDS: Some of the variables have changed over time, one of the most notable being enrollment data between 2001 and 2002, so always check your dictionary (codebook)!</li>
+<li>Note on IPEDS: Some of the variables have changed over time, so always check your dictionary (codebook)!</li>
 </ul></li>
 <li>However, it’s incumbent upon you as the researcher to understand your data. Just because you are able to append (R will try to make it work for you) doesn’t mean you always should.
 <ul>
@@ -514,10 +514,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 <li>It’s possible that we can account for each of these issues as we clean our data, but it won’t happen automatically — append with care!</li>
 </ul>
-<!-- > #### Quick exercise  -->
-<!-- > While appending data can be straightforward, it can also be -->
-<!-- > _dangerous_. What do you think I mean by that? Think of some -->
-<!-- > situations in which appending data frames may not be a good idea. -->
 <section id="example" class="level3">
 <h3 data-anchor-id="example">Example</h3>
 <p>Let’s practice with an example. First, we’ll read in three data files from the <code>by_school</code> directory.</p>
@@ -731,81 +727,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 </tbody>
 </table>
-<section id="example-1" class="level3">
-<h3 data-anchor-id="example-1">Example</h3>
-<ul>
-<li>A common join task in education research involves adding group-level aggregate statistics to individual observations, for example;
-<ul>
-<li>adding school-level average test scores to each student’s row.</li>
-<li>With a panel data set (observations across time), we might want within-year averages added to each unit-by-time period row.</li>
-</ul></li>
-<li>Let’s do the second, adding within-year across school average test scores to each school-by-year observation.</li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="do">## read in all_schools data</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/sch-test/all-schools.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<ul>
-<li>Looking at the data, we see that it’s similar to what we’ve seen above, with additional schools.</li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="do">## show</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 24 × 5
-   school        year  math  read science
-   &lt;chr&gt;        &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;
- 1 Bend Gate     1980   515   281     808
- 2 Bend Gate     1981   503   312     814
- 3 Bend Gate     1982   514   316     816
- 4 Bend Gate     1983   491   276     793
- 5 Bend Gate     1984   502   310     788
- 6 Bend Gate     1985   488   280     789
- 7 East Heights  1980   501   318     782
- 8 East Heights  1981   487   323     813
- 9 East Heights  1982   496   294     818
-10 East Heights  1983   497   306     795
-# ℹ 14 more rows</code></pre>
-</div>
-</div>
-<p>Our task is two-fold:</p>
-<ol type="1">
-<li>Get the average of each test score (math, reading, science) across all schools within each year and save the summary data frame in an object.</li>
-<li>Join the new summary data frame to the original data frame.</li>
-</ol>
-<section id="get-summary" class="level4">
-<h4 data-anchor-id="get-summary">1. Get summary</h4>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="do">## get test score summary </span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>data_sum <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span></span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    <span class="do">## grouping by year so average within each year</span></span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(year) <span class="sc">|&gt;</span></span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>    <span class="do">## get mean(&lt;score&gt;) for each test</span></span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarize</span>(<span class="at">math_m =</span> <span class="fu">mean</span>(math),</span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>              <span class="at">read_m =</span> <span class="fu">mean</span>(read),</span>
-<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>              <span class="at">science_m =</span> <span class="fu">mean</span>(science))</span>
-<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a><span class="do">## show</span></span>
-<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>data_sum</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 4
-   year math_m read_m science_m
-  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt;
-1  1980   507    295.      798.
-2  1981   496.   293.      788.
-3  1982   506    302.      802.
-4  1983   500    293.      794.
-5  1984   490    300.      792.
-6  1985   500.   290.      794.</code></pre>
-</div>
-</div>
-<blockquote class="blockquote">
-<h4 id="quick-exercise-1">Quick exercise</h4>
-<p>Thinking ahead, why do you think we created new names for the summarized columns? Why the <code>_m</code> ending?</p>
-</blockquote>
-</section>
-<section id="join" class="level4">
-<h4 data-anchor-id="join">2. Join</h4>
+<section id="join" class="level3">
+<h3 data-anchor-id="join">Join</h3>
 <ul>
 <li><p>While one can <a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/merge.html"><code>merge</code> using base R</a>, <code>dplyr</code> (part of the <code>tidyverse</code> package) is what we will be using in this lesson.</p></li>
 <li><p>Here are the most common joins you will use:</p></li>
@@ -821,7 +744,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><code>by</code> the variables to use as a “key”</li>
 </ul></li>
 </ul>
-</section>
 </section>
 <section id="by" class="level3">
 <h3 data-anchor-id="by"><code>by</code></h3>
@@ -949,9 +871,81 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Observations in <em>Y</em> but not <em>X</em> (<code>004</code>) are dropped entirely.</li>
 </ul>
 </section>
-<section id="practice-joining" class="level3">
-<h3 data-anchor-id="practice-joining">Practice joining</h3>
-<p>Back to our example…</p>
+<section id="example-1" class="level3">
+<h3 data-anchor-id="example-1">Example</h3>
+<ul>
+<li>A common join task in education research involves adding group-level aggregate statistics to individual observations, for example;
+<ul>
+<li>adding school-level average test scores to each student’s row.</li>
+<li>With a panel data set (observations across time), we might want within-year averages added to each unit-by-time period row.</li>
+</ul></li>
+<li>Let’s do the second, adding within-year across school average test scores to each school-by-year observation.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="do">## read in all_schools data</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/sch-test/all-schools.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li>Looking at the data, we see that it’s similar to what we’ve seen above, with additional schools.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="do">## show</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 24 × 5
+   school        year  math  read science
+   &lt;chr&gt;        &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;
+ 1 Bend Gate     1980   515   281     808
+ 2 Bend Gate     1981   503   312     814
+ 3 Bend Gate     1982   514   316     816
+ 4 Bend Gate     1983   491   276     793
+ 5 Bend Gate     1984   502   310     788
+ 6 Bend Gate     1985   488   280     789
+ 7 East Heights  1980   501   318     782
+ 8 East Heights  1981   487   323     813
+ 9 East Heights  1982   496   294     818
+10 East Heights  1983   497   306     795
+# ℹ 14 more rows</code></pre>
+</div>
+</div>
+<p>Our task is two-fold:</p>
+<ol type="1">
+<li>Get the average of each test score (math, reading, science) across all schools within each year and save the summary data frame in an object.</li>
+<li>Join the new summary data frame to the original data frame.</li>
+</ol>
+<section id="get-summary" class="level4">
+<h4 data-anchor-id="get-summary">1. Get summary</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="do">## get test score summary </span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>data_sum <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    <span class="do">## grouping by year so average within each year</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(year) <span class="sc">|&gt;</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>    <span class="do">## get mean(&lt;score&gt;) for each test</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarize</span>(<span class="at">math_m =</span> <span class="fu">mean</span>(math),</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>              <span class="at">read_m =</span> <span class="fu">mean</span>(read),</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>              <span class="at">science_m =</span> <span class="fu">mean</span>(science))</span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a><span class="do">## show</span></span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>data_sum</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 4
+   year math_m read_m science_m
+  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt;
+1  1980   507    295.      798.
+2  1981   496.   293.      788.
+3  1982   506    302.      802.
+4  1983   500    293.      794.
+5  1984   490    300.      792.
+6  1985   500.   290.      794.</code></pre>
+</div>
+</div>
+<blockquote class="blockquote">
+<h4 id="quick-exercise-1">Quick exercise</h4>
+<p>Thinking ahead, why do you think we created new names for the summarized columns? Why the <code>_m</code> ending?</p>
+</blockquote>
+</section>
+<section id="join-1" class="level4">
+<h4 data-anchor-id="join-1">2. Join</h4>
 <ul>
 <li>Since we want to join a smaller aggregated data frame, <code>data_sum</code>, to the original data frame, <code>data</code>, we’ll use a <code>left_join()</code>.
 <ul>
@@ -987,6 +981,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h4 id="quick-exercise-2">Quick exercise</h4>
 <p>Look at the first 10 rows of <code>data_joined</code>. What do you notice about the new summary columns we added?</p>
 </blockquote>
+</section>
 </section>
 <section id="using-the-pipe" class="level3">
 <h3 data-anchor-id="using-the-pipe">Using the <code>|&gt;</code> pipe</h3>
@@ -1543,396 +1538,148 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Code books, institutional/domain knowledge, and patience are your friends here!</li>
 </ul></li>
 </ul>
+<!-- # IPEDS Application -->
+<!-- -   Now, let's look at a more realistic example when we would use these skills for data analysis -->
+<!-- -   Let's say we want to explore difference in international student enrollment at the undergraduate vs graduate level and if that varies by institution type and location -->
+<!-- -   For this, we are going to use two IPEDS data sets HD2022 and EFFY2022 -->
+<!-- ```{r} -->
+<!-- data_info <- read_csv("data/hd2022.csv") |>  -->
+<!--   rename_all(tolower) # convert all column names to lowercase -->
+<!-- data_enroll <- read_csv("data/effy2022.csv") |>  -->
+<!--   rename_all(tolower) -->
+<!-- ``` -->
+<!-- -   Let's take a look at these data one by one -->
+<!-- ```{r} -->
+<!-- data_info -->
+<!-- ``` -->
+<!-- -   Okay, this looks simple enough, we see one row per institution followed by a bunch of descriptive variables -->
+<!-- -   Let's look at our enrollment data -->
+<!-- ```{r} -->
+<!-- data_enroll -->
+<!-- ``` -->
+<!-- -   Hmm, so this data definitely appears to be "long" as we see those first 10 rows are all for 100654 -->
+<!--     -   Based on visual inspection, it seems like effyalev and effylev might be what is making the data "long" for two reasons -->
+<!--         -   First, look at the values, they seem to be in some kind of pattern -->
+<!--         -   Second, it's common practice to keep the "long" variables at the start, especially in larger published data like this -->
+<!--     -   This is where we want to look through the code book to explore what those variables might mean -->
+<!-- > ### Quick Exercise -->
+<!-- > -->
+<!-- > -   To practice this, let's go to the [IPEDS Data Center](https://nces.ed.gov/ipeds/datacenter/DataFiles.aspx) and find the dictionary for EFFY2022 -->
+<!-- >     -   Tip: For IPEDS dictionary files, the "frequencies" tab is where you'll find out what numbers that represent something mean -->
+<!-- > -   Okay, so what do effyalev and effylev mean? -->
+<!-- > -   Think back to our research question, what's the ratio of international students at the undergraduate vs graduate level? -->
+<!-- >     -   Based on the code book, what do you think we need to do now? -->
+<!-- -   `effyalev` is probably more detail than we need for our question, `effylev` has everything we need -->
+<!--     -   To make our life simpler, let's reduce our data down a little to just the variables we want with `select()` -->
+<!-- ```{r} -->
+<!-- data_enroll <- data_enroll |> -->
+<!--   select(unitid, effylev, efytotlt, efynralt) -->
+<!-- data_enroll -->
+<!-- ``` -->
+<!-- -   Next, let's reduce our data down to just the two rows containing undergraduate and graduate enrollments -->
+<!-- ```{r} -->
+<!-- data_enroll <- data_enroll |> -->
+<!--   filter(effylev %in% c(2,4)) -->
+<!-- data_enroll -->
+<!-- ``` -->
+<!-- -   Okay, this is starting to look more manageable, right? -->
+<!-- -   What do we need to do next to be able to compare across levels of study or institutions? -->
+<!-- ```{r} -->
+<!-- data_enroll <- data_enroll |> -->
+<!--   mutate(perc_intl = efynralt/efytotlt*100) |> -->
+<!--   select(-efytotlt, -efynralt) # - in select means drop this variable -->
+<!-- data_enroll -->
+<!-- ``` -->
+<!-- -   Now, we want to find the difference between the undergraduate and graduate enrollment levels, which should be pretty simple math right? -->
+<!--     We just need to subtract the percentages from each other -->
+<!--     -   Can we easily do that right now? -->
+<!--         If not, what do we need to do? -->
+<!-- ```{r} -->
+<!-- data_enroll <- data_enroll |> -->
+<!--   pivot_wider(names_from = effylev, -->
+<!--               values_from = perc_intl, -->
+<!--               names_prefix = "perc_intl_") -->
+<!-- data_enroll -->
+<!-- ``` -->
+<!-- -   Now is our calculation much easier to make? -->
+<!-- ```{r} -->
+<!-- data_enroll <- data_enroll |> -->
+<!--   mutate(perc_intl_diff = perc_intl_2 - perc_intl_4) -->
+<!-- data_enroll -->
+<!-- ``` -->
+<!-- -   How do we interpret our new variable? -->
+<!-- -   Let's get some basic summary statistics -->
+<!-- ```{r} -->
+<!-- data_enroll |> -->
+<!--   drop_na() |> -->
+<!--   summarize(mean = mean(perc_intl_diff), -->
+<!--             min = min(perc_intl_diff), -->
+<!--             max = max(perc_intl_diff)) -->
+<!-- ``` -->
+<!-- -   Lastly, let's see if this trend varies by private vs public institutions -->
+<!-- -   What do we need to do to see that? -->
+<!-- ```{r} -->
+<!-- data_info <- data_info |> -->
+<!--   select(unitid, control) -->
+<!-- data_joined <- left_join(data_enroll, data_info, by = "unitid") -->
+<!-- data_joined -->
+<!-- ``` -->
+<!-- -   Looks like we have what we need, so let's see if the mean varies by institutional control -->
+<!-- ```{r} -->
+<!-- data_joined |> -->
+<!--   group_by(control) |> -->
+<!--   drop_na() |> -->
+<!--   summarize(mean = mean(perc_intl_diff)) -->
+<!-- ``` -->
+<!-- -   Now let's find out if out trend varies by states and make a map to visualize it -->
+<!-- -   Let's first read in the packages we need for making maps -->
+<!-- ```{r} -->
+<!-- library(sf) -->
+<!-- library(tigris) -->
+<!-- options(tigris_use_cache = TRUE) -->
+<!-- ``` -->
+<!-- -   Now we want to get the state information for each institution -->
+<!-- ```{r} -->
+<!-- data_info_state <- data_info <- read_csv("data/hd2022.csv") |>  -->
+<!--   rename_all(tolower) |> -->
+<!--   select(unitid, stabbr) -->
+<!-- ``` -->
+<!-- -   Next, we want to join the state information to our enrollment data -->
+<!-- ```{r} -->
+<!-- data_joined_state <- left_join(data_enroll, data_info_state, by = "unitid") -->
+<!-- data_joined_state -->
+<!-- ``` -->
+<!-- -   We can again calculate the mean by states, just like what we did with institutional control -->
+<!-- ```{r} -->
+<!-- data_joined_state <- data_joined_state |> -->
+<!--   group_by(stabbr) |> -->
+<!--   drop_na() |> -->
+<!--   summarize(mean_perc_intl_diff = mean(perc_intl_diff)) -->
+<!-- data_joined_state -->
+<!-- ``` -->
+<!-- -   We are finally ready to make a map! We can use the `tigris` package to get the state boundaries -->
+<!-- ```{r} -->
+<!-- states_sf <- states(cb = TRUE, year = 2022) |> -->
+<!--   filter(STUSPS %in% state.abb | STUSPS == "DC") |> -->
+<!--   left_join(data_joined_state, by = c("STUSPS" = "stabbr")) -->
+<!-- ``` -->
+<!-- -   Plotting time! -->
+<!-- ```{r} -->
+<!-- ggplot() + -->
+<!--   geom_sf(data = shift_geometry(states_sf), -->
+<!--           aes(fill = mean_perc_intl_diff), -->
+<!--           size = 0.1) + -->
+<!--   geom_sf_text(data = shift_geometry(st_centroid(states_sf)), -->
+<!--                aes(label = STUSPS)) -->
+<!-- ``` -->
+<!-- ```{r, echo = FALSE, purl = TRUE} -->
+<!-- ## ----------------------------------------------------------------------------- -->
+<!-- ##' *END SCRIPT* -->
+<!-- ## ----------------------------------------------------------------------------- -->
+<!-- ``` -->
 </section>
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
-<ul>
-<li>Now, let’s look at a more realistic example when we would use these skills for data analysis</li>
-<li>Let’s say we want to explore difference in international student enrollment at the undergraduate vs graduate level and if that varies by institution type and location</li>
-<li>For this, we are going to use two IPEDS data sets HD2022 and EFFY2022</li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>data_info <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/hd2022.csv"</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename_all</span>(tolower) <span class="co"># convert all column names to lowercase</span></span>
-<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>data_enroll <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/effy2022.csv"</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename_all</span>(tolower)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<ul>
-<li>Let’s take a look at these data one by one</li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>data_info</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6,256 × 73
-   unitid instnm     ialias addr  city  stabbr zip    fips obereg chfnm chftitle
-    &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;   
- 1 100654 Alabama A… AAMU   4900… Norm… AL     35762     1      5 Dr. … Preside…
- 2 100663 Universit… UAB    Admi… Birm… AL     3529…     1      5 Ray … Preside…
- 3 100690 Amridge U… South… 1200… Mont… AL     3611…     1      5 Mich… Preside…
- 4 100706 Universit… UAH  … 301 … Hunt… AL     35899     1      5 Chuc… Preside…
- 5 100724 Alabama S… &lt;NA&gt;   915 … Mont… AL     3610…     1      5 Quin… Preside…
- 6 100733 Universit… &lt;NA&gt;   500 … Tusc… AL     35401     1      5 Fini… Chancel…
- 7 100751 The Unive… &lt;NA&gt;   739 … Tusc… AL     3548…     1      5 Dr. … Preside…
- 8 100760 Central A… &lt;NA&gt;   1675… Alex… AL     35010     1      5 Jeff… Preside…
- 9 100812 Athens St… &lt;NA&gt;   300 … Athe… AL     35611     1      5 Dr. … Interim…
-10 100830 Auburn Un… AUM||… 7440… Mont… AL     3611…     1      5 Carl… Chancel…
-# ℹ 6,246 more rows
-# ℹ 62 more variables: gentele &lt;dbl&gt;, ein &lt;chr&gt;, ueis &lt;chr&gt;, opeid &lt;chr&gt;,
-#   opeflag &lt;dbl&gt;, webaddr &lt;chr&gt;, adminurl &lt;chr&gt;, faidurl &lt;chr&gt;, applurl &lt;chr&gt;,
-#   npricurl &lt;chr&gt;, veturl &lt;chr&gt;, athurl &lt;chr&gt;, disaurl &lt;chr&gt;, sector &lt;dbl&gt;,
-#   iclevel &lt;dbl&gt;, control &lt;dbl&gt;, hloffer &lt;dbl&gt;, ugoffer &lt;dbl&gt;, groffer &lt;dbl&gt;,
-#   hdegofr1 &lt;dbl&gt;, deggrant &lt;dbl&gt;, hbcu &lt;dbl&gt;, hospital &lt;dbl&gt;, medical &lt;dbl&gt;,
-#   tribal &lt;dbl&gt;, locale &lt;dbl&gt;, openpubl &lt;dbl&gt;, act &lt;chr&gt;, newid &lt;dbl&gt;, …</code></pre>
-</div>
-</div>
-<ul>
-<li>Okay, this looks simple enough, we see one row per institution followed by a bunch of descriptive variables</li>
-<li>Let’s look at our enrollment data</li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>data_enroll</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 117,521 × 72
-   unitid effyalev effylev lstudy xeytotlt efytotlt xeytotlm efytotlm xeytotlw
-    &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;   
- 1 100654        1       1    999 R            6681 R            2666 R       
- 2 100654        2       2      1 R            5663 R            2337 R       
- 3 100654        3      -2      1 R            5621 R            2323 R       
- 4 100654        4      -2      1 R            1680 R             722 R       
- 5 100654        5      -2      1 R            3941 R            1601 R       
- 6 100654       11      -2      1 R              42 R              14 R       
- 7 100654       12       4      3 R            1018 R             329 R       
- 8 100654       19      -2      1 R             361 R             177 R       
- 9 100654       20      -2      1 R            3580 R            1424 R       
-10 100654       21      -2    999 R            5460 R            2169 R       
-# ℹ 117,511 more rows
-# ℹ 63 more variables: efytotlw &lt;dbl&gt;, xefyaiat &lt;chr&gt;, efyaiant &lt;dbl&gt;,
-#   xefyaiam &lt;chr&gt;, efyaianm &lt;dbl&gt;, xefyaiaw &lt;chr&gt;, efyaianw &lt;dbl&gt;,
-#   xefyasit &lt;chr&gt;, efyasiat &lt;dbl&gt;, xefyasim &lt;chr&gt;, efyasiam &lt;dbl&gt;,
-#   xefyasiw &lt;chr&gt;, efyasiaw &lt;dbl&gt;, xefybkat &lt;chr&gt;, efybkaat &lt;dbl&gt;,
-#   xefybkam &lt;chr&gt;, efybkaam &lt;dbl&gt;, xefybkaw &lt;chr&gt;, efybkaaw &lt;dbl&gt;,
-#   xefyhist &lt;chr&gt;, efyhispt &lt;dbl&gt;, xefyhism &lt;chr&gt;, efyhispm &lt;dbl&gt;, …</code></pre>
-</div>
-</div>
-<ul>
-<li>Hmm, so this data definitely appears to be “long” as we see those first 10 rows are all for 100654
-<ul>
-<li>Based on visual inspection, it seems like effyalev and effylev might be what is making the data “long” for two reasons
-<ul>
-<li>First, look at the values, they seem to be in some kind of pattern</li>
-<li>Second, it’s common practice to keep the “long” variables at the start, especially in larger published data like this</li>
-</ul></li>
-<li>This is where we want to look through the code book to explore what those variables might mean</li>
-</ul></li>
-</ul>
-<blockquote class="blockquote">
-<h3 id="quick-exercise-3">Quick Exercise</h3>
-<ul>
-<li>To practice this, let’s go to the <a href="https://nces.ed.gov/ipeds/datacenter/DataFiles.aspx">IPEDS Data Center</a> and find the dictionary for EFFY2022
-<ul>
-<li>Tip: For IPEDS dictionary files, the “frequencies” tab is where you’ll find out what numbers that represent something mean</li>
-</ul></li>
-<li>Okay, so what do effyalev and effylev mean?</li>
-<li>Think back to our research question, what’s the ratio of international students at the undergraduate vs graduate level?
-<ul>
-<li>Based on the code book, what do you think we need to do now?</li>
-</ul></li>
-</ul>
-</blockquote>
-<ul>
-<li><p><code>effyalev</code> is probably more detail than we need for our question, <code>effylev</code> has everything we need</p>
-<ul>
-<li>To make our life simpler, let’s reduce our data down a little to just the variables we want with <code>select()</code></li>
-</ul></li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>data_enroll <span class="ot">&lt;-</span> data_enroll <span class="sc">|&gt;</span></span>
-<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(unitid, effylev, efytotlt, efynralt)</span>
-<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>data_enroll</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 117,521 × 4
-   unitid effylev efytotlt efynralt
-    &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;
- 1 100654       1     6681      104
- 2 100654       2     5663       53
- 3 100654      -2     5621       53
- 4 100654      -2     1680       12
- 5 100654      -2     3941       41
- 6 100654      -2       42        0
- 7 100654       4     1018       51
- 8 100654      -2      361       10
- 9 100654      -2     3580       31
-10 100654      -2     5460       95
-# ℹ 117,511 more rows</code></pre>
-</div>
-</div>
-<ul>
-<li>Next, let’s reduce our data down to just the two rows containing undergraduate and graduate enrollments</li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>data_enroll <span class="ot">&lt;-</span> data_enroll <span class="sc">|&gt;</span></span>
-<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(effylev <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">4</span>))</span>
-<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a>data_enroll</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 7,817 × 4
-   unitid effylev efytotlt efynralt
-    &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;
- 1 100654       2     5663       53
- 2 100654       4     1018       51
- 3 100663       2    15360      415
- 4 100663       4    10603     1047
- 5 100690       2      351        0
- 6 100690       4      565        0
- 7 100706       2     8536      187
- 8 100706       4     2606      234
- 9 100724       2     3899       60
-10 100724       4      526        8
-# ℹ 7,807 more rows</code></pre>
-</div>
-</div>
-<ul>
-<li><p>Okay, this is starting to look more manageable, right?</p></li>
-<li><p>What do we need to do next to be able to compare across levels of study or institutions?</p></li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>data_enroll <span class="ot">&lt;-</span> data_enroll <span class="sc">|&gt;</span></span>
-<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">perc_intl =</span> efynralt<span class="sc">/</span>efytotlt<span class="sc">*</span><span class="dv">100</span>) <span class="sc">|&gt;</span></span>
-<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>efytotlt, <span class="sc">-</span>efynralt) <span class="co"># - in select means drop this variable</span></span>
-<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a>data_enroll</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 7,817 × 3
-   unitid effylev perc_intl
-    &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;
- 1 100654       2     0.936
- 2 100654       4     5.01 
- 3 100663       2     2.70 
- 4 100663       4     9.87 
- 5 100690       2     0    
- 6 100690       4     0    
- 7 100706       2     2.19 
- 8 100706       4     8.98 
- 9 100724       2     1.54 
-10 100724       4     1.52 
-# ℹ 7,807 more rows</code></pre>
-</div>
-</div>
-<ul>
-<li><p>Now, we want to find the difference between the undergraduate and graduate enrollment levels, which should be pretty simple math right? We just need to subtract the percentages from each other</p>
-<ul>
-<li>Can we easily do that right now? If not, what do we need to do?</li>
-</ul></li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>data_enroll <span class="ot">&lt;-</span> data_enroll <span class="sc">|&gt;</span></span>
-<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> effylev,</span>
-<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">values_from =</span> perc_intl,</span>
-<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">names_prefix =</span> <span class="st">"perc_intl_"</span>)</span>
-<span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb54-6"><a href="#cb54-6" aria-hidden="true" tabindex="-1"></a>data_enroll</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6,036 × 3
-   unitid perc_intl_2 perc_intl_4
-    &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;
- 1 100654      0.936         5.01
- 2 100663      2.70          9.87
- 3 100690      0             0   
- 4 100706      2.19          8.98
- 5 100724      1.54          1.52
- 6 100751      1.62         10.7 
- 7 100760      0.406        NA   
- 8 100812      0.0577        0   
- 9 100830      4.32         37.5 
-10 100858      4.42         17.7 
-# ℹ 6,026 more rows</code></pre>
-</div>
-</div>
-<ul>
-<li>Now is our calculation much easier to make?</li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>data_enroll <span class="ot">&lt;-</span> data_enroll <span class="sc">|&gt;</span></span>
-<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">perc_intl_diff =</span> perc_intl_2 <span class="sc">-</span> perc_intl_4)</span>
-<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a>data_enroll</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6,036 × 4
-   unitid perc_intl_2 perc_intl_4 perc_intl_diff
-    &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;          &lt;dbl&gt;
- 1 100654      0.936         5.01        -4.07  
- 2 100663      2.70          9.87        -7.17  
- 3 100690      0             0            0     
- 4 100706      2.19          8.98        -6.79  
- 5 100724      1.54          1.52         0.0179
- 6 100751      1.62         10.7         -9.04  
- 7 100760      0.406        NA           NA     
- 8 100812      0.0577        0            0.0577
- 9 100830      4.32         37.5        -33.2   
-10 100858      4.42         17.7        -13.3   
-# ℹ 6,026 more rows</code></pre>
-</div>
-</div>
-<ul>
-<li><p>How do we interpret our new variable?</p></li>
-<li><p>Let’s get some basic summary statistics</p></li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>data_enroll <span class="sc">|&gt;</span></span>
-<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>() <span class="sc">|&gt;</span></span>
-<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean =</span> <span class="fu">mean</span>(perc_intl_diff),</span>
-<span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">min =</span> <span class="fu">min</span>(perc_intl_diff),</span>
-<span id="cb58-5"><a href="#cb58-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">max =</span> <span class="fu">max</span>(perc_intl_diff))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1 × 3
-   mean   min   max
-  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-1 -3.84 -96.8  41.5</code></pre>
-</div>
-</div>
-<ul>
-<li><p>Lastly, let’s see if this trend varies by private vs public institutions</p></li>
-<li><p>What do we need to do to see that?</p></li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>data_info <span class="ot">&lt;-</span> data_info <span class="sc">|&gt;</span></span>
-<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(unitid, control)</span>
-<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb60-4"><a href="#cb60-4" aria-hidden="true" tabindex="-1"></a>data_joined <span class="ot">&lt;-</span> <span class="fu">left_join</span>(data_enroll, data_info, <span class="at">by =</span> <span class="st">"unitid"</span>)</span>
-<span id="cb60-5"><a href="#cb60-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb60-6"><a href="#cb60-6" aria-hidden="true" tabindex="-1"></a>data_joined</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6,036 × 5
-   unitid perc_intl_2 perc_intl_4 perc_intl_diff control
-    &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;          &lt;dbl&gt;   &lt;dbl&gt;
- 1 100654      0.936         5.01        -4.07         1
- 2 100663      2.70          9.87        -7.17         1
- 3 100690      0             0            0            2
- 4 100706      2.19          8.98        -6.79         1
- 5 100724      1.54          1.52         0.0179       1
- 6 100751      1.62         10.7         -9.04         1
- 7 100760      0.406        NA           NA            1
- 8 100812      0.0577        0            0.0577       1
- 9 100830      4.32         37.5        -33.2          1
-10 100858      4.42         17.7        -13.3          1
-# ℹ 6,026 more rows</code></pre>
-</div>
-</div>
-<ul>
-<li>Looks like we have what we need, so let’s see if the mean varies by institutional control</li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>data_joined <span class="sc">|&gt;</span></span>
-<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(control) <span class="sc">|&gt;</span></span>
-<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>() <span class="sc">|&gt;</span></span>
-<span id="cb62-4"><a href="#cb62-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean =</span> <span class="fu">mean</span>(perc_intl_diff))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 3 × 2
-  control  mean
-    &lt;dbl&gt; &lt;dbl&gt;
-1       1 -5.84
-2       2 -2.63
-3       3 -4.94</code></pre>
-</div>
-</div>
-<ul>
-<li><p>Now let’s find out if out trend varies by states and make a map to visualize it</p></li>
-<li><p>Let’s first read in the packages we need for making maps</p></li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
-<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tigris)</span>
-<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">tigris_use_cache =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<ul>
-<li>Now we want to get the state information for each institution</li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a>data_info_state <span class="ot">&lt;-</span> data_info <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/hd2022.csv"</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename_all</span>(tolower) <span class="sc">|&gt;</span></span>
-<span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(unitid, stabbr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<ul>
-<li>Next, we want to join the state information to our enrollment data</li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>data_joined_state <span class="ot">&lt;-</span> <span class="fu">left_join</span>(data_enroll, data_info_state, <span class="at">by =</span> <span class="st">"unitid"</span>)</span>
-<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a>data_joined_state</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6,036 × 5
-   unitid perc_intl_2 perc_intl_4 perc_intl_diff stabbr
-    &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;          &lt;dbl&gt; &lt;chr&gt; 
- 1 100654      0.936         5.01        -4.07   AL    
- 2 100663      2.70          9.87        -7.17   AL    
- 3 100690      0             0            0      AL    
- 4 100706      2.19          8.98        -6.79   AL    
- 5 100724      1.54          1.52         0.0179 AL    
- 6 100751      1.62         10.7         -9.04   AL    
- 7 100760      0.406        NA           NA      AL    
- 8 100812      0.0577        0            0.0577 AL    
- 9 100830      4.32         37.5        -33.2    AL    
-10 100858      4.42         17.7        -13.3    AL    
-# ℹ 6,026 more rows</code></pre>
-</div>
-</div>
-<ul>
-<li>We can again calculate the mean by states, just like what we did with institutional control</li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a>data_joined_state <span class="ot">&lt;-</span> data_joined_state <span class="sc">|&gt;</span></span>
-<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(stabbr) <span class="sc">|&gt;</span></span>
-<span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>() <span class="sc">|&gt;</span></span>
-<span id="cb68-4"><a href="#cb68-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean_perc_intl_diff =</span> <span class="fu">mean</span>(perc_intl_diff))</span>
-<span id="cb68-5"><a href="#cb68-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb68-6"><a href="#cb68-6" aria-hidden="true" tabindex="-1"></a>data_joined_state</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 54 × 2
-   stabbr mean_perc_intl_diff
-   &lt;chr&gt;                &lt;dbl&gt;
- 1 AK                   -2.73
- 2 AL                   -2.26
- 3 AR                   -2.01
- 4 AZ                   -5.61
- 5 CA                   -8.29
- 6 CO                   -1.55
- 7 CT                   -5.82
- 8 DC                   -2.76
- 9 DE                  -17.6 
-10 FL                   -3.44
-# ℹ 44 more rows</code></pre>
-</div>
-</div>
-<ul>
-<li>We are finally ready to make a map! We can use the <code>tigris</code> package to get the state boundaries</li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a>states_sf <span class="ot">&lt;-</span> <span class="fu">states</span>(<span class="at">cb =</span> <span class="cn">TRUE</span>, <span class="at">year =</span> <span class="dv">2022</span>) <span class="sc">|&gt;</span></span>
-<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(STUSPS <span class="sc">%in%</span> state.abb <span class="sc">|</span> STUSPS <span class="sc">==</span> <span class="st">"DC"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb70-3"><a href="#cb70-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(data_joined_state, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"STUSPS"</span> <span class="ot">=</span> <span class="st">"stabbr"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<ul>
-<li>Plotting time!</li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> <span class="fu">shift_geometry</span>(states_sf),</span>
-<span id="cb71-3"><a href="#cb71-3" aria-hidden="true" tabindex="-1"></a>          <span class="fu">aes</span>(<span class="at">fill =</span> mean_perc_intl_diff),</span>
-<span id="cb71-4"><a href="#cb71-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">size =</span> <span class="fl">0.1</span>) <span class="sc">+</span></span>
-<span id="cb71-5"><a href="#cb71-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf_text</span>(<span class="at">data =</span> <span class="fu">shift_geometry</span>(<span class="fu">st_centroid</span>(states_sf)),</span>
-<span id="cb71-6"><a href="#cb71-6" aria-hidden="true" tabindex="-1"></a>               <span class="fu">aes</span>(<span class="at">label =</span> STUSPS))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="04-wrangle-ii_files/figure-html/unnamed-chunk-39-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-</div>
-<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
 <p><a href="./site-attachments/assignments/assignment-03.qmd"><i class="fa-solid fa-question" aria-label="question"></i> Assignment Template</a></p>
 <p>Use the <code>hsls_small.csv</code> data set from the lesson answer the following questions</p>
 <ul>
