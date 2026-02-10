@@ -612,7 +612,7 @@ window.Quarto = {
 </ul></li>
 </ul>
 <blockquote class="blockquote">
-<p>Quick question: What does the <code>na.rm = TRUE</code> and why might we need it?</p>
+<p>Quick question: What does the <code>na.rm = TRUE</code> do and why might we need it?</p>
 </blockquote>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="do">## density plot of math scores</span></span>
@@ -1010,7 +1010,7 @@ window.Quarto = {
 <p>Quick question: What do you think the pros and cons of using <code>factor()</code> in the plot over mutating the data might be?</p>
 </blockquote>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="do">## box plot using both factor() and as_factor()</span></span>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="do">## box plot using factor() </span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> data_hs,</span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(x1paredu),</span>
 <span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>                     <span class="at">y =</span> x1txmtscor,</span>
