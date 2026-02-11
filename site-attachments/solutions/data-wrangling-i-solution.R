@@ -1,13 +1,11 @@
 ## -----------------------------------------------------------------------------
 ##
-##' [PROJ: EDH 7916]
-##' [FILE: Data Wrangling I Solution]
-##' [INIT: Jan 28 2024]
-##' [AUTH: Matt Capaldi] @ttalVlatt
+##' [PROJ: EDH7645]
+##' [FILE: Assignment 02]
+##' [INIT: 2025]
+##' [AUTH: Jue Wu]
 ##
 ## -----------------------------------------------------------------------------
-
-## note to matt
 
 setwd(this.path::here())
 
@@ -21,105 +19,144 @@ library(tidyverse)
 ##' [Input]
 ## ---------------------------
 
-df <- read_csv(file.path("data", "hsls-small.csv"))
+data <- read_csv("data/hsls-small.csv")
 
 ## ---------------------------
-##' [Q1]
+##' [Prep]
 ## ---------------------------
 
-## Part One
-df |>
-  filter(!x1txmtscor %in% c(-8, -9)) |>
-  summarize(mean = mean(x1txmtscor))
-
-## Part Two
-df |>
-  filter(!x1txmtscor %in% c(-8, -9),
-         x1sex != -9) |>
-  group_by(x1sex) |>
-  summarize(mean = mean(x1txmtscor))
-
 ## ---------------------------
-##' [Q2]
+##' [Analysis]
 ## ---------------------------
 
-df |>
+# 1a
+# quickly look at the distribution of x1txmtscor
+
+data |> 
+  pull(x1txmtscor) |> 
+  psych::describe()
+
+data |> 
+  select(x1txmtscor) |>
+  summary()
+
+data |> 
+  # check distribution of x1txmtscor
+  ggplot(aes(x = x1txmtscor)) +
+  geom_histogram() 
+
+# get average
+data |> 
+  filter(x1txmtscor != -8) |> 
+  summarize(mean_math = mean(x1txmtscor))
+  
+# 1b
+# calculate mean of x1txmtscor by x1sex
+
+# check distribution of x1sex first
+data |> 
+  count(x1sex)
+
+data |> 
+  filter(x1txmtscor != -8,
+         x1sex != -9) |> 
+  group_by(x1sex) |> 
+  summarize(mean_math = mean(x1txmtscor))
+
+# 2a
+# check distribution of x1poverty185 and x1famincome first
+data |> count(x1poverty185)
+data |> count(x1famincome)
+
+data |> 
   filter(x1poverty185 == 1,
-         !x1famincome %in% c(-8,-9)) |>
-  summarize(med_inc_cat = median(x1famincome))
+         !x1famincome %in% c(-8, -9)) |> 
+  summarize(median = median(x1famincome))
 
-print("Median income category in 2, which represents Family income > $15,000 and <= $35,000")
+# 3a
+data |> count(x4hscompstat)
 
-## ---------------------------
-##' [Q3]
-## ---------------------------
+data |> 
+  filter(x4hscompstat %in% c(1, 2)) |>
+  group_by(x4hscompstat) |>
+  summarize(n = n()) |>
+  mutate(percentage = n / sum(n) * 100)
 
-## Simplified
-df |>
-  filter(x4hscompstat %in% c(1,2)) |>
-  count(x4hscompstat) |>
-  mutate(perc = n / sum(n) * 100)
+data |> 
+  filter(x4hscompstat %in% c(1, 2)) |>
+  count(x4hscompstat) |> 
+  mutate(percentage = n / sum(n) * 100)
 
-## Part One
-df |>
-  filter(x4hscompstat %in% c(1,2)) |>
-  summarize(ged = sum(x4hscompstat == 2),
-            total = sum(x4hscompstat %in% c(1,2)),
-            perc = ged/total*100)
+data |> 
+  filter(x4hscompstat %in% c(1, 2)) |>
+  summarize(percentage = mean(x4hscompstat == 2) * 100)
 
-## Part Two
-## Simplified
-df |>
+# 3b
+data |> 
+  filter(x4hscompstat %in% c(1, 2)) |>
+  group_by(x1region, x4hscompstat) |>
+  summarize(n = n()) |>
+  mutate(percentage = n / sum(n) * 100) |> 
+  filter(x4hscompstat == 2)
+
+data |>
   filter(x4hscompstat %in% c(1,2)) |>
   group_by(x1region) |>
   count(x4hscompstat) |>
   mutate(perc = n / sum(n) * 100) |>
   filter(x4hscompstat == 2)
 
-df |>
-  filter(x4hscompstat %in% c(1,2)) |>
-  group_by(x1region) |>
-  summarize(ged = sum(x4hscompstat == 2),
-            total = sum(x4hscompstat %in% c(1,2)),
-            perc = ged/total*100)
+# 4a
+data |> count(x4evratndclg)
 
-## ---------------------------
-##' [Q4]
-## ---------------------------
+data |> 
+  filter(x4evratndclg != -8) |> 
+  group_by(x4evratndclg) |>
+  summarize(n = n()) |>
+  mutate(percentage = n / sum(n) * 100)
 
-## Part One
-df |>
+data |>
   filter(x4evratndclg != -8) |>
-  count(x4evratndclg) |>
-  mutate(perc = n / sum(n) * 100)
+  count(x4evratndclg) |> 
+  mutate(percentage = n / sum(n) * 100)
 
-
-df |>
+data |>
   filter(x4evratndclg != -8) |>
-  summarize(college = sum(x4evratndclg == 1),
-            total = sum(x4evratndclg %in% c(0, 1)),
-            perc = college/total*100)
+  summarize(percentage = mean(x4evratndclg == 1) * 100)
 
-## Part Two
-df |>
+# 4b
+data |> count(x1famincome)
+data |> count(x1region)
+
+data |> 
   filter(x4evratndclg != -8,
          !x1famincome %in% c(-8, -9)) |>
-  mutate(below_35k = ifelse(x1famincome %in% c(1,2), 1, 0)) |>
-  group_by(x1region, below_35k) |>
-  count(x4evratndclg) |>
-  mutate(perc = n / sum(n) * 100) |>
+  mutate(income_35k = ifelse(x1famincome %in% c(1,2), 0, 1)) |> 
+  group_by(income_35k, x1region, x4evratndclg) |>
+  summarize(n = n()) |> 
+  mutate(percentage = n / sum(n) * 100) |> 
   filter(x4evratndclg == 1)
 
 
-
-df |>
+data |> 
   filter(x4evratndclg != -8,
          !x1famincome %in% c(-8, -9)) |>
-  mutate(below_35k = ifelse(x1famincome %in% c(1,2), 1, 0)) |>
-  group_by(x1region, below_35k) |>
-  summarize(college = sum(x4evratndclg == 1),
-            total = sum(x4evratndclg %in% c(0, 1)),
-            perc = college/total*100)
+  mutate(income_35k = ifelse(x1famincome %in% c(1,2), 0, 1)) |> 
+  group_by(income_35k, x1region) |>
+  count(x4evratndclg) |> 
+  mutate(percentage = n / sum(n) * 100) |> 
+  filter(x4evratndclg == 1)
+
+data |> 
+  filter(x4evratndclg != -8,
+         !x1famincome %in% c(-8, -9)) |>
+  mutate(income_35k = ifelse(x1famincome %in% c(1,2), 0, 1)) |> 
+  group_by(income_35k, x1region) |> 
+  summarize(percentage = mean(x4evratndclg == 1) * 100)
+
+## ---------------------------
+##' [Output]
+## ---------------------------
 
 ## -----------------------------------------------------------------------------
 ##' *END SCRIPT*
