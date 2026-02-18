@@ -666,9 +666,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Note: since we are changing our underlying plot data, it’s best to start again and store the plot in <code>p2</code></li>
 </ul></li>
 </ul>
-<blockquote class="blockquote">
-<p>Quick question: We also added one other new line, who can remember what <code>alpha = 0.66</code> does?</p>
-</blockquote>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> data) <span class="sc">+</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> x1txmtscor,</span>
@@ -694,6 +691,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
+<blockquote class="blockquote">
+<p>Quick question: We also added one other new line, who can remember what <code>alpha = 0.66</code> does?</p>
+</blockquote>
 <ul>
 <li>Close! But, factor(pared_coll) isn’t the best name for our legend…</li>
 </ul>
@@ -763,7 +763,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 data-anchor-id="facet_wrap"><code>facet_wrap()</code></h2>
 <ul>
 <li>Now, what if we want to see how this trend varies by sex?</li>
-<li>Remember from last week, we can use <code>facet_wrap()</code> to split data and make separate plots for each level of a variable
+<li>We can use <code>facet_wrap()</code> to split data and make separate plots for each level of a variable
 <ul>
 <li><code>facet_wrap()</code> uses a <code>~</code> tilde to mean “facet by this variable”</li>
 </ul></li>
@@ -916,7 +916,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <ol start="2" type="1">
 <li>Inside <code>theme()</code> there are many many options which you can see listed <a href="https://ggplot2.tidyverse.org/reference/theme.html">here</a></li>
-<li>Pick one of more and assign to it <code>=</code> an <code>element_</code></li>
+<li>Pick one or more and assign to it <code>=</code> an <code>element_</code></li>
 <li><code>element_</code> come in different types including <code>element_line()</code> like we used above, <code>element_text()</code>, <code>element_rect()</code>, and others</li>
 <li>Each of these has specific options you can customize as you wish</li>
 </ol>
