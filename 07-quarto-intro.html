@@ -409,7 +409,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 data-anchor-id="quarto-vs-microsoft-word">Quarto vs Microsoft Word</h3>
 <ul>
 <li><p>Up until now, you’ve likely written most of your assignments using a Microsoft Word or something similar</p></li>
-<li><p>There are a few major reasons Quarto has most replaced Word for 95% of my work</p>
+<li><p>There are a few major advantages of Quarto, compared to Word</p>
 <ol type="1">
 <li>Automatically created tables/results from code</li>
 </ol>
@@ -423,7 +423,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <blockquote class="blockquote">
 <h3 id="quick-discussion">Quick Discussion</h3>
-<p>In addition to not having to type out the table in the first place, a big pro of that any changes you make in your analysis (e.g., cleaning a variable differently, including a new variable in the analysis)</p>
+<p>In addition to not having to type out the table in the first place, a big pro is that any changes you make in your analysis (e.g., cleaning a variable differently, including a new variable in the analysis) will be updated automatically</p>
 <p>What kind of real-world situations do you think would help in?</p>
 </blockquote>
 <ol start="2" type="1">
@@ -457,11 +457,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>For new paragraphs, leave a blank line between text</li>
 <li>For bold text, <code>**use two astrisks around the text**</code></li>
 <li>For italic text, <code>_use underscores around the text_</code> or <code>*use one astrisk around the text*</code></li>
-<li>For headings, use # before the text for each level, e.g.&nbsp;<code># level 1 headings</code> to <code>##### level 5 headings</code></li>
+<li>For headings, use # before the text for each level, e.g. <code># level 1 headings</code> to <code>##### level 5 headings</code></li>
 <li>For links, <code>[Type the text you want to display in square brackets](Type the link in parantheses)</code></li>
 <li>For images, <code>Type an ![Type the caption in square brackets](Type the path to the image file in parantheses)</code></li>
 <li>For lists, start a new line then use <code>1.</code> for numbered lists or <code>-</code> for bulleted lists</li>
-<li>For tables, well… There are better ways than typing out a markdown table by hand</li>
 </ul></li>
 </ul>
 </section>
@@ -473,10 +472,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>If you look at the top of the document you will see “Source” and “Visual”</li>
 <li>If you toggle into “Visual” two you will see options appear at the top like <strong>B</strong> and <em>I</em> make it easy to change the text without writing the ** or _</li>
 </ul></li>
-<li>It’s not that one way is better than the other, I use both depending on the situation/task
+<li>It’s not that one way is better than the other - depending on the situation/task
 <ul>
-<li>Typically, if I’m writing more code chunks, I will be in the source mode</li>
-<li>If I’m writing longer sections of text, I will be in the visual mode (particularly for entering citations, which we will talk about later)</li>
+<li>Typically, if writing more code chunks, source mode is great</li>
+<li>If writing longer sections of text, visual mode might be easier (particularly for entering citations, which we will talk about later)</li>
 </ul></li>
 </ul>
 <blockquote class="blockquote">
@@ -1019,11 +1018,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><br>
 </p>
 <ul>
-<li>You may have noticed in your assignemnet templates the code chunks always start with something like <code>#| label: 1a</code>
+<li><p>You may have noticed in your assignemnet templates the code chunks always start with something like <code>#| label: 1a</code></p>
 <ul>
 <li>This is basically giving the code chunk a name, and it’s the basis of creating automatic table/figure numberin</li>
 </ul></li>
-<li>All you need to do is specify two things about the chunk
+<li><p>All you need to do is specify two things about the chunk</p>
 <ol type="1">
 <li>You need to tell Quarto that this chunk is a table or figure</li>
 </ol>
@@ -1042,7 +1041,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>For example <code>#| fig-cap: Math Test Scores by Sex</code></li>
 </ul></li>
 </ul></li>
-<li>If you do those things correctly, Quarto will know that chunk creates a plot and number it for you like below</li>
+<li><p>If you do those things correctly, Quarto will know that chunk creates a plot and number it for you like below</p></li>
 </ul>
 <div class="cell">
 <div class="cell-output-display">
@@ -1363,7 +1362,7 @@ Figure&nbsp;1: Math Test Scores by Sex
 <ul>
 <li>To demonstrate, let’s <code>source()</code> our R script from last week’s lesson
 <ul>
-<li>There are two things that need to be right for this to work
+<li><p>There are two things that need to be right for this to work</p>
 <ol type="1">
 <li>The script has to be able to be run top to bottom with no errors</li>
 </ol>
@@ -1376,7 +1375,7 @@ Figure&nbsp;1: Math Test Scores by Sex
 <ol start="2" type="1">
 <li>You need to know what the file is called and where it is (i.e., the file path)</li>
 </ol></li>
-<li>The we simply say <code>source("&lt;file path&gt;.R")</code></li>
+<li><p>The we simply say <code>source("&lt;file path&gt;.R")</code></p></li>
 </ul></li>
 </ul>
 <div class="cell">
@@ -1474,23 +1473,23 @@ Figure&nbsp;1: Math Test Scores by Sex
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(x1txmtscor, x1region) <span class="sc">|&gt;</span></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tbl_summary</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="coucqujucb" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#coucqujucb table {
+<div id="rmnyhxinis" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#rmnyhxinis table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#coucqujucb thead, #coucqujucb tbody, #coucqujucb tfoot, #coucqujucb tr, #coucqujucb td, #coucqujucb th {
+#rmnyhxinis thead, #rmnyhxinis tbody, #rmnyhxinis tfoot, #rmnyhxinis tr, #rmnyhxinis td, #rmnyhxinis th {
   border-style: none;
 }
 
-#coucqujucb p {
+#rmnyhxinis p {
   margin: 0;
   padding: 0;
 }
 
-#coucqujucb .gt_table {
+#rmnyhxinis .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1516,12 +1515,12 @@ Figure&nbsp;1: Math Test Scores by Sex
   border-left-color: #D3D3D3;
 }
 
-#coucqujucb .gt_caption {
+#rmnyhxinis .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#coucqujucb .gt_title {
+#rmnyhxinis .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1533,7 +1532,7 @@ Figure&nbsp;1: Math Test Scores by Sex
   border-bottom-width: 0;
 }
 
-#coucqujucb .gt_subtitle {
+#rmnyhxinis .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1545,7 +1544,7 @@ Figure&nbsp;1: Math Test Scores by Sex
   border-top-width: 0;
 }
 
-#coucqujucb .gt_heading {
+#rmnyhxinis .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1557,13 +1556,13 @@ Figure&nbsp;1: Math Test Scores by Sex
   border-right-color: #D3D3D3;
 }
 
-#coucqujucb .gt_bottom_border {
+#rmnyhxinis .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#coucqujucb .gt_col_headings {
+#rmnyhxinis .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1578,7 +1577,7 @@ Figure&nbsp;1: Math Test Scores by Sex
   border-right-color: #D3D3D3;
 }
 
-#coucqujucb .gt_col_heading {
+#rmnyhxinis .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1598,7 +1597,7 @@ Figure&nbsp;1: Math Test Scores by Sex
   overflow-x: hidden;
 }
 
-#coucqujucb .gt_column_spanner_outer {
+#rmnyhxinis .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1610,15 +1609,15 @@ Figure&nbsp;1: Math Test Scores by Sex
   padding-right: 4px;
 }
 
-#coucqujucb .gt_column_spanner_outer:first-child {
+#rmnyhxinis .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#coucqujucb .gt_column_spanner_outer:last-child {
+#rmnyhxinis .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#coucqujucb .gt_column_spanner {
+#rmnyhxinis .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1630,11 +1629,11 @@ Figure&nbsp;1: Math Test Scores by Sex
   width: 100%;
 }
 
-#coucqujucb .gt_spanner_row {
+#rmnyhxinis .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#coucqujucb .gt_group_heading {
+#rmnyhxinis .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1660,7 +1659,7 @@ Figure&nbsp;1: Math Test Scores by Sex
   text-align: left;
 }
 
-#coucqujucb .gt_empty_group_heading {
+#rmnyhxinis .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1675,15 +1674,15 @@ Figure&nbsp;1: Math Test Scores by Sex
   vertical-align: middle;
 }
 
-#coucqujucb .gt_from_md > :first-child {
+#rmnyhxinis .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#coucqujucb .gt_from_md > :last-child {
+#rmnyhxinis .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#coucqujucb .gt_row {
+#rmnyhxinis .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1702,7 +1701,7 @@ Figure&nbsp;1: Math Test Scores by Sex
   overflow-x: hidden;
 }
 
-#coucqujucb .gt_stub {
+#rmnyhxinis .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1715,7 +1714,7 @@ Figure&nbsp;1: Math Test Scores by Sex
   padding-right: 5px;
 }
 
-#coucqujucb .gt_stub_row_group {
+#rmnyhxinis .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1729,15 +1728,15 @@ Figure&nbsp;1: Math Test Scores by Sex
   vertical-align: top;
 }
 
-#coucqujucb .gt_row_group_first td {
+#rmnyhxinis .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#coucqujucb .gt_row_group_first th {
+#rmnyhxinis .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#coucqujucb .gt_summary_row {
+#rmnyhxinis .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1747,16 +1746,16 @@ Figure&nbsp;1: Math Test Scores by Sex
   padding-right: 5px;
 }
 
-#coucqujucb .gt_first_summary_row {
+#rmnyhxinis .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#coucqujucb .gt_first_summary_row.thick {
+#rmnyhxinis .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#coucqujucb .gt_last_summary_row {
+#rmnyhxinis .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1766,7 +1765,7 @@ Figure&nbsp;1: Math Test Scores by Sex
   border-bottom-color: #D3D3D3;
 }
 
-#coucqujucb .gt_grand_summary_row {
+#rmnyhxinis .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1776,7 +1775,7 @@ Figure&nbsp;1: Math Test Scores by Sex
   padding-right: 5px;
 }
 
-#coucqujucb .gt_first_grand_summary_row {
+#rmnyhxinis .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1786,7 +1785,7 @@ Figure&nbsp;1: Math Test Scores by Sex
   border-top-color: #D3D3D3;
 }
 
-#coucqujucb .gt_last_grand_summary_row_top {
+#rmnyhxinis .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1796,11 +1795,11 @@ Figure&nbsp;1: Math Test Scores by Sex
   border-bottom-color: #D3D3D3;
 }
 
-#coucqujucb .gt_striped {
+#rmnyhxinis .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#coucqujucb .gt_table_body {
+#rmnyhxinis .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1809,7 +1808,7 @@ Figure&nbsp;1: Math Test Scores by Sex
   border-bottom-color: #D3D3D3;
 }
 
-#coucqujucb .gt_footnotes {
+#rmnyhxinis .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1823,7 +1822,7 @@ Figure&nbsp;1: Math Test Scores by Sex
   border-right-color: #D3D3D3;
 }
 
-#coucqujucb .gt_footnote {
+#rmnyhxinis .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1832,7 +1831,7 @@ Figure&nbsp;1: Math Test Scores by Sex
   padding-right: 5px;
 }
 
-#coucqujucb .gt_sourcenotes {
+#rmnyhxinis .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1846,7 +1845,7 @@ Figure&nbsp;1: Math Test Scores by Sex
   border-right-color: #D3D3D3;
 }
 
-#coucqujucb .gt_sourcenote {
+#rmnyhxinis .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1854,72 +1853,72 @@ Figure&nbsp;1: Math Test Scores by Sex
   padding-right: 5px;
 }
 
-#coucqujucb .gt_left {
+#rmnyhxinis .gt_left {
   text-align: left;
 }
 
-#coucqujucb .gt_center {
+#rmnyhxinis .gt_center {
   text-align: center;
 }
 
-#coucqujucb .gt_right {
+#rmnyhxinis .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#coucqujucb .gt_font_normal {
+#rmnyhxinis .gt_font_normal {
   font-weight: normal;
 }
 
-#coucqujucb .gt_font_bold {
+#rmnyhxinis .gt_font_bold {
   font-weight: bold;
 }
 
-#coucqujucb .gt_font_italic {
+#rmnyhxinis .gt_font_italic {
   font-style: italic;
 }
 
-#coucqujucb .gt_super {
+#rmnyhxinis .gt_super {
   font-size: 65%;
 }
 
-#coucqujucb .gt_footnote_marks {
+#rmnyhxinis .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#coucqujucb .gt_asterisk {
+#rmnyhxinis .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#coucqujucb .gt_indent_1 {
+#rmnyhxinis .gt_indent_1 {
   text-indent: 5px;
 }
 
-#coucqujucb .gt_indent_2 {
+#rmnyhxinis .gt_indent_2 {
   text-indent: 10px;
 }
 
-#coucqujucb .gt_indent_3 {
+#rmnyhxinis .gt_indent_3 {
   text-indent: 15px;
 }
 
-#coucqujucb .gt_indent_4 {
+#rmnyhxinis .gt_indent_4 {
   text-indent: 20px;
 }
 
-#coucqujucb .gt_indent_5 {
+#rmnyhxinis .gt_indent_5 {
   text-indent: 25px;
 }
 
-#coucqujucb .katex-display {
+#rmnyhxinis .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#coucqujucb div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#rmnyhxinis div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -1990,23 +1989,23 @@ Figure&nbsp;1: Math Test Scores by Sex
 <span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>                                                 <span class="st">"{sd}"</span>,</span>
 <span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>                                                 <span class="st">"{min} to {max}"</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="penpukijnd" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#penpukijnd table {
+<div id="rwkxywlamh" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#rwkxywlamh table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#penpukijnd thead, #penpukijnd tbody, #penpukijnd tfoot, #penpukijnd tr, #penpukijnd td, #penpukijnd th {
+#rwkxywlamh thead, #rwkxywlamh tbody, #rwkxywlamh tfoot, #rwkxywlamh tr, #rwkxywlamh td, #rwkxywlamh th {
   border-style: none;
 }
 
-#penpukijnd p {
+#rwkxywlamh p {
   margin: 0;
   padding: 0;
 }
 
-#penpukijnd .gt_table {
+#rwkxywlamh .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -2032,12 +2031,12 @@ Figure&nbsp;1: Math Test Scores by Sex
   border-left-color: #D3D3D3;
 }
 
-#penpukijnd .gt_caption {
+#rwkxywlamh .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#penpukijnd .gt_title {
+#rwkxywlamh .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -2049,7 +2048,7 @@ Figure&nbsp;1: Math Test Scores by Sex
   border-bottom-width: 0;
 }
 
-#penpukijnd .gt_subtitle {
+#rwkxywlamh .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -2061,7 +2060,7 @@ Figure&nbsp;1: Math Test Scores by Sex
   border-top-width: 0;
 }
 
-#penpukijnd .gt_heading {
+#rwkxywlamh .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -2073,13 +2072,13 @@ Figure&nbsp;1: Math Test Scores by Sex
   border-right-color: #D3D3D3;
 }
 
-#penpukijnd .gt_bottom_border {
+#rwkxywlamh .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#penpukijnd .gt_col_headings {
+#rwkxywlamh .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2094,7 +2093,7 @@ Figure&nbsp;1: Math Test Scores by Sex
   border-right-color: #D3D3D3;
 }
 
-#penpukijnd .gt_col_heading {
+#rwkxywlamh .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2114,7 +2113,7 @@ Figure&nbsp;1: Math Test Scores by Sex
   overflow-x: hidden;
 }
 
-#penpukijnd .gt_column_spanner_outer {
+#rwkxywlamh .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2126,15 +2125,15 @@ Figure&nbsp;1: Math Test Scores by Sex
   padding-right: 4px;
 }
 
-#penpukijnd .gt_column_spanner_outer:first-child {
+#rwkxywlamh .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#penpukijnd .gt_column_spanner_outer:last-child {
+#rwkxywlamh .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#penpukijnd .gt_column_spanner {
+#rwkxywlamh .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -2146,11 +2145,11 @@ Figure&nbsp;1: Math Test Scores by Sex
   width: 100%;
 }
 
-#penpukijnd .gt_spanner_row {
+#rwkxywlamh .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#penpukijnd .gt_group_heading {
+#rwkxywlamh .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2176,7 +2175,7 @@ Figure&nbsp;1: Math Test Scores by Sex
   text-align: left;
 }
 
-#penpukijnd .gt_empty_group_heading {
+#rwkxywlamh .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2191,15 +2190,15 @@ Figure&nbsp;1: Math Test Scores by Sex
   vertical-align: middle;
 }
 
-#penpukijnd .gt_from_md > :first-child {
+#rwkxywlamh .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#penpukijnd .gt_from_md > :last-child {
+#rwkxywlamh .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#penpukijnd .gt_row {
+#rwkxywlamh .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2218,7 +2217,7 @@ Figure&nbsp;1: Math Test Scores by Sex
   overflow-x: hidden;
 }
 
-#penpukijnd .gt_stub {
+#rwkxywlamh .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2231,7 +2230,7 @@ Figure&nbsp;1: Math Test Scores by Sex
   padding-right: 5px;
 }
 
-#penpukijnd .gt_stub_row_group {
+#rwkxywlamh .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2245,15 +2244,15 @@ Figure&nbsp;1: Math Test Scores by Sex
   vertical-align: top;
 }
 
-#penpukijnd .gt_row_group_first td {
+#rwkxywlamh .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#penpukijnd .gt_row_group_first th {
+#rwkxywlamh .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#penpukijnd .gt_summary_row {
+#rwkxywlamh .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2263,16 +2262,16 @@ Figure&nbsp;1: Math Test Scores by Sex
   padding-right: 5px;
 }
 
-#penpukijnd .gt_first_summary_row {
+#rwkxywlamh .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#penpukijnd .gt_first_summary_row.thick {
+#rwkxywlamh .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#penpukijnd .gt_last_summary_row {
+#rwkxywlamh .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2282,7 +2281,7 @@ Figure&nbsp;1: Math Test Scores by Sex
   border-bottom-color: #D3D3D3;
 }
 
-#penpukijnd .gt_grand_summary_row {
+#rwkxywlamh .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2292,7 +2291,7 @@ Figure&nbsp;1: Math Test Scores by Sex
   padding-right: 5px;
 }
 
-#penpukijnd .gt_first_grand_summary_row {
+#rwkxywlamh .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2302,7 +2301,7 @@ Figure&nbsp;1: Math Test Scores by Sex
   border-top-color: #D3D3D3;
 }
 
-#penpukijnd .gt_last_grand_summary_row_top {
+#rwkxywlamh .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2312,11 +2311,11 @@ Figure&nbsp;1: Math Test Scores by Sex
   border-bottom-color: #D3D3D3;
 }
 
-#penpukijnd .gt_striped {
+#rwkxywlamh .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#penpukijnd .gt_table_body {
+#rwkxywlamh .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2325,7 +2324,7 @@ Figure&nbsp;1: Math Test Scores by Sex
   border-bottom-color: #D3D3D3;
 }
 
-#penpukijnd .gt_footnotes {
+#rwkxywlamh .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2339,7 +2338,7 @@ Figure&nbsp;1: Math Test Scores by Sex
   border-right-color: #D3D3D3;
 }
 
-#penpukijnd .gt_footnote {
+#rwkxywlamh .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -2348,7 +2347,7 @@ Figure&nbsp;1: Math Test Scores by Sex
   padding-right: 5px;
 }
 
-#penpukijnd .gt_sourcenotes {
+#rwkxywlamh .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2362,7 +2361,7 @@ Figure&nbsp;1: Math Test Scores by Sex
   border-right-color: #D3D3D3;
 }
 
-#penpukijnd .gt_sourcenote {
+#rwkxywlamh .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2370,72 +2369,72 @@ Figure&nbsp;1: Math Test Scores by Sex
   padding-right: 5px;
 }
 
-#penpukijnd .gt_left {
+#rwkxywlamh .gt_left {
   text-align: left;
 }
 
-#penpukijnd .gt_center {
+#rwkxywlamh .gt_center {
   text-align: center;
 }
 
-#penpukijnd .gt_right {
+#rwkxywlamh .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#penpukijnd .gt_font_normal {
+#rwkxywlamh .gt_font_normal {
   font-weight: normal;
 }
 
-#penpukijnd .gt_font_bold {
+#rwkxywlamh .gt_font_bold {
   font-weight: bold;
 }
 
-#penpukijnd .gt_font_italic {
+#rwkxywlamh .gt_font_italic {
   font-style: italic;
 }
 
-#penpukijnd .gt_super {
+#rwkxywlamh .gt_super {
   font-size: 65%;
 }
 
-#penpukijnd .gt_footnote_marks {
+#rwkxywlamh .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#penpukijnd .gt_asterisk {
+#rwkxywlamh .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#penpukijnd .gt_indent_1 {
+#rwkxywlamh .gt_indent_1 {
   text-indent: 5px;
 }
 
-#penpukijnd .gt_indent_2 {
+#rwkxywlamh .gt_indent_2 {
   text-indent: 10px;
 }
 
-#penpukijnd .gt_indent_3 {
+#rwkxywlamh .gt_indent_3 {
   text-indent: 15px;
 }
 
-#penpukijnd .gt_indent_4 {
+#rwkxywlamh .gt_indent_4 {
   text-indent: 20px;
 }
 
-#penpukijnd .gt_indent_5 {
+#rwkxywlamh .gt_indent_5 {
   text-indent: 25px;
 }
 
-#penpukijnd .katex-display {
+#rwkxywlamh .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#penpukijnd div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#rwkxywlamh div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
