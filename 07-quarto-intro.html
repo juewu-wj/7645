@@ -547,10 +547,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>If you’re interested in seeing what this looks like, add <code>keep-tex: true</code> to your YAML header</li>
 </ul></li>
 <li>You can see details about LaTeX options on the <a href="https://quarto.org/docs/reference/formats/pdf.html">Quarto documentation for <code>LaTeX</code> output</a></li>
-<li>As an aside, I am writing my dissertation in Quarto, having adapted UF’s LaTeX template to work with Quarto input
-<ul>
-<li>I have created a <a href="https://github.com/ttalVlatt/UF-Quarto-Dissertation">public template</a> for that which I will continue to update as I go, it should be ready by the time you are at that stage if you decide you like Quarto as much as I do!</li>
-</ul></li>
 </ul>
 <blockquote class="blockquote">
 <h4 id="quick-excercise-1">Quick Excercise</h4>
@@ -576,7 +572,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>While it’s easier to use, and very verstile, it is not <em>quite</em> as customizable as LaTeX, particularly for meeting extra-strict formatting guidelines (like a dissertation)</li>
 </ul></li>
 <li>You can see details about typst options on the <a href="https://quarto.org/docs/reference/formats/typst.html">Quarto documentation for <code>typst</code> output</a></li>
-<li>As another aside, I’ve used typst to create a wide range of pretty looking docuemnts from <a href="https://capaldi.info/resume.pdf">my resume</a> to <a href="https://capaldi.info/recipebox">a website of recipe cards</a></li>
 </ul>
 <blockquote class="blockquote">
 <h4 id="quick-excercise-2">Quick Excercise</h4>
@@ -613,7 +608,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>The most flexible and compatible option is using Microsoft Office formats (<code>.docx</code> for Word and <code>.pptx</code> for PowerPoint)</li>
 <li>When you render your Quarto document, the result is a file that you can then open in Microsoft Office or send to a supervisor/advisor
 <ul>
-<li>For example, if I’m running the data analysis for a project, I can create all the plots and tables, write up the methods section, then pass to my advisor to fill in the literature sections
+<li>For example, if you are running the data analysis for a project, you can create all the plots and tables, write up the methods section, then pass to your advisor to fill in the literature sections
 <ul>
 <li>Sure, straight to <code>.pdf</code> is nice is everyone is working in Quarto, but often (sadly) they won’t be
 <ul>
@@ -637,15 +632,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 </ul></li>
 <li>You see details about Word options on the <a href="https://quarto.org/docs/reference/formats/docx.html">Quarto documentation for <code>.docx</code> output</a></li>
-<li>As a final aside (for now), you can customize the output format using the <code>reference-doc:</code> option
-<ul>
-<li>These take a some learning to know how to write, but it basically involves setting up styles that correspond to styles Quarto outputs your text as</li>
-<li>In case they’re useful, I have attached a couple of styles I have create and used in the past
-<ul>
-<li><a href="site-attachments/refdoc-apa7.docx">APA 7 Reference Doc</a></li>
-<li><a href="site-attachments/refdoc-ufcoe.pptx">UF CoE Presentation Reference Doc</a></li>
-</ul></li>
-</ul></li>
+<li>You can also customize the output format using the <code>reference-doc:</code> option, which is beyond the scope of this course</li>
 </ul>
 <blockquote class="blockquote">
 <h4 id="quick-excercise-4">Quick Excercise</h4>
@@ -816,9 +803,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Even then, you lose some of the advantages for using Quarto
 <ul>
 <li>If it’s your results table and you hand write all the numbers, they won’t autocorrect if something changes upstream</li>
-</ul></li>
-<li>There are limited times I would recommend using these (I believe the class syllabus is one, but I’d probably even change that if I wrote it today)
-<ul>
 <li>All you need to know is that it’s an option and the easiest way is to create it using the visual editor</li>
 </ul></li>
 </ul>
@@ -999,7 +983,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="figure-table-numbering-captioning" class="level3">
 <h3 data-anchor-id="figure-table-numbering-captioning">Figure &amp; Table Numbering &amp; Captioning</h3>
 <ul>
-<li>First, I want to note this is a little confusing at first, and you necssarily need to do this in your final reports (but it’s a great habit to get into)</li>
+<li>First, this might be a little confusing at first, and you do not necssarily need to do this in your final reports (but it’s a great habit to get into)</li>
 <li>In some of the data viz lessons we added something like <code>title = "Math Test Scores by Sex</code> to our ggplot’s
 <ul>
 <li>You might expect to just change that to <code>title = "Figure 1: Math Test Scores by Sex</code></li>
@@ -1009,7 +993,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><br>
 </p>
 <ul>
-<li>If you’re writing a long complicated document (<em>cough</em> dissertation <em>cough</em>) you might have 10, 20, 30 tables and/or figures
+<li>If you’re writing a long complicated document (such as your dissertation) you might have 10, 20, 30 tables and/or figures
 <ul>
 <li>Wouldn’t it be really nice if when you add a table or figure, all the numbers updated automatically?</li>
 </ul></li>
@@ -1089,7 +1073,7 @@ Figure&nbsp;1: Math Test Scores by Sex
 </p>
 <ul>
 <li>Last thing on this</li>
-<li>Now, I mentioned how annoying it can be to update the figure and table numbers if something changes and you’ve written them all by hand
+<li>Now, it can be quite annoying to update the figure and table numbers if something changes and you’ve written them all by hand
 <ul>
 <li>Now think about everytime you say something like “In Figure 1 I show that…”</li>
 <li>How frustrating would it be to find and edit all of those?</li>
@@ -1302,7 +1286,7 @@ Figure&nbsp;1: Math Test Scores by Sex
 <ul>
 <li>For your final project, we do not expect you to customize the formatting of the report</li>
 </ul></li>
-<li>That said, as I showed with examples at the start, you can make some really pretty documents using Quarto</li>
+<li>That said, you can make some really pretty documents using Quarto</li>
 <li>The <a href="https://quarto.org/docs/guide/">Quarto guide website</a> has bunch of pages on more advanced features for each format
 <ul>
 <li>Under “Documents” select whatever format you’re wanting to use
@@ -1392,7 +1376,7 @@ Figure&nbsp;1: Math Test Scores by Sex
 <li>Now, with that script sourced, everything we made in the script is available in the Quarto document
 <ul>
 <li>So, we can use objects we created in that script by simply using their name</li>
-<li>Remember right at the end of last week we saved our final plot to <code>patch</code> and I said why was a surprise, this is why!</li>
+<li>Remember right at the end of last week we saved our final plot to <code>patch</code></li>
 <li>We simply call <code>patch</code> and our fancy patchwork will print out beneath the chunk
 <ul>
 <li>Note, since we loaded the <code>patchwork</code> library in the script we sourced, we don’t need to load it again here</li>
@@ -1445,16 +1429,16 @@ Figure&nbsp;1: Math Test Scores by Sex
 <span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
-<li>I don’t expect this will make sense until after our programming lesson, but, I wanted it here for reference</li>
+<li>This will probably not make sense until after our programming lesson, but, just for reference</li>
 </ul>
 </section>
 <section id="appendix-ii-advanced-descriptive-statistics-tables-with-gtsummary" class="level2">
 <h2 data-anchor-id="appendix-ii-advanced-descriptive-statistics-tables-with-gtsummary">Appendix II: Advanced Descriptive Statistics Tables with <code>gtsummary</code></h2>
 <ul>
 <li>Often, a simple <code>summarize()</code> and <code>kable()</code> will produce the descriptive statistics output we want</li>
-<li>However, the <code>gtsummary</code> package has a <code>tbl_summary()</code> which I really like to create some more complicated/customized table
+<li>However, the <code>gtsummary</code> package has a <code>tbl_summary()</code> that can create some more complicated/customized table
 <ul>
-<li>In particular, I LOVE how it can handle continuous and categorical variables differently within the same table</li>
+<li>In particular, it can handle continuous and categorical variables differently within the same table</li>
 </ul></li>
 <li>First, let’s install and load the <code>gtsummary</code> package</li>
 </ul>
@@ -1473,23 +1457,23 @@ Figure&nbsp;1: Math Test Scores by Sex
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(x1txmtscor, x1region) <span class="sc">|&gt;</span></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tbl_summary</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="rmnyhxinis" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#rmnyhxinis table {
+<div id="yhiwgztwji" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#yhiwgztwji table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#rmnyhxinis thead, #rmnyhxinis tbody, #rmnyhxinis tfoot, #rmnyhxinis tr, #rmnyhxinis td, #rmnyhxinis th {
+#yhiwgztwji thead, #yhiwgztwji tbody, #yhiwgztwji tfoot, #yhiwgztwji tr, #yhiwgztwji td, #yhiwgztwji th {
   border-style: none;
 }
 
-#rmnyhxinis p {
+#yhiwgztwji p {
   margin: 0;
   padding: 0;
 }
 
-#rmnyhxinis .gt_table {
+#yhiwgztwji .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1515,12 +1499,12 @@ Figure&nbsp;1: Math Test Scores by Sex
   border-left-color: #D3D3D3;
 }
 
-#rmnyhxinis .gt_caption {
+#yhiwgztwji .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#rmnyhxinis .gt_title {
+#yhiwgztwji .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1532,7 +1516,7 @@ Figure&nbsp;1: Math Test Scores by Sex
   border-bottom-width: 0;
 }
 
-#rmnyhxinis .gt_subtitle {
+#yhiwgztwji .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1544,7 +1528,7 @@ Figure&nbsp;1: Math Test Scores by Sex
   border-top-width: 0;
 }
 
-#rmnyhxinis .gt_heading {
+#yhiwgztwji .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1556,13 +1540,13 @@ Figure&nbsp;1: Math Test Scores by Sex
   border-right-color: #D3D3D3;
 }
 
-#rmnyhxinis .gt_bottom_border {
+#yhiwgztwji .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#rmnyhxinis .gt_col_headings {
+#yhiwgztwji .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1577,7 +1561,7 @@ Figure&nbsp;1: Math Test Scores by Sex
   border-right-color: #D3D3D3;
 }
 
-#rmnyhxinis .gt_col_heading {
+#yhiwgztwji .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1597,7 +1581,7 @@ Figure&nbsp;1: Math Test Scores by Sex
   overflow-x: hidden;
 }
 
-#rmnyhxinis .gt_column_spanner_outer {
+#yhiwgztwji .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1609,15 +1593,15 @@ Figure&nbsp;1: Math Test Scores by Sex
   padding-right: 4px;
 }
 
-#rmnyhxinis .gt_column_spanner_outer:first-child {
+#yhiwgztwji .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#rmnyhxinis .gt_column_spanner_outer:last-child {
+#yhiwgztwji .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#rmnyhxinis .gt_column_spanner {
+#yhiwgztwji .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1629,11 +1613,11 @@ Figure&nbsp;1: Math Test Scores by Sex
   width: 100%;
 }
 
-#rmnyhxinis .gt_spanner_row {
+#yhiwgztwji .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#rmnyhxinis .gt_group_heading {
+#yhiwgztwji .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1659,7 +1643,7 @@ Figure&nbsp;1: Math Test Scores by Sex
   text-align: left;
 }
 
-#rmnyhxinis .gt_empty_group_heading {
+#yhiwgztwji .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1674,15 +1658,15 @@ Figure&nbsp;1: Math Test Scores by Sex
   vertical-align: middle;
 }
 
-#rmnyhxinis .gt_from_md > :first-child {
+#yhiwgztwji .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#rmnyhxinis .gt_from_md > :last-child {
+#yhiwgztwji .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#rmnyhxinis .gt_row {
+#yhiwgztwji .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1701,7 +1685,7 @@ Figure&nbsp;1: Math Test Scores by Sex
   overflow-x: hidden;
 }
 
-#rmnyhxinis .gt_stub {
+#yhiwgztwji .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1714,7 +1698,7 @@ Figure&nbsp;1: Math Test Scores by Sex
   padding-right: 5px;
 }
 
-#rmnyhxinis .gt_stub_row_group {
+#yhiwgztwji .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1728,15 +1712,15 @@ Figure&nbsp;1: Math Test Scores by Sex
   vertical-align: top;
 }
 
-#rmnyhxinis .gt_row_group_first td {
+#yhiwgztwji .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#rmnyhxinis .gt_row_group_first th {
+#yhiwgztwji .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#rmnyhxinis .gt_summary_row {
+#yhiwgztwji .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1746,16 +1730,16 @@ Figure&nbsp;1: Math Test Scores by Sex
   padding-right: 5px;
 }
 
-#rmnyhxinis .gt_first_summary_row {
+#yhiwgztwji .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#rmnyhxinis .gt_first_summary_row.thick {
+#yhiwgztwji .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#rmnyhxinis .gt_last_summary_row {
+#yhiwgztwji .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1765,7 +1749,7 @@ Figure&nbsp;1: Math Test Scores by Sex
   border-bottom-color: #D3D3D3;
 }
 
-#rmnyhxinis .gt_grand_summary_row {
+#yhiwgztwji .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1775,7 +1759,7 @@ Figure&nbsp;1: Math Test Scores by Sex
   padding-right: 5px;
 }
 
-#rmnyhxinis .gt_first_grand_summary_row {
+#yhiwgztwji .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1785,7 +1769,7 @@ Figure&nbsp;1: Math Test Scores by Sex
   border-top-color: #D3D3D3;
 }
 
-#rmnyhxinis .gt_last_grand_summary_row_top {
+#yhiwgztwji .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1795,11 +1779,11 @@ Figure&nbsp;1: Math Test Scores by Sex
   border-bottom-color: #D3D3D3;
 }
 
-#rmnyhxinis .gt_striped {
+#yhiwgztwji .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#rmnyhxinis .gt_table_body {
+#yhiwgztwji .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1808,7 +1792,7 @@ Figure&nbsp;1: Math Test Scores by Sex
   border-bottom-color: #D3D3D3;
 }
 
-#rmnyhxinis .gt_footnotes {
+#yhiwgztwji .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1822,7 +1806,7 @@ Figure&nbsp;1: Math Test Scores by Sex
   border-right-color: #D3D3D3;
 }
 
-#rmnyhxinis .gt_footnote {
+#yhiwgztwji .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1831,7 +1815,7 @@ Figure&nbsp;1: Math Test Scores by Sex
   padding-right: 5px;
 }
 
-#rmnyhxinis .gt_sourcenotes {
+#yhiwgztwji .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1845,7 +1829,7 @@ Figure&nbsp;1: Math Test Scores by Sex
   border-right-color: #D3D3D3;
 }
 
-#rmnyhxinis .gt_sourcenote {
+#yhiwgztwji .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1853,72 +1837,72 @@ Figure&nbsp;1: Math Test Scores by Sex
   padding-right: 5px;
 }
 
-#rmnyhxinis .gt_left {
+#yhiwgztwji .gt_left {
   text-align: left;
 }
 
-#rmnyhxinis .gt_center {
+#yhiwgztwji .gt_center {
   text-align: center;
 }
 
-#rmnyhxinis .gt_right {
+#yhiwgztwji .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#rmnyhxinis .gt_font_normal {
+#yhiwgztwji .gt_font_normal {
   font-weight: normal;
 }
 
-#rmnyhxinis .gt_font_bold {
+#yhiwgztwji .gt_font_bold {
   font-weight: bold;
 }
 
-#rmnyhxinis .gt_font_italic {
+#yhiwgztwji .gt_font_italic {
   font-style: italic;
 }
 
-#rmnyhxinis .gt_super {
+#yhiwgztwji .gt_super {
   font-size: 65%;
 }
 
-#rmnyhxinis .gt_footnote_marks {
+#yhiwgztwji .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#rmnyhxinis .gt_asterisk {
+#yhiwgztwji .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#rmnyhxinis .gt_indent_1 {
+#yhiwgztwji .gt_indent_1 {
   text-indent: 5px;
 }
 
-#rmnyhxinis .gt_indent_2 {
+#yhiwgztwji .gt_indent_2 {
   text-indent: 10px;
 }
 
-#rmnyhxinis .gt_indent_3 {
+#yhiwgztwji .gt_indent_3 {
   text-indent: 15px;
 }
 
-#rmnyhxinis .gt_indent_4 {
+#yhiwgztwji .gt_indent_4 {
   text-indent: 20px;
 }
 
-#rmnyhxinis .gt_indent_5 {
+#yhiwgztwji .gt_indent_5 {
   text-indent: 25px;
 }
 
-#rmnyhxinis .katex-display {
+#yhiwgztwji .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#rmnyhxinis div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#yhiwgztwji div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -1976,10 +1960,7 @@ Figure&nbsp;1: Math Test Scores by Sex
 <ul>
 <li>This alone would be hard to produce by hand</li>
 </ul></li>
-<li>Now, let’s be more specific about what kind of statistics we want to see
-<ul>
-<li>This is my personal preference for a descriptive stats table</li>
-</ul></li>
+<li>Now, let’s be more specific about what kind of statistics we want to see</li>
 </ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>data <span class="sc">|&gt;</span></span>
@@ -1989,23 +1970,23 @@ Figure&nbsp;1: Math Test Scores by Sex
 <span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>                                                 <span class="st">"{sd}"</span>,</span>
 <span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>                                                 <span class="st">"{min} to {max}"</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="rwkxywlamh" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#rwkxywlamh table {
+<div id="nhrdvnmkpc" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#nhrdvnmkpc table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#rwkxywlamh thead, #rwkxywlamh tbody, #rwkxywlamh tfoot, #rwkxywlamh tr, #rwkxywlamh td, #rwkxywlamh th {
+#nhrdvnmkpc thead, #nhrdvnmkpc tbody, #nhrdvnmkpc tfoot, #nhrdvnmkpc tr, #nhrdvnmkpc td, #nhrdvnmkpc th {
   border-style: none;
 }
 
-#rwkxywlamh p {
+#nhrdvnmkpc p {
   margin: 0;
   padding: 0;
 }
 
-#rwkxywlamh .gt_table {
+#nhrdvnmkpc .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -2031,12 +2012,12 @@ Figure&nbsp;1: Math Test Scores by Sex
   border-left-color: #D3D3D3;
 }
 
-#rwkxywlamh .gt_caption {
+#nhrdvnmkpc .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#rwkxywlamh .gt_title {
+#nhrdvnmkpc .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -2048,7 +2029,7 @@ Figure&nbsp;1: Math Test Scores by Sex
   border-bottom-width: 0;
 }
 
-#rwkxywlamh .gt_subtitle {
+#nhrdvnmkpc .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -2060,7 +2041,7 @@ Figure&nbsp;1: Math Test Scores by Sex
   border-top-width: 0;
 }
 
-#rwkxywlamh .gt_heading {
+#nhrdvnmkpc .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -2072,13 +2053,13 @@ Figure&nbsp;1: Math Test Scores by Sex
   border-right-color: #D3D3D3;
 }
 
-#rwkxywlamh .gt_bottom_border {
+#nhrdvnmkpc .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#rwkxywlamh .gt_col_headings {
+#nhrdvnmkpc .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2093,7 +2074,7 @@ Figure&nbsp;1: Math Test Scores by Sex
   border-right-color: #D3D3D3;
 }
 
-#rwkxywlamh .gt_col_heading {
+#nhrdvnmkpc .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2113,7 +2094,7 @@ Figure&nbsp;1: Math Test Scores by Sex
   overflow-x: hidden;
 }
 
-#rwkxywlamh .gt_column_spanner_outer {
+#nhrdvnmkpc .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2125,15 +2106,15 @@ Figure&nbsp;1: Math Test Scores by Sex
   padding-right: 4px;
 }
 
-#rwkxywlamh .gt_column_spanner_outer:first-child {
+#nhrdvnmkpc .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#rwkxywlamh .gt_column_spanner_outer:last-child {
+#nhrdvnmkpc .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#rwkxywlamh .gt_column_spanner {
+#nhrdvnmkpc .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -2145,11 +2126,11 @@ Figure&nbsp;1: Math Test Scores by Sex
   width: 100%;
 }
 
-#rwkxywlamh .gt_spanner_row {
+#nhrdvnmkpc .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#rwkxywlamh .gt_group_heading {
+#nhrdvnmkpc .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2175,7 +2156,7 @@ Figure&nbsp;1: Math Test Scores by Sex
   text-align: left;
 }
 
-#rwkxywlamh .gt_empty_group_heading {
+#nhrdvnmkpc .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2190,15 +2171,15 @@ Figure&nbsp;1: Math Test Scores by Sex
   vertical-align: middle;
 }
 
-#rwkxywlamh .gt_from_md > :first-child {
+#nhrdvnmkpc .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#rwkxywlamh .gt_from_md > :last-child {
+#nhrdvnmkpc .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#rwkxywlamh .gt_row {
+#nhrdvnmkpc .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2217,7 +2198,7 @@ Figure&nbsp;1: Math Test Scores by Sex
   overflow-x: hidden;
 }
 
-#rwkxywlamh .gt_stub {
+#nhrdvnmkpc .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2230,7 +2211,7 @@ Figure&nbsp;1: Math Test Scores by Sex
   padding-right: 5px;
 }
 
-#rwkxywlamh .gt_stub_row_group {
+#nhrdvnmkpc .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2244,15 +2225,15 @@ Figure&nbsp;1: Math Test Scores by Sex
   vertical-align: top;
 }
 
-#rwkxywlamh .gt_row_group_first td {
+#nhrdvnmkpc .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#rwkxywlamh .gt_row_group_first th {
+#nhrdvnmkpc .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#rwkxywlamh .gt_summary_row {
+#nhrdvnmkpc .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2262,16 +2243,16 @@ Figure&nbsp;1: Math Test Scores by Sex
   padding-right: 5px;
 }
 
-#rwkxywlamh .gt_first_summary_row {
+#nhrdvnmkpc .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#rwkxywlamh .gt_first_summary_row.thick {
+#nhrdvnmkpc .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#rwkxywlamh .gt_last_summary_row {
+#nhrdvnmkpc .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2281,7 +2262,7 @@ Figure&nbsp;1: Math Test Scores by Sex
   border-bottom-color: #D3D3D3;
 }
 
-#rwkxywlamh .gt_grand_summary_row {
+#nhrdvnmkpc .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2291,7 +2272,7 @@ Figure&nbsp;1: Math Test Scores by Sex
   padding-right: 5px;
 }
 
-#rwkxywlamh .gt_first_grand_summary_row {
+#nhrdvnmkpc .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2301,7 +2282,7 @@ Figure&nbsp;1: Math Test Scores by Sex
   border-top-color: #D3D3D3;
 }
 
-#rwkxywlamh .gt_last_grand_summary_row_top {
+#nhrdvnmkpc .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2311,11 +2292,11 @@ Figure&nbsp;1: Math Test Scores by Sex
   border-bottom-color: #D3D3D3;
 }
 
-#rwkxywlamh .gt_striped {
+#nhrdvnmkpc .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#rwkxywlamh .gt_table_body {
+#nhrdvnmkpc .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2324,7 +2305,7 @@ Figure&nbsp;1: Math Test Scores by Sex
   border-bottom-color: #D3D3D3;
 }
 
-#rwkxywlamh .gt_footnotes {
+#nhrdvnmkpc .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2338,7 +2319,7 @@ Figure&nbsp;1: Math Test Scores by Sex
   border-right-color: #D3D3D3;
 }
 
-#rwkxywlamh .gt_footnote {
+#nhrdvnmkpc .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -2347,7 +2328,7 @@ Figure&nbsp;1: Math Test Scores by Sex
   padding-right: 5px;
 }
 
-#rwkxywlamh .gt_sourcenotes {
+#nhrdvnmkpc .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2361,7 +2342,7 @@ Figure&nbsp;1: Math Test Scores by Sex
   border-right-color: #D3D3D3;
 }
 
-#rwkxywlamh .gt_sourcenote {
+#nhrdvnmkpc .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2369,72 +2350,72 @@ Figure&nbsp;1: Math Test Scores by Sex
   padding-right: 5px;
 }
 
-#rwkxywlamh .gt_left {
+#nhrdvnmkpc .gt_left {
   text-align: left;
 }
 
-#rwkxywlamh .gt_center {
+#nhrdvnmkpc .gt_center {
   text-align: center;
 }
 
-#rwkxywlamh .gt_right {
+#nhrdvnmkpc .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#rwkxywlamh .gt_font_normal {
+#nhrdvnmkpc .gt_font_normal {
   font-weight: normal;
 }
 
-#rwkxywlamh .gt_font_bold {
+#nhrdvnmkpc .gt_font_bold {
   font-weight: bold;
 }
 
-#rwkxywlamh .gt_font_italic {
+#nhrdvnmkpc .gt_font_italic {
   font-style: italic;
 }
 
-#rwkxywlamh .gt_super {
+#nhrdvnmkpc .gt_super {
   font-size: 65%;
 }
 
-#rwkxywlamh .gt_footnote_marks {
+#nhrdvnmkpc .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#rwkxywlamh .gt_asterisk {
+#nhrdvnmkpc .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#rwkxywlamh .gt_indent_1 {
+#nhrdvnmkpc .gt_indent_1 {
   text-indent: 5px;
 }
 
-#rwkxywlamh .gt_indent_2 {
+#nhrdvnmkpc .gt_indent_2 {
   text-indent: 10px;
 }
 
-#rwkxywlamh .gt_indent_3 {
+#nhrdvnmkpc .gt_indent_3 {
   text-indent: 15px;
 }
 
-#rwkxywlamh .gt_indent_4 {
+#nhrdvnmkpc .gt_indent_4 {
   text-indent: 20px;
 }
 
-#rwkxywlamh .gt_indent_5 {
+#nhrdvnmkpc .gt_indent_5 {
   text-indent: 25px;
 }
 
-#rwkxywlamh .katex-display {
+#nhrdvnmkpc .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#rwkxywlamh div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#nhrdvnmkpc div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -2503,17 +2484,17 @@ Figure&nbsp;1: Math Test Scores by Sex
 <ul>
 <li><code>type = all_continuous() ~ "continuous2"</code>
 <ul>
-<li>This just means I want continuous variables to be given more than one line in the table</li>
+<li>This just means we want continuous variables to be given more than one line in the table</li>
 </ul></li>
 <li><code>statistic = c(all_continuous() ~ c("{mean}",</code> <code>"{sd}",</code> <code>"{min} to {max}")</code>
 <ul>
-<li>This spells out exactly what statistics I want and how to lay them out
+<li>This spells out exactly what statistics we want and how to lay them out
 <ul>
 <li><code>all_continuous() ~</code> means for continuous variables, do this
 <ul>
 <li>Similarly, if you want to change how categorical variables are described you would use <code>all_categorical() ~</code></li>
 </ul></li>
-<li>You’ll then see than anything in <code>{}</code> is a statistic I want, and line breaks, words, and punctuation outside the <code>{}</code> are included as typed
+<li>You’ll then see than anything in <code>{}</code> is a statistic we want, and line breaks, words, and punctuation outside the <code>{}</code> are included as typed
 <ul>
 <li><code>{mean}</code> gives the mean and <code>{sd}</code> gives the standard deviation</li>
 <li><code>{min} to {max}</code> gives the minimum value, the word “to”, then the maximum value</li>
@@ -2590,19 +2571,21 @@ Figure&nbsp;1: Math Test Scores by Sex
 </div>
 </div>
 <ul>
-<li>This is very much beyond the expectation for summary tables in your final reports, but I wanted to show how you might want to think about descriptive tables for future publishable work</li>
+<li>This is very much beyond the expectation for summary tables in your final reports, but just to show how you might want to think about descriptive tables for future publishable work</li>
 <li>There is so much more to <code>gtsummary</code> than this, we will see this package again in our <a href="./12-pro-model.html">Bringing It All Together (Feat. Basic Models) Lesson</a></li>
 <li>If you’re interested in learning more check out <a href="https://www.danieldsjoberg.com/gtsummary/"><code>gtsummary</code>’s reference website</a></li>
 </ul>
-</section>
-<section id="appendix-iii-automated-batch-reporting-with-quarto" class="level2">
-<h2 data-anchor-id="appendix-iii-automated-batch-reporting-with-quarto">Appendix III: Automated Batch Reporting with Quarto</h2>
-<ul>
-<li>This is well beyond the scope of the class, but, it shows the power of Quarto</li>
-<li>Imagine you work for a university system office and you need to write the same report with the same information but customized for each campus</li>
-<li>Or, imagine your working on a grant funded research project and each of your participant schools wants a customized report about their own outcomes</li>
-<li>Quarto has the power to produce this kind of document with a single source file, like I will show in class</li>
-</ul>
+<!-- ## Appendix III: Automated Batch Reporting with Quarto -->
+<!-- -   This is well beyond the scope of the class, but, it shows the power -->
+<!--     of Quarto -->
+<!-- -   Imagine you work for a university system office and you need to -->
+<!--     write the same report with the same information but customized for -->
+<!--     each campus -->
+<!-- -   Or, imagine your working on a grant funded research project and each -->
+<!--     of your participant schools wants a customized report about their -->
+<!--     own outcomes -->
+<!-- -   Quarto has the power to produce this kind of document with a single -->
+<!--     source file, like I will show in class -->
 </section>
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
