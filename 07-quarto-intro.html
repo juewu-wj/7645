@@ -1376,40 +1376,6 @@ Figure&nbsp;1: Math Test Scores by Sex
 <li>If you have 100s of lines of code cleaning a large dataset, it’s probably best to create <code>data_clean</code> in <code>data-cleaning.R</code> and then <code>source("data-cleaning.R")</code> to be able to use <code>data_clean</code></li>
 </ul>
 </section>
-<section id="appendix-i.v-conditional-sourcing-and-saving-r-objects" class="level2">
-<h2 data-anchor-id="appendix-i.v-conditional-sourcing-and-saving-r-objects">Appendix I.V: Conditional Sourcing and Saving R Objects</h2>
-<ul>
-<li>Ideally, if you have a lot of code that you don’t want to have in your .qmd document</li>
-<li>But, what if that code takes minutes (or hours, or days) to run?
-<ul>
-<li>Then it will make it impossible to work with your .qmd document if it has to run every time</li>
-</ul></li>
-<li>In this case, you can use some skills we will actually learn later in the class to help</li>
-</ul>
-<p><br>
-</p>
-<ul>
-<li>At the end of the script you’re trying to <code>source()</code> you can save the output as .<code>Rdata</code></li>
-<li>This is bascially saving the objects in your environment</li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">save</span>(<span class="at">list =</span> <span class="fu">c</span>(<span class="st">"my_object"</span>),</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">file =</span> <span class="st">"results.Rdata"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<ul>
-<li>Then, you can tell R to try and load that results file, but, if it’s not there, source the script</li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="fu">file.exists</span>(<span class="st">"results.Rdata"</span>)) {</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">load</span>(<span class="st">"results.Rdata"</span>)</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">source</span>(<span class="st">"a-really-long-script.R"</span>)</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<ul>
-<li>This will probably not make sense until after our programming lesson, but, just for reference</li>
-</ul>
-</section>
 <section id="appendix-ii-advanced-descriptive-statistics-tables-with-gtsummary" class="level2">
 <h2 data-anchor-id="appendix-ii-advanced-descriptive-statistics-tables-with-gtsummary">Appendix II: Advanced Descriptive Statistics Tables with <code>gtsummary</code></h2>
 <ul>
@@ -1421,8 +1387,8 @@ Figure&nbsp;1: Math Test Scores by Sex
 <li>First, let’s install and load the <code>gtsummary</code> package</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"gtsummary"</span>)</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gtsummary)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"gtsummary"</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gtsummary)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li>Let’s take a look a smaller descriptive statistics table looking at Math scores and region
@@ -1431,27 +1397,27 @@ Figure&nbsp;1: Math Test Scores by Sex
 </ul></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>data <span class="sc">|&gt;</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(x1txmtscor, x1region) <span class="sc">|&gt;</span></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tbl_summary</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>data <span class="sc">|&gt;</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(x1txmtscor, x1region) <span class="sc">|&gt;</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tbl_summary</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="nsddyxcjle" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#nsddyxcjle table {
+<div id="pgumdpafng" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#pgumdpafng table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#nsddyxcjle thead, #nsddyxcjle tbody, #nsddyxcjle tfoot, #nsddyxcjle tr, #nsddyxcjle td, #nsddyxcjle th {
+#pgumdpafng thead, #pgumdpafng tbody, #pgumdpafng tfoot, #pgumdpafng tr, #pgumdpafng td, #pgumdpafng th {
   border-style: none;
 }
 
-#nsddyxcjle p {
+#pgumdpafng p {
   margin: 0;
   padding: 0;
 }
 
-#nsddyxcjle .gt_table {
+#pgumdpafng .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1477,12 +1443,12 @@ Figure&nbsp;1: Math Test Scores by Sex
   border-left-color: #D3D3D3;
 }
 
-#nsddyxcjle .gt_caption {
+#pgumdpafng .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#nsddyxcjle .gt_title {
+#pgumdpafng .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1494,7 +1460,7 @@ Figure&nbsp;1: Math Test Scores by Sex
   border-bottom-width: 0;
 }
 
-#nsddyxcjle .gt_subtitle {
+#pgumdpafng .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1506,7 +1472,7 @@ Figure&nbsp;1: Math Test Scores by Sex
   border-top-width: 0;
 }
 
-#nsddyxcjle .gt_heading {
+#pgumdpafng .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1518,13 +1484,13 @@ Figure&nbsp;1: Math Test Scores by Sex
   border-right-color: #D3D3D3;
 }
 
-#nsddyxcjle .gt_bottom_border {
+#pgumdpafng .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#nsddyxcjle .gt_col_headings {
+#pgumdpafng .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1539,7 +1505,7 @@ Figure&nbsp;1: Math Test Scores by Sex
   border-right-color: #D3D3D3;
 }
 
-#nsddyxcjle .gt_col_heading {
+#pgumdpafng .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1559,7 +1525,7 @@ Figure&nbsp;1: Math Test Scores by Sex
   overflow-x: hidden;
 }
 
-#nsddyxcjle .gt_column_spanner_outer {
+#pgumdpafng .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1571,15 +1537,15 @@ Figure&nbsp;1: Math Test Scores by Sex
   padding-right: 4px;
 }
 
-#nsddyxcjle .gt_column_spanner_outer:first-child {
+#pgumdpafng .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#nsddyxcjle .gt_column_spanner_outer:last-child {
+#pgumdpafng .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#nsddyxcjle .gt_column_spanner {
+#pgumdpafng .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1591,11 +1557,11 @@ Figure&nbsp;1: Math Test Scores by Sex
   width: 100%;
 }
 
-#nsddyxcjle .gt_spanner_row {
+#pgumdpafng .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#nsddyxcjle .gt_group_heading {
+#pgumdpafng .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1621,7 +1587,7 @@ Figure&nbsp;1: Math Test Scores by Sex
   text-align: left;
 }
 
-#nsddyxcjle .gt_empty_group_heading {
+#pgumdpafng .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1636,15 +1602,15 @@ Figure&nbsp;1: Math Test Scores by Sex
   vertical-align: middle;
 }
 
-#nsddyxcjle .gt_from_md > :first-child {
+#pgumdpafng .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#nsddyxcjle .gt_from_md > :last-child {
+#pgumdpafng .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#nsddyxcjle .gt_row {
+#pgumdpafng .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1663,7 +1629,7 @@ Figure&nbsp;1: Math Test Scores by Sex
   overflow-x: hidden;
 }
 
-#nsddyxcjle .gt_stub {
+#pgumdpafng .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1676,7 +1642,7 @@ Figure&nbsp;1: Math Test Scores by Sex
   padding-right: 5px;
 }
 
-#nsddyxcjle .gt_stub_row_group {
+#pgumdpafng .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1690,15 +1656,15 @@ Figure&nbsp;1: Math Test Scores by Sex
   vertical-align: top;
 }
 
-#nsddyxcjle .gt_row_group_first td {
+#pgumdpafng .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#nsddyxcjle .gt_row_group_first th {
+#pgumdpafng .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#nsddyxcjle .gt_summary_row {
+#pgumdpafng .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1708,16 +1674,16 @@ Figure&nbsp;1: Math Test Scores by Sex
   padding-right: 5px;
 }
 
-#nsddyxcjle .gt_first_summary_row {
+#pgumdpafng .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#nsddyxcjle .gt_first_summary_row.thick {
+#pgumdpafng .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#nsddyxcjle .gt_last_summary_row {
+#pgumdpafng .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1727,7 +1693,7 @@ Figure&nbsp;1: Math Test Scores by Sex
   border-bottom-color: #D3D3D3;
 }
 
-#nsddyxcjle .gt_grand_summary_row {
+#pgumdpafng .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1737,7 +1703,7 @@ Figure&nbsp;1: Math Test Scores by Sex
   padding-right: 5px;
 }
 
-#nsddyxcjle .gt_first_grand_summary_row {
+#pgumdpafng .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1747,7 +1713,7 @@ Figure&nbsp;1: Math Test Scores by Sex
   border-top-color: #D3D3D3;
 }
 
-#nsddyxcjle .gt_last_grand_summary_row_top {
+#pgumdpafng .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1757,11 +1723,11 @@ Figure&nbsp;1: Math Test Scores by Sex
   border-bottom-color: #D3D3D3;
 }
 
-#nsddyxcjle .gt_striped {
+#pgumdpafng .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#nsddyxcjle .gt_table_body {
+#pgumdpafng .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1770,7 +1736,7 @@ Figure&nbsp;1: Math Test Scores by Sex
   border-bottom-color: #D3D3D3;
 }
 
-#nsddyxcjle .gt_footnotes {
+#pgumdpafng .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1784,7 +1750,7 @@ Figure&nbsp;1: Math Test Scores by Sex
   border-right-color: #D3D3D3;
 }
 
-#nsddyxcjle .gt_footnote {
+#pgumdpafng .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1793,7 +1759,7 @@ Figure&nbsp;1: Math Test Scores by Sex
   padding-right: 5px;
 }
 
-#nsddyxcjle .gt_sourcenotes {
+#pgumdpafng .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1807,7 +1773,7 @@ Figure&nbsp;1: Math Test Scores by Sex
   border-right-color: #D3D3D3;
 }
 
-#nsddyxcjle .gt_sourcenote {
+#pgumdpafng .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1815,72 +1781,72 @@ Figure&nbsp;1: Math Test Scores by Sex
   padding-right: 5px;
 }
 
-#nsddyxcjle .gt_left {
+#pgumdpafng .gt_left {
   text-align: left;
 }
 
-#nsddyxcjle .gt_center {
+#pgumdpafng .gt_center {
   text-align: center;
 }
 
-#nsddyxcjle .gt_right {
+#pgumdpafng .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#nsddyxcjle .gt_font_normal {
+#pgumdpafng .gt_font_normal {
   font-weight: normal;
 }
 
-#nsddyxcjle .gt_font_bold {
+#pgumdpafng .gt_font_bold {
   font-weight: bold;
 }
 
-#nsddyxcjle .gt_font_italic {
+#pgumdpafng .gt_font_italic {
   font-style: italic;
 }
 
-#nsddyxcjle .gt_super {
+#pgumdpafng .gt_super {
   font-size: 65%;
 }
 
-#nsddyxcjle .gt_footnote_marks {
+#pgumdpafng .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#nsddyxcjle .gt_asterisk {
+#pgumdpafng .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#nsddyxcjle .gt_indent_1 {
+#pgumdpafng .gt_indent_1 {
   text-indent: 5px;
 }
 
-#nsddyxcjle .gt_indent_2 {
+#pgumdpafng .gt_indent_2 {
   text-indent: 10px;
 }
 
-#nsddyxcjle .gt_indent_3 {
+#pgumdpafng .gt_indent_3 {
   text-indent: 15px;
 }
 
-#nsddyxcjle .gt_indent_4 {
+#pgumdpafng .gt_indent_4 {
   text-indent: 20px;
 }
 
-#nsddyxcjle .gt_indent_5 {
+#pgumdpafng .gt_indent_5 {
   text-indent: 25px;
 }
 
-#nsddyxcjle .katex-display {
+#pgumdpafng .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#nsddyxcjle div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#pgumdpafng div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -1941,30 +1907,30 @@ Figure&nbsp;1: Math Test Scores by Sex
 <li>Now, let’s be more specific about what kind of statistics we want to see</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>data <span class="sc">|&gt;</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(x1txmtscor, x1region) <span class="sc">|&gt;</span></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tbl_summary</span>(<span class="at">type =</span> <span class="fu">all_continuous</span>() <span class="sc">~</span> <span class="st">"continuous2"</span>,</span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">statistic =</span> <span class="fu">c</span>(<span class="fu">all_continuous</span>() <span class="sc">~</span> <span class="fu">c</span>(<span class="st">"{mean}"</span>,</span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>                                                 <span class="st">"{sd}"</span>,</span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>                                                 <span class="st">"{min} to {max}"</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>data <span class="sc">|&gt;</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(x1txmtscor, x1region) <span class="sc">|&gt;</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tbl_summary</span>(<span class="at">type =</span> <span class="fu">all_continuous</span>() <span class="sc">~</span> <span class="st">"continuous2"</span>,</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">statistic =</span> <span class="fu">c</span>(<span class="fu">all_continuous</span>() <span class="sc">~</span> <span class="fu">c</span>(<span class="st">"{mean}"</span>,</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>                                                 <span class="st">"{sd}"</span>,</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>                                                 <span class="st">"{min} to {max}"</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="vnncdclkix" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#vnncdclkix table {
+<div id="tigkugiagz" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#tigkugiagz table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#vnncdclkix thead, #vnncdclkix tbody, #vnncdclkix tfoot, #vnncdclkix tr, #vnncdclkix td, #vnncdclkix th {
+#tigkugiagz thead, #tigkugiagz tbody, #tigkugiagz tfoot, #tigkugiagz tr, #tigkugiagz td, #tigkugiagz th {
   border-style: none;
 }
 
-#vnncdclkix p {
+#tigkugiagz p {
   margin: 0;
   padding: 0;
 }
 
-#vnncdclkix .gt_table {
+#tigkugiagz .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1990,12 +1956,12 @@ Figure&nbsp;1: Math Test Scores by Sex
   border-left-color: #D3D3D3;
 }
 
-#vnncdclkix .gt_caption {
+#tigkugiagz .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#vnncdclkix .gt_title {
+#tigkugiagz .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -2007,7 +1973,7 @@ Figure&nbsp;1: Math Test Scores by Sex
   border-bottom-width: 0;
 }
 
-#vnncdclkix .gt_subtitle {
+#tigkugiagz .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -2019,7 +1985,7 @@ Figure&nbsp;1: Math Test Scores by Sex
   border-top-width: 0;
 }
 
-#vnncdclkix .gt_heading {
+#tigkugiagz .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -2031,13 +1997,13 @@ Figure&nbsp;1: Math Test Scores by Sex
   border-right-color: #D3D3D3;
 }
 
-#vnncdclkix .gt_bottom_border {
+#tigkugiagz .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#vnncdclkix .gt_col_headings {
+#tigkugiagz .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2052,7 +2018,7 @@ Figure&nbsp;1: Math Test Scores by Sex
   border-right-color: #D3D3D3;
 }
 
-#vnncdclkix .gt_col_heading {
+#tigkugiagz .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2072,7 +2038,7 @@ Figure&nbsp;1: Math Test Scores by Sex
   overflow-x: hidden;
 }
 
-#vnncdclkix .gt_column_spanner_outer {
+#tigkugiagz .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2084,15 +2050,15 @@ Figure&nbsp;1: Math Test Scores by Sex
   padding-right: 4px;
 }
 
-#vnncdclkix .gt_column_spanner_outer:first-child {
+#tigkugiagz .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#vnncdclkix .gt_column_spanner_outer:last-child {
+#tigkugiagz .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#vnncdclkix .gt_column_spanner {
+#tigkugiagz .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -2104,11 +2070,11 @@ Figure&nbsp;1: Math Test Scores by Sex
   width: 100%;
 }
 
-#vnncdclkix .gt_spanner_row {
+#tigkugiagz .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#vnncdclkix .gt_group_heading {
+#tigkugiagz .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2134,7 +2100,7 @@ Figure&nbsp;1: Math Test Scores by Sex
   text-align: left;
 }
 
-#vnncdclkix .gt_empty_group_heading {
+#tigkugiagz .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2149,15 +2115,15 @@ Figure&nbsp;1: Math Test Scores by Sex
   vertical-align: middle;
 }
 
-#vnncdclkix .gt_from_md > :first-child {
+#tigkugiagz .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#vnncdclkix .gt_from_md > :last-child {
+#tigkugiagz .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#vnncdclkix .gt_row {
+#tigkugiagz .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2176,7 +2142,7 @@ Figure&nbsp;1: Math Test Scores by Sex
   overflow-x: hidden;
 }
 
-#vnncdclkix .gt_stub {
+#tigkugiagz .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2189,7 +2155,7 @@ Figure&nbsp;1: Math Test Scores by Sex
   padding-right: 5px;
 }
 
-#vnncdclkix .gt_stub_row_group {
+#tigkugiagz .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2203,15 +2169,15 @@ Figure&nbsp;1: Math Test Scores by Sex
   vertical-align: top;
 }
 
-#vnncdclkix .gt_row_group_first td {
+#tigkugiagz .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#vnncdclkix .gt_row_group_first th {
+#tigkugiagz .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#vnncdclkix .gt_summary_row {
+#tigkugiagz .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2221,16 +2187,16 @@ Figure&nbsp;1: Math Test Scores by Sex
   padding-right: 5px;
 }
 
-#vnncdclkix .gt_first_summary_row {
+#tigkugiagz .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#vnncdclkix .gt_first_summary_row.thick {
+#tigkugiagz .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#vnncdclkix .gt_last_summary_row {
+#tigkugiagz .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2240,7 +2206,7 @@ Figure&nbsp;1: Math Test Scores by Sex
   border-bottom-color: #D3D3D3;
 }
 
-#vnncdclkix .gt_grand_summary_row {
+#tigkugiagz .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2250,7 +2216,7 @@ Figure&nbsp;1: Math Test Scores by Sex
   padding-right: 5px;
 }
 
-#vnncdclkix .gt_first_grand_summary_row {
+#tigkugiagz .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2260,7 +2226,7 @@ Figure&nbsp;1: Math Test Scores by Sex
   border-top-color: #D3D3D3;
 }
 
-#vnncdclkix .gt_last_grand_summary_row_top {
+#tigkugiagz .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2270,11 +2236,11 @@ Figure&nbsp;1: Math Test Scores by Sex
   border-bottom-color: #D3D3D3;
 }
 
-#vnncdclkix .gt_striped {
+#tigkugiagz .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#vnncdclkix .gt_table_body {
+#tigkugiagz .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2283,7 +2249,7 @@ Figure&nbsp;1: Math Test Scores by Sex
   border-bottom-color: #D3D3D3;
 }
 
-#vnncdclkix .gt_footnotes {
+#tigkugiagz .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2297,7 +2263,7 @@ Figure&nbsp;1: Math Test Scores by Sex
   border-right-color: #D3D3D3;
 }
 
-#vnncdclkix .gt_footnote {
+#tigkugiagz .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -2306,7 +2272,7 @@ Figure&nbsp;1: Math Test Scores by Sex
   padding-right: 5px;
 }
 
-#vnncdclkix .gt_sourcenotes {
+#tigkugiagz .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2320,7 +2286,7 @@ Figure&nbsp;1: Math Test Scores by Sex
   border-right-color: #D3D3D3;
 }
 
-#vnncdclkix .gt_sourcenote {
+#tigkugiagz .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2328,72 +2294,72 @@ Figure&nbsp;1: Math Test Scores by Sex
   padding-right: 5px;
 }
 
-#vnncdclkix .gt_left {
+#tigkugiagz .gt_left {
   text-align: left;
 }
 
-#vnncdclkix .gt_center {
+#tigkugiagz .gt_center {
   text-align: center;
 }
 
-#vnncdclkix .gt_right {
+#tigkugiagz .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#vnncdclkix .gt_font_normal {
+#tigkugiagz .gt_font_normal {
   font-weight: normal;
 }
 
-#vnncdclkix .gt_font_bold {
+#tigkugiagz .gt_font_bold {
   font-weight: bold;
 }
 
-#vnncdclkix .gt_font_italic {
+#tigkugiagz .gt_font_italic {
   font-style: italic;
 }
 
-#vnncdclkix .gt_super {
+#tigkugiagz .gt_super {
   font-size: 65%;
 }
 
-#vnncdclkix .gt_footnote_marks {
+#tigkugiagz .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#vnncdclkix .gt_asterisk {
+#tigkugiagz .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#vnncdclkix .gt_indent_1 {
+#tigkugiagz .gt_indent_1 {
   text-indent: 5px;
 }
 
-#vnncdclkix .gt_indent_2 {
+#tigkugiagz .gt_indent_2 {
   text-indent: 10px;
 }
 
-#vnncdclkix .gt_indent_3 {
+#tigkugiagz .gt_indent_3 {
   text-indent: 15px;
 }
 
-#vnncdclkix .gt_indent_4 {
+#tigkugiagz .gt_indent_4 {
   text-indent: 20px;
 }
 
-#vnncdclkix .gt_indent_5 {
+#tigkugiagz .gt_indent_5 {
   text-indent: 25px;
 }
 
-#vnncdclkix .katex-display {
+#tigkugiagz .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#vnncdclkix div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#tigkugiagz div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -2492,13 +2458,13 @@ Figure&nbsp;1: Math Test Scores by Sex
 </ul></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>data <span class="sc">|&gt;</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(x1txmtscor, x1region) <span class="sc">|&gt;</span></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tbl_summary</span>(<span class="at">type =</span> <span class="fu">all_continuous</span>() <span class="sc">~</span> <span class="st">"continuous2"</span>,</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">statistic =</span> <span class="fu">c</span>(<span class="fu">all_continuous</span>() <span class="sc">~</span> <span class="fu">c</span>(<span class="st">"{mean}"</span>,</span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>                                                 <span class="st">"{sd}"</span>,</span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>                                                 <span class="st">"{min} to {max}"</span>))) <span class="sc">|&gt;</span></span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_kable</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>data <span class="sc">|&gt;</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(x1txmtscor, x1region) <span class="sc">|&gt;</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tbl_summary</span>(<span class="at">type =</span> <span class="fu">all_continuous</span>() <span class="sc">~</span> <span class="st">"continuous2"</span>,</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">statistic =</span> <span class="fu">c</span>(<span class="fu">all_continuous</span>() <span class="sc">~</span> <span class="fu">c</span>(<span class="st">"{mean}"</span>,</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>                                                 <span class="st">"{sd}"</span>,</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>                                                 <span class="st">"{min} to {max}"</span>))) <span class="sc">|&gt;</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_kable</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
 <thead>
@@ -2564,6 +2530,35 @@ Figure&nbsp;1: Math Test Scores by Sex
 <!--     own outcomes -->
 <!-- -   Quarto has the power to produce this kind of document with a single -->
 <!--     source file, like I will show in class -->
+<!-- ## Appendix I.V: Conditional Sourcing and Saving R Objects -->
+<!-- -   Ideally, if you have a lot of code that you don't want to have in -->
+<!--     your .qmd document -->
+<!-- -   But, what if that code takes minutes (or hours, or days) to run? -->
+<!--     -   Then it will make it impossible to work with your .qmd document -->
+<!--         if it has to run every time -->
+<!-- -   In this case, you can use some skills we will actually learn later -->
+<!--     in the class to help -->
+<!-- \ -->
+<!-- -   At the end of the script you're trying to `source()` you can save -->
+<!--     the output as .`Rdata` -->
+<!-- -   This is bascially saving the objects in your environment -->
+<!-- ```{r} -->
+<!-- #| eval: false -->
+<!-- save(list = c("my_object"), -->
+<!--      file = "results.Rdata") -->
+<!-- ``` -->
+<!-- -   Then, you can tell R to try and load that results file, but, if it's -->
+<!--     not there, source the script -->
+<!-- ```{r} -->
+<!-- #| eval: false -->
+<!-- if(file.exists("results.Rdata")) { -->
+<!--   load("results.Rdata") -->
+<!-- } else { -->
+<!--   source("a-really-long-script.R") -->
+<!-- } -->
+<!-- ``` -->
+<!-- -   This will probably not make sense until after our programming -->
+<!--     lesson, but, just for reference -->
 </section>
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">

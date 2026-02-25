@@ -46,15 +46,6 @@ data |>
 
 patch
 
-# save(list = c("my_object"),
-#      file = "results.Rdata")
-
-# if(file.exists("results.Rdata")) {
-#   load("results.Rdata")
-# } else {
-#   source("a-really-long-script.R")
-# }
-
 # install.packages("gtsummary")
 # library(gtsummary)
 
