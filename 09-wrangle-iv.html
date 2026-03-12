@@ -344,15 +344,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page">I: Advanced <code>tidyverse</code></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">II: Automating Data Retrieval</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">III: <code>tidyverse -&gt; SQL</code></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-4" role="tab" aria-controls="tabset-1-4" aria-selected="false">Assignment</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page">I: Advanced <code>tidyverse</code></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">II: Automating Data Retrieval</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">Assignment</a></li></ul>
 <div class="tab-content">
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
 <p><a href="./r-scripts/09-wrangle-iv.R"><i class="fa-solid fa-code" aria-label="code"></i> R Code</a></p>
-<p>In this lesson, new in 2024 and updated for 2025 we are going to cover a few more advanced topics</p>
+<p>In this lesson, we are going to cover a few more advanced topics with data wrangling</p>
 <ol type="1">
 <li><code>tidyverse</code> commands that can save a lot of time</li>
-<li>Automated data retrieval methods that make our work much more reproducible</li>
-<li>Bonus Material: The relationship between <code>tidyverse</code> and <code>SQL</code></li>
+<li>Automated data retrieval methods that make our work much more reproducible <!-- 3.  Bonus Material: The relationship between `tidyverse` and `SQL` --></li>
 </ol>
 <ul>
 <li>Now you have a decent grasp on the core functions of <code>tidyverse</code> we can start exploring some helper functions that can make our lives much easier!</li>
@@ -443,7 +442,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 <li>First things first, let’s <code>select()</code> the relevant variables from the larger data set using the IPEDS dictionary files
 <ul>
-<li>Quick question: How did I find the variable names to use below?</li>
+<li>Quick question: How can we find the variable names to use below?</li>
 </ul></li>
 </ul>
 <div class="cell">
@@ -479,10 +478,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <ul>
-<li>For the sake of demonstration, let me show how to do this for instruction without our first “tidyverse trick”
-<ul>
-<li>Fun fact: I did something very close to this in my final project when I took this class!</li>
-</ul></li>
+<li>Let’s see how to do this for instruction without our first “tidyverse trick”</li>
 </ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Split back up into separate files</span></span>
@@ -745,13 +741,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Unlike <code>ifelse()</code> there is a unique danger that would don’t cover every eventuality with your conditions</li>
 </ol>
 <ul>
-<li>This is why I like to end with <code>TRUE</code>, as that will be <code>TRUE</code> no matter what
-<ul>
-<li>I then assign some kind of catch-all phrase that makes me know I made an error (it will just <code>NA</code> if you don’t do this)</li>
-</ul></li>
+<li>This is why ending with <code>TRUE</code> is a good practice, as that will be <code>TRUE</code> no matter what</li>
 </ul>
 <ol start="3" type="1">
-<li>To check if a <code>case_when()</code> worked, I like to pipe it into a <code>count()</code> for the new variable we made</li>
+<li>To check if a <code>case_when()</code> worked, we can pipe it into a <code>count()</code> for the new variable we made</li>
 </ol></li>
 </ul>
 <div class="cell">
@@ -762,36 +755,36 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>                                 rsch_spend <span class="sc">&gt;</span> serv_spend <span class="sc">&amp;</span> serv_spend <span class="sc">&gt;</span> inst_spend <span class="sc">~</span> <span class="st">"rsch_serv_inst"</span>,</span>
 <span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>                                 serv_spend <span class="sc">&gt;</span> inst_spend <span class="sc">&amp;</span> inst_spend <span class="sc">&gt;</span> rsch_spend <span class="sc">~</span> <span class="st">"serv_inst_rsch"</span>,</span>
 <span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>                                 serv_spend <span class="sc">&gt;</span> rsch_spend <span class="sc">&amp;</span> rsch_spend <span class="sc">&gt;</span> inst_spend <span class="sc">~</span> <span class="st">"serv_rsch_inst"</span>,</span>
-<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>                                 <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">"You missed a condition Matt"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>                                 <span class="cn">TRUE</span> <span class="sc">~</span> <span class="cn">NA</span>)) <span class="sc">|&gt;</span></span>
 <span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(highest_cat)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 7 × 2
-  highest_cat                     n
-  &lt;chr&gt;                       &lt;int&gt;
-1 You missed a condition Matt   377
-2 inst_rsch_serv                262
-3 inst_serv_rsch               5004
-4 rsch_inst_serv                 35
-5 rsch_serv_inst                  4
-6 serv_inst_rsch                384
-7 serv_rsch_inst                  3</code></pre>
+  highest_cat        n
+  &lt;chr&gt;          &lt;int&gt;
+1 inst_rsch_serv   262
+2 inst_serv_rsch  5004
+3 rsch_inst_serv    35
+4 rsch_serv_inst     4
+5 serv_inst_rsch   384
+6 serv_rsch_inst     3
+7 &lt;NA&gt;             377</code></pre>
 </div>
 </div>
 <ul>
-<li><p>Looks like I missed something in my <code>case_when()</code>, can anyone guess what it is?</p></li>
+<li><p>Looks like we missed something in our <code>case_when()</code>, can anyone guess what it is?</p></li>
 <li><p>What would happen to this school</p>
 <ul>
 <li>inst_spend 35,000,000</li>
 <li>rsch_spend 20,000,000</li>
 <li>serv_spend 20,000,000
 <ul>
-<li>As I have only specified for all order of categories being “greater than” the other, situations where two categories are equal slip through the cracks
+<li>As we have only specified for all order of categories being “greater than” the other, situations where two categories are equal slip through the cracks
 <ul>
-<li>This was a genuine mistake when writing the lesson, precisely why I always include that catch all</li>
+<li>This was a genuine mistake when writing the lesson, precisely why we should always include that catch all</li>
 </ul></li>
 </ul></li>
 </ul></li>
-<li><p>Let’s see how our results change if I use “greater than or equal to” signs</p></li>
+<li><p>Let’s see how our results change if we use “greater than or equal to” signs</p></li>
 </ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>data_18_clean <span class="sc">|&gt;</span></span>
@@ -801,7 +794,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>                                 rsch_spend <span class="sc">&gt;=</span> serv_spend <span class="sc">&amp;</span> serv_spend <span class="sc">&gt;=</span> inst_spend <span class="sc">~</span> <span class="st">"rsch_serv_inst"</span>,</span>
 <span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>                                 serv_spend <span class="sc">&gt;=</span> inst_spend <span class="sc">&amp;</span> inst_spend <span class="sc">&gt;=</span> rsch_spend <span class="sc">~</span> <span class="st">"serv_inst_rsch"</span>,</span>
 <span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>                                 serv_spend <span class="sc">&gt;=</span> rsch_spend <span class="sc">&amp;</span> rsch_spend <span class="sc">&gt;=</span> inst_spend <span class="sc">~</span> <span class="st">"serv_rsch_inst"</span>,</span>
-<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>                                 <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">"You missed a condition Matt"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>                                 <span class="cn">TRUE</span> <span class="sc">~</span> <span class="cn">NA</span>)) <span class="sc">|&gt;</span></span>
 <span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(highest_cat)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 2
@@ -817,21 +810,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <ul>
 <li><p>No missing conditions this time, hooray!</p></li>
-<li><p>Also, I’m definitely surprised how few institutions spend most on research, and just how many spend instruction &gt; services &gt; research</p>
+<li><p>Also, look at how few institutions spend most on research, and just how many spend instruction &gt; services &gt; research</p>
 <ul>
 <li>Does this surprise you as well?</li>
 </ul></li>
 </ul>
 </section>
-<section id="advanced-tidyverse-summary" class="level3">
-<h3 data-anchor-id="advanced-tidyverse-summary">Advanced Tidyverse Summary</h3>
-<ul>
-<li>I hope some of these more advanced <code>tidyverse</code> commands will prove helpful, particularly as you move into the world of bigger data sets with more variables!</li>
-<li>Next, we are going to look at some practices for automating data retrieval to enhance our research reproducibility</li>
-</ul>
-</section>
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<p>Now let’s look at some practices for automating data retrieval to enhance our research reproducibility.</p>
 <section id="section-one-reproducibility-replicability" class="level2">
 <h2 data-anchor-id="section-one-reproducibility-replicability">Section One: Reproducibility &amp; Replicability</h2>
 <p>In this first section we will discuss what reproducibility is, why is matters, and how automating data retrieval can help achieve it.</p>
@@ -1329,222 +1316,129 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>That concludes the section of the class on automating data retrieval!</p>
 <p>I hope you gained an appriciation for why we should try to automate data retrieval when possible and some understanding of a handful of tools available to do so!</p>
 <p>The final bonus section of this lesson is an exploration of the links between <code>tidyverse</code> and an extremely improtant data retrieval language <code>SQL</code>. This is all bonus content, but, if you’re planning on a career in institutional research, <code>SQL</code> is a must-have skills, so I encourage you to take a look and explore some of the other resources listed in the next tab!</p>
+<!-- # III: `tidyverse -> SQL` -->
+<!-- -   For this section, we are going to see how tasks from [Data Wrangling II](04-wrangle-ii.qmd) could be performed using `SQL`, a common tool used to work with databases -->
+<!-- ### What is `SQL`? -->
+<!-- -   SQL, short for Structured Query Language, is a way of retrieving, modifying, and storing data from databases. For a solid background page on `SQL` see [this overview from AWS](https://aws.amazon.com/what-is/sql/) -->
+<!-- -   One of thing that confuses people about SQL is that there's the base language of SQL that all SQL-based products share and then multiple commercial product implementations of SQL that take the base language and add additional and unique functions -->
+<!--     -   The `dbplyr` package we are going to use below attempts to mimic the implementation we tell it to -->
+<!-- -   A key difference between `R` and `SQL` is that we don't have the option to assign our results to an object like we do with `R` -->
+<!--     -   Instead, an `SQL` query is simply the code to retrieve the data, what happens to that data (e.g., does it show up on your screen, is it saved somewhere, etc.) will be determined by the `SQL`-based software you're using -->
+<!-- ### How does `SQL` Relate to this Class? -->
+<!-- -   First, `SQL` is a really important tool for data management jobs in higher education. Larger institutions like UF almost certainly store their institutional data in a database that uses `SQL` -->
+<!--     -   However, it is rarely taught in Higher Ed degree programs, so, this little intro already sets you up for success -->
+<!-- -   Second, the `tidyverse` language we have been learning this semester is in many ways similar to `SQL` -->
+<!--     -   In fact, a lot of the functions and function names in `tidyverse` come directly from `SQL` -->
+<!--     -   There's an entire package `dbplyr` which can translate our standard `dplyr` commands to `SQL` queries -->
+<!--         -   That's what we are going to play around with today! -->
+<!-- ### Data Wrangling II in `SQL` -->
+<!-- -   To explore `SQL` in a familiar environment, we are going to re-visit [Data Wrangling II](04-wrangle-ii.qmd) -->
+<!--     -   While more complicated data wrangling is certainly possible in `SQL` the most common use in education is to pull or "query" data out of institutional databases with some simple summaries or joins -->
+<!--     -    -->
+<!-- ```{r, include = FALSE, purl = TRUE} -->
+<!-- ## --------------------------- -->
+<!-- ##' [Data Wrangling II in SQL] -->
+<!-- ## --------------------------- -->
+<!-- ``` -->
+<!-- -   First, we have to simulate an `SQL` database for `dbplyr` -->
+<!--     -   This tells `dbplyr` exactly how to translate our code -->
+<!--     -   For today's class, we will simulate a Microsoft Access database with the `simulate_access()` command -->
+<!-- -   Second, instead of a normal `df`, we want R to pretend that `df` is a table in a database, which we do with the `memdb_frame()` command -->
+<!--     -   If you're curious what this command does, try `print(df)` and `print(db)` to see the difference -->
+<!-- ```{r, include = FALSE, purl = TRUE} -->
+<!-- ## --------------------------- -->
+<!-- ##' [dbplyr SQL Setup] -->
+<!-- ## --------------------------- -->
+<!-- ``` -->
+<!-- ```{r} -->
+<!-- df <- read_csv(file.path("data", "sch-test", "all-schools.csv")) -->
+<!-- microsoft_access <- simulate_access() -->
+<!-- db <- memdb_frame(df) -->
+<!-- ``` -->
+<!-- #### Create Summary Table -->
+<!-- ```{r, include = FALSE, purl = TRUE} -->
+<!-- ## --------------------------- -->
+<!-- ##' [Create Summary Table] -->
+<!-- ## --------------------------- -->
+<!-- ``` -->
+<!-- -   Our first command is pretty simple, we want to group our data by year then calculate the mean test score, which will give us average test scores for each year -->
+<!-- ```{r} -->
+<!-- #| class-output: SQL -->
+<!-- # https://stackoverflow.com/questions/76724279/syntax-highlight-quarto-output -->
+<!-- df_sum <- db |> -->
+<!--     ## grouping by year so average within each year -->
+<!--     group_by(year) |> -->
+<!--     ## get mean(<score>) for each test -->
+<!--     summarize(math_m = mean(math), -->
+<!--               read_m = mean(read), -->
+<!--               science_m = mean(science)) |> -->
+<!--   show_query() -->
+<!-- ``` -->
+<!-- -   We start with `SELECT` -->
+<!--     -   We list out what we want, which is the `year` variable and `AVG()`s of math, reading, and science test scores -->
+<!-- -   We are taking them from our simulated databases `dbplyr_002` which we want `GROUP BY`-ed year -->
+<!--     -   As `SQL` code is nested, we can't read it top to bottom, the `GROUP BY` takes place as we pull the data out of `dbplyr_002` before we calculate the `AVG()` -->
+<!-- #### Left-Join -->
+<!-- ```{r, include = FALSE, purl = TRUE} -->
+<!-- ## --------------------------- -->
+<!-- ##' [Left-Join] -->
+<!-- ## --------------------------- -->
+<!-- ``` -->
+<!-- -   Next, we want to join these averages back into the the main data frame -->
+<!-- ```{r} -->
+<!-- #| class-output: SQL -->
+<!-- df_joined <- db |> -->
+<!--     ## pipe into left_join to join with df_sum using "year" as key -->
+<!--     left_join(df_sum, by = "year") |> -->
+<!--   show_query() -->
+<!-- ``` -->
+<!-- -   We see our preceding query nested inside our new query from the second `SELECT` statement to the `GROUP BY` statement -->
+<!--     -   That all sits become `RHS` inside our `LEFT JOIN` statement -->
+<!-- -   We see this is joined `ON` the `year` variable with the original data `dbplyr_002` -->
+<!-- #### Pivot-Longer -->
+<!-- ```{r, include = FALSE, purl = TRUE} -->
+<!-- ## --------------------------- -->
+<!-- ##' [Pivot-Longer] -->
+<!-- ## --------------------------- -->
+<!-- ``` -->
+<!-- -   Our next query pivots the data longer, which remember from our original lesson take the math, reading, and science score columns, and turns them into one column for score type and column for score -->
+<!-- ```{r} -->
+<!-- #| class-output: SQL -->
+<!-- df_long <- db |> -->
+<!--     ## cols: current test columns -->
+<!--     ## names_to: where "math", "read", and "science" will go -->
+<!--     ## values_to: where the values in cols will go -->
+<!--     pivot_longer(cols = c("math","read","science"), -->
+<!--                  names_to = "test", -->
+<!--                  values_to = "score") |> -->
+<!--   show_query() -->
+<!-- ``` -->
+<!-- -   What we see here is a bit different, as it's manual -->
+<!-- -   First we `SELECT` school and year as they are, math as `test` and `math` as `score` -->
+<!-- -   This then `UNION ALL`-ed (think `bind_rows` style stacking) with the same query for `reading` and then again for `science` -->
+<!-- #### Pivot-Wider -->
+<!-- ```{r, include = FALSE, purl = TRUE} -->
+<!-- ## --------------------------- -->
+<!-- ##' [Pivot-Wider] -->
+<!-- ## --------------------------- -->
+<!-- ``` -->
+<!-- -   Next, let's pivot that data back wide -->
+<!-- ```{r} -->
+<!-- #| class-output: SQL -->
+<!-- df_wide <- df_long |> -->
+<!--     ## names_from: values in this column will become new column names -->
+<!--     ## values_from: values in this column will become values in new cols -->
+<!--     pivot_wider(names_from = "test", -->
+<!--                 values_from = "score") |> -->
+<!--   show_query() -->
+<!-- ``` -->
+<!-- -   Our first `SELECT` statement asks for school and year, then... -->
+<!-- -   We use `CASE WHEN` for each type of test, creating a new variable for each subject `WHEN` the test type equaled that subject -->
+<!-- -   Beneath that, we see our previous query that creates the long data that we pivoted back wider -->
 </section>
 </section>
 </div>
 <div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
-<ul>
-<li>For this section, we are going to see how tasks from <a href="./04-wrangle-ii.html">Data Wrangling II</a> could be performed using <code>SQL</code>, a common tool used to work with databases</li>
-</ul>
-<section id="what-is-sql" class="level3">
-<h3 data-anchor-id="what-is-sql">What is <code>SQL</code>?</h3>
-<ul>
-<li>SQL, short for Structured Query Language, is a way of retrieving, modifying, and storing data from databases. For a solid background page on <code>SQL</code> see <a href="https://aws.amazon.com/what-is/sql/">this overview from AWS</a></li>
-<li>One of thing that confuses people about SQL is that there’s the base language of SQL that all SQL-based products share and then multiple commercial product implementations of SQL that take the base language and add additional and unique functions
-<ul>
-<li>The <code>dbplyr</code> package we are going to use below attempts to mimic the implementation we tell it to</li>
-</ul></li>
-<li>A key difference between <code>R</code> and <code>SQL</code> is that we don’t have the option to assign our results to an object like we do with <code>R</code>
-<ul>
-<li>Instead, an <code>SQL</code> query is simply the code to retrieve the data, what happens to that data (e.g., does it show up on your screen, is it saved somewhere, etc.) will be determined by the <code>SQL</code>-based software you’re using</li>
-</ul></li>
-</ul>
-</section>
-<section id="how-does-sql-relate-to-this-class" class="level3">
-<h3 data-anchor-id="how-does-sql-relate-to-this-class">How does <code>SQL</code> Relate to this Class?</h3>
-<ul>
-<li>First, <code>SQL</code> is a really important tool for data management jobs in higher education. Larger institutions like UF almost certainly store their institutional data in a database that uses <code>SQL</code>
-<ul>
-<li>However, it is rarely taught in Higher Ed degree programs, so, this little intro already sets you up for success</li>
-</ul></li>
-<li>Second, the <code>tidyverse</code> language we have been learning this semester is in many ways similar to <code>SQL</code>
-<ul>
-<li>In fact, a lot of the functions and function names in <code>tidyverse</code> come directly from <code>SQL</code></li>
-<li>There’s an entire package <code>dbplyr</code> which can translate our standard <code>dplyr</code> commands to <code>SQL</code> queries
-<ul>
-<li>That’s what we are going to play around with today!</li>
-</ul></li>
-</ul></li>
-</ul>
-</section>
-<section id="data-wrangling-ii-in-sql" class="level3">
-<h3 data-anchor-id="data-wrangling-ii-in-sql">Data Wrangling II in <code>SQL</code></h3>
-<ul>
-<li>To explore <code>SQL</code> in a familiar environment, we are going to re-visit <a href="./04-wrangle-ii.html">Data Wrangling II</a>
-<ul>
-<li>While more complicated data wrangling is certainly possible in <code>SQL</code> the most common use in education is to pull or “query” data out of institutional databases with some simple summaries or joins</li>
-<li></li>
-</ul></li>
-<li>First, we have to simulate an <code>SQL</code> database for <code>dbplyr</code>
-<ul>
-<li>This tells <code>dbplyr</code> exactly how to translate our code</li>
-<li>For today’s class, we will simulate a Microsoft Access database with the <code>simulate_access()</code> command</li>
-</ul></li>
-<li>Second, instead of a normal <code>df</code>, we want R to pretend that <code>df</code> is a table in a database, which we do with the <code>memdb_frame()</code> command
-<ul>
-<li>If you’re curious what this command does, try <code>print(df)</code> and <code>print(db)</code> to see the difference</li>
-</ul></li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">file.path</span>(<span class="st">"data"</span>, <span class="st">"sch-test"</span>, <span class="st">"all-schools.csv"</span>))</span>
-<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>microsoft_access <span class="ot">&lt;-</span> <span class="fu">simulate_access</span>()</span>
-<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a>db <span class="ot">&lt;-</span> <span class="fu">memdb_frame</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<section id="create-summary-table" class="level4">
-<h4 data-anchor-id="create-summary-table">Create Summary Table</h4>
-<ul>
-<li>Our first command is pretty simple, we want to group our data by year then calculate the mean test score, which will give us average test scores for each year</li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co"># https://stackoverflow.com/questions/76724279/syntax-highlight-quarto-output</span></span>
-<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>df_sum <span class="ot">&lt;-</span> db <span class="sc">|&gt;</span></span>
-<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>    <span class="do">## grouping by year so average within each year</span></span>
-<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(year) <span class="sc">|&gt;</span></span>
-<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a>    <span class="do">## get mean(&lt;score&gt;) for each test</span></span>
-<span id="cb52-6"><a href="#cb52-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarize</span>(<span class="at">math_m =</span> <span class="fu">mean</span>(math),</span>
-<span id="cb52-7"><a href="#cb52-7" aria-hidden="true" tabindex="-1"></a>              <span class="at">read_m =</span> <span class="fu">mean</span>(read),</span>
-<span id="cb52-8"><a href="#cb52-8" aria-hidden="true" tabindex="-1"></a>              <span class="at">science_m =</span> <span class="fu">mean</span>(science)) <span class="sc">|&gt;</span></span>
-<span id="cb52-9"><a href="#cb52-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">show_query</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<div class="sourceCode" id="cb53"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span>SQL<span class="op">&gt;</span></span>
-<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span></span>
-<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>  `year`,</span>
-<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">AVG</span>(`math`) <span class="kw">AS</span> `math_m`,</span>
-<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">AVG</span>(`read`) <span class="kw">AS</span> `read_m`,</span>
-<span id="cb53-6"><a href="#cb53-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">AVG</span>(`science`) <span class="kw">AS</span> `science_m`</span>
-<span id="cb53-7"><a href="#cb53-7" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> `dbplyr_2fSrBFxnwD`</span>
-<span id="cb53-8"><a href="#cb53-8" aria-hidden="true" tabindex="-1"></a><span class="kw">GROUP</span> <span class="kw">BY</span> `year`</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
-<ul>
-<li>We start with <code>SELECT</code>
-<ul>
-<li>We list out what we want, which is the <code>year</code> variable and <code>AVG()</code>s of math, reading, and science test scores</li>
-</ul></li>
-<li>We are taking them from our simulated databases <code>dbplyr_002</code> which we want <code>GROUP BY</code>-ed year
-<ul>
-<li>As <code>SQL</code> code is nested, we can’t read it top to bottom, the <code>GROUP BY</code> takes place as we pull the data out of <code>dbplyr_002</code> before we calculate the <code>AVG()</code></li>
-</ul></li>
-</ul>
-</section>
-<section id="left-join" class="level4">
-<h4 data-anchor-id="left-join">Left-Join</h4>
-<ul>
-<li>Next, we want to join these averages back into the the main data frame</li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>df_joined <span class="ot">&lt;-</span> db <span class="sc">|&gt;</span></span>
-<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>    <span class="do">## pipe into left_join to join with df_sum using "year" as key</span></span>
-<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">left_join</span>(df_sum, <span class="at">by =</span> <span class="st">"year"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">show_query</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<div class="sourceCode" id="cb55"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span>SQL<span class="op">&gt;</span></span>
-<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> `dbplyr_2fSrBFxnwD`.<span class="op">*</span>, `math_m`, `read_m`, `science_m`</span>
-<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> `dbplyr_2fSrBFxnwD`</span>
-<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a><span class="kw">LEFT</span> <span class="kw">JOIN</span> (</span>
-<span id="cb55-5"><a href="#cb55-5" aria-hidden="true" tabindex="-1"></a>  <span class="kw">SELECT</span></span>
-<span id="cb55-6"><a href="#cb55-6" aria-hidden="true" tabindex="-1"></a>    `year`,</span>
-<span id="cb55-7"><a href="#cb55-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">AVG</span>(`math`) <span class="kw">AS</span> `math_m`,</span>
-<span id="cb55-8"><a href="#cb55-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">AVG</span>(`read`) <span class="kw">AS</span> `read_m`,</span>
-<span id="cb55-9"><a href="#cb55-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">AVG</span>(`science`) <span class="kw">AS</span> `science_m`</span>
-<span id="cb55-10"><a href="#cb55-10" aria-hidden="true" tabindex="-1"></a>  <span class="kw">FROM</span> `dbplyr_2fSrBFxnwD`</span>
-<span id="cb55-11"><a href="#cb55-11" aria-hidden="true" tabindex="-1"></a>  <span class="kw">GROUP</span> <span class="kw">BY</span> `year`</span>
-<span id="cb55-12"><a href="#cb55-12" aria-hidden="true" tabindex="-1"></a>) <span class="kw">AS</span> `RHS`</span>
-<span id="cb55-13"><a href="#cb55-13" aria-hidden="true" tabindex="-1"></a>  <span class="kw">ON</span> (`dbplyr_2fSrBFxnwD`.`year` <span class="op">=</span> `RHS`.`year`)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
-<ul>
-<li>We see our preceding query nested inside our new query from the second <code>SELECT</code> statement to the <code>GROUP BY</code> statement
-<ul>
-<li>That all sits become <code>RHS</code> inside our <code>LEFT JOIN</code> statement</li>
-</ul></li>
-<li>We see this is joined <code>ON</code> the <code>year</code> variable with the original data <code>dbplyr_002</code></li>
-</ul>
-</section>
-<section id="pivot-longer" class="level4">
-<h4 data-anchor-id="pivot-longer">Pivot-Longer</h4>
-<ul>
-<li>Our next query pivots the data longer, which remember from our original lesson take the math, reading, and science score columns, and turns them into one column for score type and column for score</li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>df_long <span class="ot">&lt;-</span> db <span class="sc">|&gt;</span></span>
-<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>    <span class="do">## cols: current test columns</span></span>
-<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a>    <span class="do">## names_to: where "math", "read", and "science" will go</span></span>
-<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a>    <span class="do">## values_to: where the values in cols will go</span></span>
-<span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">c</span>(<span class="st">"math"</span>,<span class="st">"read"</span>,<span class="st">"science"</span>),</span>
-<span id="cb56-6"><a href="#cb56-6" aria-hidden="true" tabindex="-1"></a>                 <span class="at">names_to =</span> <span class="st">"test"</span>,</span>
-<span id="cb56-7"><a href="#cb56-7" aria-hidden="true" tabindex="-1"></a>                 <span class="at">values_to =</span> <span class="st">"score"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb56-8"><a href="#cb56-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">show_query</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<div class="sourceCode" id="cb57"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span>SQL<span class="op">&gt;</span></span>
-<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> `school`, `year`, <span class="st">'math'</span> <span class="kw">AS</span> `test`, `math` <span class="kw">AS</span> `score`</span>
-<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> `dbplyr_2fSrBFxnwD`</span>
-<span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb57-5"><a href="#cb57-5" aria-hidden="true" tabindex="-1"></a><span class="kw">UNION</span> <span class="kw">ALL</span></span>
-<span id="cb57-6"><a href="#cb57-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb57-7"><a href="#cb57-7" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> `school`, `year`, <span class="st">'read'</span> <span class="kw">AS</span> `test`, `read` <span class="kw">AS</span> `score`</span>
-<span id="cb57-8"><a href="#cb57-8" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> `dbplyr_2fSrBFxnwD`</span>
-<span id="cb57-9"><a href="#cb57-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb57-10"><a href="#cb57-10" aria-hidden="true" tabindex="-1"></a><span class="kw">UNION</span> <span class="kw">ALL</span></span>
-<span id="cb57-11"><a href="#cb57-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb57-12"><a href="#cb57-12" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> `school`, `year`, <span class="st">'science'</span> <span class="kw">AS</span> `test`, `science` <span class="kw">AS</span> `score`</span>
-<span id="cb57-13"><a href="#cb57-13" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> `dbplyr_2fSrBFxnwD`</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
-<ul>
-<li>What we see here is a bit different, as it’s manual</li>
-<li>First we <code>SELECT</code> school and year as they are, math as <code>test</code> and <code>math</code> as <code>score</code></li>
-<li>This then <code>UNION ALL</code>-ed (think <code>bind_rows</code> style stacking) with the same query for <code>reading</code> and then again for <code>science</code></li>
-</ul>
-</section>
-<section id="pivot-wider" class="level4">
-<h4 data-anchor-id="pivot-wider">Pivot-Wider</h4>
-<ul>
-<li>Next, let’s pivot that data back wide</li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>df_wide <span class="ot">&lt;-</span> df_long <span class="sc">|&gt;</span></span>
-<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>    <span class="do">## names_from: values in this column will become new column names</span></span>
-<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a>    <span class="do">## values_from: values in this column will become values in new cols</span></span>
-<span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> <span class="st">"test"</span>,</span>
-<span id="cb58-5"><a href="#cb58-5" aria-hidden="true" tabindex="-1"></a>                <span class="at">values_from =</span> <span class="st">"score"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb58-6"><a href="#cb58-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">show_query</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<div class="sourceCode" id="cb59"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span>SQL<span class="op">&gt;</span></span>
-<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span></span>
-<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a>  `school`,</span>
-<span id="cb59-4"><a href="#cb59-4" aria-hidden="true" tabindex="-1"></a>  `year`,</span>
-<span id="cb59-5"><a href="#cb59-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">MAX</span>(<span class="cf">CASE</span> <span class="cf">WHEN</span> (`test` <span class="op">=</span> <span class="st">'math'</span>) <span class="cf">THEN</span> `score` <span class="cf">END</span>) <span class="kw">AS</span> `math`,</span>
-<span id="cb59-6"><a href="#cb59-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">MAX</span>(<span class="cf">CASE</span> <span class="cf">WHEN</span> (`test` <span class="op">=</span> <span class="st">'read'</span>) <span class="cf">THEN</span> `score` <span class="cf">END</span>) <span class="kw">AS</span> `read`,</span>
-<span id="cb59-7"><a href="#cb59-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">MAX</span>(<span class="cf">CASE</span> <span class="cf">WHEN</span> (`test` <span class="op">=</span> <span class="st">'science'</span>) <span class="cf">THEN</span> `score` <span class="cf">END</span>) <span class="kw">AS</span> `science`</span>
-<span id="cb59-8"><a href="#cb59-8" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> (</span>
-<span id="cb59-9"><a href="#cb59-9" aria-hidden="true" tabindex="-1"></a>  <span class="kw">SELECT</span> `school`, `year`, <span class="st">'math'</span> <span class="kw">AS</span> `test`, `math` <span class="kw">AS</span> `score`</span>
-<span id="cb59-10"><a href="#cb59-10" aria-hidden="true" tabindex="-1"></a>  <span class="kw">FROM</span> `dbplyr_2fSrBFxnwD`</span>
-<span id="cb59-11"><a href="#cb59-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb59-12"><a href="#cb59-12" aria-hidden="true" tabindex="-1"></a>  <span class="kw">UNION</span> <span class="kw">ALL</span></span>
-<span id="cb59-13"><a href="#cb59-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb59-14"><a href="#cb59-14" aria-hidden="true" tabindex="-1"></a>  <span class="kw">SELECT</span> `school`, `year`, <span class="st">'read'</span> <span class="kw">AS</span> `test`, `read` <span class="kw">AS</span> `score`</span>
-<span id="cb59-15"><a href="#cb59-15" aria-hidden="true" tabindex="-1"></a>  <span class="kw">FROM</span> `dbplyr_2fSrBFxnwD`</span>
-<span id="cb59-16"><a href="#cb59-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb59-17"><a href="#cb59-17" aria-hidden="true" tabindex="-1"></a>  <span class="kw">UNION</span> <span class="kw">ALL</span></span>
-<span id="cb59-18"><a href="#cb59-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb59-19"><a href="#cb59-19" aria-hidden="true" tabindex="-1"></a>  <span class="kw">SELECT</span> `school`, `year`, <span class="st">'science'</span> <span class="kw">AS</span> `test`, `science` <span class="kw">AS</span> `score`</span>
-<span id="cb59-20"><a href="#cb59-20" aria-hidden="true" tabindex="-1"></a>  <span class="kw">FROM</span> `dbplyr_2fSrBFxnwD`</span>
-<span id="cb59-21"><a href="#cb59-21" aria-hidden="true" tabindex="-1"></a>) <span class="kw">AS</span> `q01`</span>
-<span id="cb59-22"><a href="#cb59-22" aria-hidden="true" tabindex="-1"></a><span class="kw">GROUP</span> <span class="kw">BY</span> `school`, `year`</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
-<ul>
-<li>Our first <code>SELECT</code> statement asks for school and year, then…</li>
-<li>We use <code>CASE WHEN</code> for each type of test, creating a new variable for each subject <code>WHEN</code> the test type equaled that subject</li>
-<li>Beneath that, we see our previous query that creates the long data that we pivoted back wider</li>
-</ul>
-</section>
-</section>
-</div>
-<div id="tabset-1-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-4-tab">
 <p>There is no homework assignment associated with this lesson.</p>
 <p>Instead, your initial analysis for your reproducible report is due next Tuesday at 12:00pm.</p>
 <p>See the <a href="./99-final.html">final project</a> for details.</p>
@@ -1689,7 +1583,7 @@ FROM (
             `x1region`,
             CASE WHEN (`x1stuedexpct` IN list(-8.0, -9.0, 11.0)) THEN NULL WHEN NOT (`x1stuedexpct` IN list(-8.0, -9.0, 11.0)) THEN `x1stuedexpct` END AS `student_exp`,
             CASE WHEN (`x1paredexpct` IN list(-8.0, -9.0, 11.0)) THEN NULL WHEN NOT (`x1paredexpct` IN list(-8.0, -9.0, 11.0)) THEN `x1paredexpct` END AS `parent_exp`
-          FROM `dbplyr_3AfKsrwBea`
+          FROM `dbplyr_icGSvatxvW`
         ) AS `q01`
       ) AS `q01`
     ) AS `q01`
@@ -1723,7 +1617,7 @@ db |>
 ```
 <SQL>
 SELECT `stu_id`, `x1stuedexpct`, `x1paredexpct`, `x1region`
-FROM `dbplyr_3AfKsrwBea`
+FROM `dbplyr_icGSvatxvW`
 ```
 
 
@@ -1756,7 +1650,7 @@ SELECT
   `x1region`,
   CASE WHEN (`x1stuedexpct` IN list(-8.0, -9.0, 11.0)) THEN NULL WHEN NOT (`x1stuedexpct` IN list(-8.0, -9.0, 11.0)) THEN `x1stuedexpct` END AS `student_exp`,
   CASE WHEN (`x1paredexpct` IN list(-8.0, -9.0, 11.0)) THEN NULL WHEN NOT (`x1paredexpct` IN list(-8.0, -9.0, 11.0)) THEN `x1paredexpct` END AS `parent_exp`
-FROM `dbplyr_3AfKsrwBea`
+FROM `dbplyr_icGSvatxvW`
 ```
 
 
@@ -1796,7 +1690,7 @@ FROM (
     `x1region`,
     CASE WHEN (`x1stuedexpct` IN list(-8.0, -9.0, 11.0)) THEN NULL WHEN NOT (`x1stuedexpct` IN list(-8.0, -9.0, 11.0)) THEN `x1stuedexpct` END AS `student_exp`,
     CASE WHEN (`x1paredexpct` IN list(-8.0, -9.0, 11.0)) THEN NULL WHEN NOT (`x1paredexpct` IN list(-8.0, -9.0, 11.0)) THEN `x1paredexpct` END AS `parent_exp`
-  FROM `dbplyr_3AfKsrwBea`
+  FROM `dbplyr_icGSvatxvW`
 ) AS `q01`
 ```
 
@@ -1858,7 +1752,7 @@ FROM (
         `x1region`,
         CASE WHEN (`x1stuedexpct` IN list(-8.0, -9.0, 11.0)) THEN NULL WHEN NOT (`x1stuedexpct` IN list(-8.0, -9.0, 11.0)) THEN `x1stuedexpct` END AS `student_exp`,
         CASE WHEN (`x1paredexpct` IN list(-8.0, -9.0, 11.0)) THEN NULL WHEN NOT (`x1paredexpct` IN list(-8.0, -9.0, 11.0)) THEN `x1paredexpct` END AS `parent_exp`
-      FROM `dbplyr_3AfKsrwBea`
+      FROM `dbplyr_icGSvatxvW`
     ) AS `q01`
   ) AS `q01`
 ) AS `q01`
@@ -1931,7 +1825,7 @@ FROM (
           `x1region`,
           CASE WHEN (`x1stuedexpct` IN list(-8.0, -9.0, 11.0)) THEN NULL WHEN NOT (`x1stuedexpct` IN list(-8.0, -9.0, 11.0)) THEN `x1stuedexpct` END AS `student_exp`,
           CASE WHEN (`x1paredexpct` IN list(-8.0, -9.0, 11.0)) THEN NULL WHEN NOT (`x1paredexpct` IN list(-8.0, -9.0, 11.0)) THEN `x1paredexpct` END AS `parent_exp`
-        FROM `dbplyr_3AfKsrwBea`
+        FROM `dbplyr_icGSvatxvW`
       ) AS `q01`
     ) AS `q01`
   ) AS `q01`
@@ -2008,7 +1902,7 @@ FROM (
             `x1region`,
             CASE WHEN (`x1stuedexpct` IN list(-8.0, -9.0, 11.0)) THEN NULL WHEN NOT (`x1stuedexpct` IN list(-8.0, -9.0, 11.0)) THEN `x1stuedexpct` END AS `student_exp`,
             CASE WHEN (`x1paredexpct` IN list(-8.0, -9.0, 11.0)) THEN NULL WHEN NOT (`x1paredexpct` IN list(-8.0, -9.0, 11.0)) THEN `x1paredexpct` END AS `parent_exp`
-          FROM `dbplyr_3AfKsrwBea`
+          FROM `dbplyr_icGSvatxvW`
         ) AS `q01`
       ) AS `q01`
     ) AS `q01`
@@ -2047,7 +1941,7 @@ print(db_3)
 ::: {.cell-output .cell-output-stdout}
 
 ```
-# Source:   table<`dbplyr_guYIvRHcbB`> [?? x 19]
+# Source:   table<`dbplyr_VEQXMf793I`> [?? x 19]
 # Database: sqlite 3.51.1 [:memory:]
   school       math_1980 read_1980 science_1980 math_1981 read_1981 science_1981
   <chr>            <dbl>     <dbl>        <dbl>     <dbl>     <dbl>        <dbl>
@@ -2086,12 +1980,12 @@ df_long_fix <- db_3 |>
 ``` SQL
 <SQL>
 SELECT `school`, 'math' AS `test`, '1980' AS `year`, `math_1980` AS `score`
-FROM `dbplyr_guYIvRHcbB`
+FROM `dbplyr_VEQXMf793I`
 
 UNION ALL
 
 SELECT `school`, 'read' AS `test`, '1980' AS `year`, `read_1980` AS `score`
-FROM `dbplyr_guYIvRHcbB`
+FROM `dbplyr_VEQXMf793I`
 
 UNION ALL
 
@@ -2100,17 +1994,17 @@ SELECT
   'science' AS `test`,
   '1980' AS `year`,
   `science_1980` AS `score`
-FROM `dbplyr_guYIvRHcbB`
+FROM `dbplyr_VEQXMf793I`
 
 UNION ALL
 
 SELECT `school`, 'math' AS `test`, '1981' AS `year`, `math_1981` AS `score`
-FROM `dbplyr_guYIvRHcbB`
+FROM `dbplyr_VEQXMf793I`
 
 UNION ALL
 
 SELECT `school`, 'read' AS `test`, '1981' AS `year`, `read_1981` AS `score`
-FROM `dbplyr_guYIvRHcbB`
+FROM `dbplyr_VEQXMf793I`
 
 UNION ALL
 
@@ -2119,17 +2013,17 @@ SELECT
   'science' AS `test`,
   '1981' AS `year`,
   `science_1981` AS `score`
-FROM `dbplyr_guYIvRHcbB`
+FROM `dbplyr_VEQXMf793I`
 
 UNION ALL
 
 SELECT `school`, 'math' AS `test`, '1982' AS `year`, `math_1982` AS `score`
-FROM `dbplyr_guYIvRHcbB`
+FROM `dbplyr_VEQXMf793I`
 
 UNION ALL
 
 SELECT `school`, 'read' AS `test`, '1982' AS `year`, `read_1982` AS `score`
-FROM `dbplyr_guYIvRHcbB`
+FROM `dbplyr_VEQXMf793I`
 
 UNION ALL
 
@@ -2138,17 +2032,17 @@ SELECT
   'science' AS `test`,
   '1982' AS `year`,
   `science_1982` AS `score`
-FROM `dbplyr_guYIvRHcbB`
+FROM `dbplyr_VEQXMf793I`
 
 UNION ALL
 
 SELECT `school`, 'math' AS `test`, '1983' AS `year`, `math_1983` AS `score`
-FROM `dbplyr_guYIvRHcbB`
+FROM `dbplyr_VEQXMf793I`
 
 UNION ALL
 
 SELECT `school`, 'read' AS `test`, '1983' AS `year`, `read_1983` AS `score`
-FROM `dbplyr_guYIvRHcbB`
+FROM `dbplyr_VEQXMf793I`
 
 UNION ALL
 
@@ -2157,17 +2051,17 @@ SELECT
   'science' AS `test`,
   '1983' AS `year`,
   `science_1983` AS `score`
-FROM `dbplyr_guYIvRHcbB`
+FROM `dbplyr_VEQXMf793I`
 
 UNION ALL
 
 SELECT `school`, 'math' AS `test`, '1984' AS `year`, `math_1984` AS `score`
-FROM `dbplyr_guYIvRHcbB`
+FROM `dbplyr_VEQXMf793I`
 
 UNION ALL
 
 SELECT `school`, 'read' AS `test`, '1984' AS `year`, `read_1984` AS `score`
-FROM `dbplyr_guYIvRHcbB`
+FROM `dbplyr_VEQXMf793I`
 
 UNION ALL
 
@@ -2176,17 +2070,17 @@ SELECT
   'science' AS `test`,
   '1984' AS `year`,
   `science_1984` AS `score`
-FROM `dbplyr_guYIvRHcbB`
+FROM `dbplyr_VEQXMf793I`
 
 UNION ALL
 
 SELECT `school`, 'math' AS `test`, '1985' AS `year`, `math_1985` AS `score`
-FROM `dbplyr_guYIvRHcbB`
+FROM `dbplyr_VEQXMf793I`
 
 UNION ALL
 
 SELECT `school`, 'read' AS `test`, '1985' AS `year`, `read_1985` AS `score`
-FROM `dbplyr_guYIvRHcbB`
+FROM `dbplyr_VEQXMf793I`
 
 UNION ALL
 
@@ -2195,7 +2089,7 @@ SELECT
   'science' AS `test`,
   '1985' AS `year`,
   `science_1985` AS `score`
-FROM `dbplyr_guYIvRHcbB`
+FROM `dbplyr_VEQXMf793I`
 ```
 
 
