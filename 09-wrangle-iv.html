@@ -354,8 +354,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Automated data retrieval methods that make our work much more reproducible <!-- 3.  Bonus Material: The relationship between `tidyverse` and `SQL` --></li>
 </ol>
 <ul>
-<li>Now you have a decent grasp on the core functions of <code>tidyverse</code> we can start exploring some helper functions that can make our lives much easier!</li>
-<li>These commands have been chosen as I have personally found them wildly helpful in working with IPEDS and other data
+<li>Now you have a decent grasp on the core functions of <code>tidyverse</code> we can start exploring some helper functions that can make our lives much easier!
 <ul>
 <li>To demonstrate, we are going to use IPEDS finance data files for 2018/19 school year</li>
 <li>Notice: IPEDS uses separate data files for public <code>_f1a</code> non-profit <code>_f2</code> and for-profit <code>_f3</code> colleges</li>
@@ -932,8 +931,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 </ul>
 </section>
-<section id="if-i-do-all-this-will-anyone-ever-actually-reproduce-my-work" class="level3">
-<h3>If I do all this, will anyone ever actually reproduce my work?</h3>
+<section id="if-we-do-all-this-will-anyone-ever-actually-reproduce-my-work" class="level3">
+<h3>If we do all this, will anyone ever actually reproduce my work?</h3>
 <ul>
 <li><p>A <a href="https://doi.org/10.3102/0013189X14545513">2014 Educational Researcher article by Makel &amp; Plucker</a> shows significantly less educational research is devoted to reproduction and replication than in other fields, only 0.13%.</p></li>
 <li><p>We are seeing more meta-analyses in education</p>
@@ -949,7 +948,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Even if we don’t want to go out and start reproducing and replicating other studies, we can help the cause by ensuring our studies are as reproducible as possible.</p></li>
 </ul>
 <blockquote class="blockquote">
-<h2 id="small-group-discussion-exercise-5-mins-1" data-anchor-id="if-i-do-all-this-will-anyone-ever-actually-reproduce-my-work">Small Group Discussion Exercise (5 mins)</h2>
+<h2 id="small-group-discussion-exercise-5-mins-1" data-anchor-id="if-we-do-all-this-will-anyone-ever-actually-reproduce-my-work">Small Group Discussion Exercise (5 mins)</h2>
 <p>Okay, we get it, reproducibility is awesome… But sometimes it isn’t possible</p>
 <ol type="1">
 <li>Think of a specific study or scenario (real or fictional) where true open reproducibility (e.g.&nbsp;sharing data) is either not possible or not practical</li>
@@ -971,17 +970,218 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 <li>Provides additional trust to the researcher that the data is coming directly from the source and hasn’t been edited/doctored</li>
 </ul></li>
-<li><p>In next two sections of the workshop we are going to cover tools that we can use to automate data retrieval in our work</p></li>
+<li><p>In next two sections, we are going to cover tools that we can use to automate data retrieval in our work</p></li>
 </ul>
 </section>
 </section>
 <section id="section-two-using-ipedtas-to-automagically-retrive-labelled-ipeds-data-in-stata-r" class="level2">
 <h2 data-anchor-id="section-two-using-ipedtas-to-automagically-retrive-labelled-ipeds-data-in-stata-r">Section Two: Using IPEDtaS to Automagically Retrive Labelled IPEDS Data in Stata &amp; R</h2>
-<p>For this section we will walk through the tutorial page for IPEDtaS which can be found at <a href="https://capaldi.info/IPEDtaS/tutorial">capaldi.info/IPEDtaS/tutorial</a></p>
+<p>You have seen in our previous lessons that the labelled HSLS data can make your life much easier, and you probably wondered if we could have the labelled data for IPEDS too. Unfortunately, IPEDS does not provide official labelled data files, but, thanks to the work of our alumni <a href="https://capaldi.info">Dr.&nbsp;Matt Capaldi</a> we can now easily retrieve labelled IPEDS data in R (and in Stata as well)!</p>
+<p>First of all, download the <a href="https://raw.githubusercontent.com/ttalVlatt/IPEDtaS/main/R/IPEDtaS.R">IPEDtaS R script</a> and save it to your course project folder</p>
+<p>Then, open the R script. The only real change you have to make in the whole process to the scripts is selecting which files you want to download</p>
+<ul>
+<li>By default the scripts are set to download directory information (HD) and enrollment data (EFFY) for the 2023 reporting cycle. To change these you need to update the list to the files you want.
+<ul>
+<li>The only rule is that the <code>selected_files &lt;- c()</code> must be a valid list of IPEDS file names, which you can find on the <a href="https://nces.ed.gov/ipeds/datacenter/DataFiles.aspx">IPEDS data center</a> (just click on the “Data Files” tab and look for the file names in the “File Name” column)</li>
+<li>At the bottom of the script there is a list with every single IPEDS file in it, if you want the entire dataset you can just copy and paste that longer list to the top of the script and edit as needed</li>
+</ul></li>
+</ul>
+<p>Here are some examples of file selection: A simple list</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>selected_files <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"HD2021"</span>, <span class="st">"EFFY2022"</span>, <span class="st">"SFA2122"</span>)</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="do">## OR</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>selected_files <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">"HD2021"</span>,</span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">"EFFY2022"</span>,</span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">"SFA2122"</span></span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>You can also comment out the files you don’t want from a longer list</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>selected_files <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"HD2021"</span>,</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># "IC2022",</span></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># "IC2022_AY",</span></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">"EFFY2022"</span>,</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># "EFFY2022_DIST",</span></span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">"SFA2122"</span></span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Finally, save the script and hit run! The files you put in <code>selected_files</code> will be downloaded.</p>
+<p>Now we know how to download our labelled IPEDS data, let’s walk through a quick example.</p>
+<p>Let’s load our packages: haven (part of tidyverse, but requires loading separately), labelled (what haven uses behind the scenes), and gtsummary (to easily create output tables)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(haven)</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(labelled)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Also read in our data</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>data_info <span class="ot">&lt;-</span> <span class="fu">read_dta</span>(<span class="st">"data/hd2021.dta"</span>)</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>data_enroll <span class="ot">&lt;-</span> <span class="fu">read_dta</span>(<span class="st">"data/effy2022.dta"</span>)</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>data_aid <span class="ot">&lt;-</span> <span class="fu">read_dta</span>(<span class="st">"data/sfa2122.dta"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now, take a look at the data we just read in, you should see the variable labels (descriptions) under each variable name. No need to open your code book!</p>
+<p>We can join our data together</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">left_join</span>(data_info, data_enroll, <span class="at">by =</span> <span class="st">"unitid"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(data_aid, <span class="at">by =</span> <span class="st">"unitid"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Some of you may have noticed that our data has become extremely “long”, with many more observations than we originally had</p>
+<p>Let’s check how many observations our data set now contains</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 116480</code></pre>
+</div>
+</div>
+<p>This is because the variable <code>effylev</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>data <span class="sc">|&gt;</span> <span class="fu">count</span>(effylev)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 2
+  effylev                                        n
+  &lt;dbl+lbl&gt;                                  &lt;int&gt;
+1 -2 [Not applicable, undergraduate detail] 102471
+2  1 [All students total]                     5953
+3  2 [Undergraduate]                          5680
+4  4 [Graduate]                               2040
+5 NA                                           336</code></pre>
+</div>
+</div>
+<p>The labels help us quickly identify what the different values of effylev mean and that if we are interested in undergraduate figures (which for now, we are) we want to keep rows that are <code>effylev == 2</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span> <span class="fu">filter</span>(effylev <span class="sc">==</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now let’s explore some trends in our data to show how labels can help. How does the percent of students paying out-of-state tuition vary by region?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>data <span class="sc">|&gt;</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(obereg) <span class="sc">|&gt;</span></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">median_perc_out_of_state =</span> <span class="fu">median</span>(scfa13p, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 10 × 2
+   obereg                                                 median_perc_out_of_s…¹
+   &lt;dbl+lbl&gt;                                                               &lt;dbl&gt;
+ 1 0 [U.S. Service schools]                                                    0
+ 2 1 [New England (CT, ME, MA, NH, RI, VT)]                                    5
+ 3 2 [Mid East (DE, DC, MD, NJ, NY, PA)]                                       5
+ 4 3 [Great Lakes (IL, IN, MI, OH, WI)]                                        2
+ 5 4 [Plains (IA, KS, MN, MO, NE, ND, SD)]                                     6
+ 6 5 [Southeast (AL, AR, FL, GA, KY, LA, MS, NC, SC, TN,…                      5
+ 7 6 [Southwest (AZ, NM, OK, TX)]                                              4
+ 8 7 [Rocky Mountains (CO, ID, MT, UT, WY)]                                   19
+ 9 8 [Far West (AK, CA, HI, NV, OR, WA)]                                       4
+10 9 [Other U.S. jurisdictions (AS, FM, GU, MH, MP, PR, …                      0
+# ℹ abbreviated name: ¹​median_perc_out_of_state</code></pre>
+</div>
+</div>
+<p>Notice how again the labels make our analysis instantly more informative - We know what obereg 7 means without going to the code book - Now, if we want to just use the labels as the column, haven has a handy tool <code>as_factor()</code> for that, which will convert a column with value labels to a factor using the label as the value</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>data <span class="sc">|&gt;</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(<span class="fu">as_factor</span>(obereg)) <span class="sc">|&gt;</span></span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">median_perc_out_of_state =</span> <span class="fu">median</span>(scfa13p, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 10 × 2
+   `as_factor(obereg)`                                    median_perc_out_of_s…¹
+   &lt;fct&gt;                                                                   &lt;dbl&gt;
+ 1 U.S. Service schools                                                        0
+ 2 New England (CT, ME, MA, NH, RI, VT)                                        5
+ 3 Mid East (DE, DC, MD, NJ, NY, PA)                                           5
+ 4 Great Lakes (IL, IN, MI, OH, WI)                                            2
+ 5 Plains (IA, KS, MN, MO, NE, ND, SD)                                         6
+ 6 Southeast (AL, AR, FL, GA, KY, LA, MS, NC, SC, TN, VA…                      5
+ 7 Southwest (AZ, NM, OK, TX)                                                  4
+ 8 Rocky Mountains (CO, ID, MT, UT, WY)                                       19
+ 9 Far West (AK, CA, HI, NV, OR, WA)                                           4
+10 Other U.S. jurisdictions (AS, FM, GU, MH, MP, PR, PW,…                      0
+# ℹ abbreviated name: ¹​median_perc_out_of_state</code></pre>
+</div>
+</div>
+<p>What about the relationship between total enrollment and the percent paying instate tuition? Are bigger schools relying more on out-of-state students? Does this trend vary by region?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data <span class="sc">|&gt;</span> <span class="fu">filter</span>(efytotlt <span class="sc">&lt;</span> <span class="dv">50000</span>),</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> efytotlt,</span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> scfa13p)) <span class="sc">+</span></span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="fl">0.8</span>)) <span class="sc">+</span></span>
+<span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>obereg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="09-wrangle-iv_files/figure-html/unnamed-chunk-29-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Without labels, the plot is hard to understand</p>
+<p>So let’s add labels</p>
+<ul>
+<li>The first step is to change <code>facet_wrap(~obereg)</code> to <code>facet_wrap(~as_factor(obereg))</code>
+<ul>
+<li>This is the same as we did in the table above, using a new version of the column that uses the value labels as the value</li>
+</ul></li>
+<li>The second step involves pulling out the variable labels to go on the x and y axis
+<ul>
+<li>We can set our x and y labels using the labs() argument as normal</li>
+<li>But instead of putting something like <code>x = "my x axis label"</code>, we use the <code>var_label()</code> from the <code>labelled</code> package</li>
+</ul></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data <span class="sc">|&gt;</span> <span class="fu">filter</span>(efytotlt <span class="sc">&lt;</span> <span class="dv">50000</span>),</span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> efytotlt,</span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> scfa13p)) <span class="sc">+</span></span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="fl">0.8</span>)) <span class="sc">+</span></span>
+<span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="fu">var_label</span>(data<span class="sc">$</span>efytotlt),</span>
+<span id="cb44-9"><a href="#cb44-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="fu">var_label</span>(data<span class="sc">$</span>scfa13p)) <span class="sc">+</span></span>
+<span id="cb44-10"><a href="#cb44-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span><span class="fu">as_factor</span>(obereg))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="09-wrangle-iv_files/figure-html/unnamed-chunk-30-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>That’s more informative, but still a little messy</p>
+<ul>
+<li>With a couple of tweaks to allow longer labels to wrap around, we can have a much better looking plot
+<ul>
+<li><code>y = str_wrap(var_label(data$scfa13p), 40)</code> says to make a new line every 40 characters on the y axis</li>
+<li><code>labeller = label_wrap_gen(multi_line = TRUE)</code> inside our <code>facet_wrap()</code> allows the facet labels to wrap onto multiple lines</li>
+</ul></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data <span class="sc">|&gt;</span> <span class="fu">filter</span>(efytotlt <span class="sc">&lt;</span> <span class="dv">50000</span>),</span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> efytotlt,</span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> scfa13p)) <span class="sc">+</span></span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="fl">0.8</span>)) <span class="sc">+</span></span>
+<span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="fu">var_label</span>(data<span class="sc">$</span>efytotlt),</span>
+<span id="cb45-9"><a href="#cb45-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="fu">str_wrap</span>(<span class="fu">var_label</span>(data<span class="sc">$</span>scfa13p), <span class="dv">40</span>)) <span class="sc">+</span></span>
+<span id="cb45-10"><a href="#cb45-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span><span class="fu">as_factor</span>(obereg),</span>
+<span id="cb45-11"><a href="#cb45-11" aria-hidden="true" tabindex="-1"></a>             <span class="at">labeller =</span> <span class="fu">label_wrap_gen</span>(<span class="at">multi_line =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="09-wrangle-iv_files/figure-html/unnamed-chunk-31-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Alright, that starts to make sense!</p>
+<p>There are a lot of other things you can do with the labels, but we are not going to cover it all today. Feel free to explore more in your final project and your future work!</p>
 </section>
 <section id="section-three-other-tools-packages-for-automated-data-retrieval" class="level2">
 <h2 data-anchor-id="section-three-other-tools-packages-for-automated-data-retrieval">Section Three: Other Tools &amp; Packages for Automated Data Retrieval</h2>
-<p>Okay, hopefully you will find the IPEDtaS script useful in future research, but, IPEDS is not the only common source of open data for education research (there are some other ways to automatically retrieve IPEDS too).</p>
+<p>Hopefully you have found the IPEDtaS script useful in future research, but, IPEDS is not the only common source of open data for education research (there are some other ways to automatically retrieve IPEDS too).</p>
 <p>In the remaining session time we are going to cover a handful of API’s the can be used to download data from common educational research sources.</p>
 <section id="us-census-apis-tidycensus" class="level3">
 <h3 data-anchor-id="us-census-apis-tidycensus">US Census APIs &amp; tidycensus</h3>
@@ -1025,14 +1225,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>You can check out the full documentation website for <code>tidycensus</code> <a href="https://walker-data.com/tidycensus/">here</a></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"tidycensus"</span>)</span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidycensus)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"tidycensus"</span>)</span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidycensus)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li>Next, we want to set our census API key in R, this is a convenient feature that you only have to do once</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">census_api_key</span>(<span class="st">"&lt;key&gt;"</span>, <span class="at">install =</span> T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">census_api_key</span>(<span class="st">"&lt;key&gt;"</span>, <span class="at">install =</span> T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li><p>Okay, with that, we are ready to download our data!</p>
@@ -1070,23 +1270,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>We are going to assign <code>&lt;-</code> the data we pull down into the object <code>data</code>:</p></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">get_acs</span>(<span class="at">geography =</span> <span class="st">"tract"</span>,</span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>                <span class="at">state =</span> <span class="st">"MN"</span>,</span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">year =</span> <span class="dv">2022</span>,</span>
-<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>                <span class="at">survey =</span> <span class="st">"acs5"</span>,</span>
-<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>                <span class="at">variables =</span> <span class="fu">c</span>(<span class="st">"DP02_0065PE"</span>, <span class="st">"DP03_0119PE"</span>), <span class="co"># Pop &gt;=25 with Bachelors, Pop below poverty line</span></span>
-<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>                <span class="at">output =</span> <span class="st">"wide"</span>,</span>
-<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>                <span class="at">geometry =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">get_acs</span>(<span class="at">geography =</span> <span class="st">"tract"</span>,</span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>                <span class="at">state =</span> <span class="st">"MN"</span>,</span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">year =</span> <span class="dv">2022</span>,</span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>                <span class="at">survey =</span> <span class="st">"acs5"</span>,</span>
+<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a>                <span class="at">variables =</span> <span class="fu">c</span>(<span class="st">"DP02_0065PE"</span>, <span class="st">"DP03_0119PE"</span>), <span class="co"># Pop &gt;=25 with Bachelors, Pop below poverty line</span></span>
+<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a>                <span class="at">output =</span> <span class="st">"wide"</span>,</span>
+<span id="cb48-7"><a href="#cb48-7" aria-hidden="true" tabindex="-1"></a>                <span class="at">geometry =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Now, we could look at these in a quick plot</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data) <span class="sc">+</span></span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> DP03_0119PE,</span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">y =</span> DP02_0065PE))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data) <span class="sc">+</span></span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> DP03_0119PE,</span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">y =</span> DP02_0065PE))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="09-wrangle-iv_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="09-wrangle-iv_files/figure-html/unnamed-chunk-36-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -1127,30 +1327,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>You can consult the <a href="https://urbaninstitute.github.io/education-data-package-r/">reference page for the <code>educationdata</code> R package</a></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"educationdata"</span>)</span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(educationdata)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"educationdata"</span>)</span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(educationdata)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>There is no API key for education data, so, we can go straight into downloading data</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>data_info <span class="ot">&lt;-</span> <span class="fu">get_education_data</span>(<span class="at">level =</span> <span class="st">"college-university"</span>,</span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>                           <span class="at">source =</span> <span class="st">"ipeds"</span>,</span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>                           <span class="at">topic =</span> <span class="st">"directory"</span>,</span>
-<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>                           <span class="at">filters =</span> <span class="fu">list</span>(<span class="at">year =</span> <span class="dv">2021</span>),</span>
-<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>                           <span class="at">add_labels =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>data_aid <span class="ot">&lt;-</span> <span class="fu">get_education_data</span>(<span class="at">level =</span> <span class="st">"college-university"</span>,</span>
-<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>                           <span class="at">source =</span> <span class="st">"ipeds"</span>,</span>
-<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a>                           <span class="at">topic =</span> <span class="st">"sfa-by-tuition-type"</span>,</span>
-<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a>                           <span class="at">filters =</span> <span class="fu">list</span>(<span class="at">year =</span> <span class="dv">2021</span>),</span>
-<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a>                           <span class="at">add_labels =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>data_info <span class="ot">&lt;-</span> <span class="fu">get_education_data</span>(<span class="at">level =</span> <span class="st">"college-university"</span>,</span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>                           <span class="at">source =</span> <span class="st">"ipeds"</span>,</span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>                           <span class="at">topic =</span> <span class="st">"directory"</span>,</span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>                           <span class="at">filters =</span> <span class="fu">list</span>(<span class="at">year =</span> <span class="dv">2021</span>),</span>
+<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a>                           <span class="at">add_labels =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb51-6"><a href="#cb51-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-7"><a href="#cb51-7" aria-hidden="true" tabindex="-1"></a>data_aid <span class="ot">&lt;-</span> <span class="fu">get_education_data</span>(<span class="at">level =</span> <span class="st">"college-university"</span>,</span>
+<span id="cb51-8"><a href="#cb51-8" aria-hidden="true" tabindex="-1"></a>                           <span class="at">source =</span> <span class="st">"ipeds"</span>,</span>
+<span id="cb51-9"><a href="#cb51-9" aria-hidden="true" tabindex="-1"></a>                           <span class="at">topic =</span> <span class="st">"sfa-by-tuition-type"</span>,</span>
+<span id="cb51-10"><a href="#cb51-10" aria-hidden="true" tabindex="-1"></a>                           <span class="at">filters =</span> <span class="fu">list</span>(<span class="at">year =</span> <span class="dv">2021</span>),</span>
+<span id="cb51-11"><a href="#cb51-11" aria-hidden="true" tabindex="-1"></a>                           <span class="at">add_labels =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Now, if we look</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(data_info)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(data_info)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 6289</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(data_aid)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(data_aid)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 16206</code></pre>
 </div>
@@ -1158,10 +1358,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Our data_aid appears to be in long format, which if you inspect the data frame, you’ll see if due to <code>tuition_type</code> being in long format</p>
 <p>To get the out of state tuition percentage we need to either reshape of filter the data down</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>data_aid <span class="ot">&lt;-</span> data_aid <span class="sc">|&gt;</span></span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(tuition_type <span class="sc">==</span> <span class="st">"Out of state"</span>)</span>
-<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(data_aid)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>data_aid <span class="ot">&lt;-</span> data_aid <span class="sc">|&gt;</span></span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(tuition_type <span class="sc">==</span> <span class="st">"Out of state"</span>)</span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(data_aid)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 1596</code></pre>
 </div>
@@ -1217,13 +1417,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>This is only available as a R package (as far as I’m aware) and has two broad purposes 1. Automate retrieval of various NCES survey and assessment data files 2. Modeling functions designed specifically for these data sets (e.g., defaults and settings that work best with the sampling designs/weights)</p>
 <p>Like most packages, the first step is to install and load the package</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"EdSurvey"</span>)</span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(EdSurvey)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"EdSurvey"</span>)</span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(EdSurvey)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>A lot of the surveys in the EdSurvey package might be less common in higher education research (ECLS_K, NAEP, etc.), but, the public version of HSLS has some information on college access, so, let’s look at how we’d download that</p>
 <p>This is actually quite a limited function, as you can only download the whole thing (which is 325mb), so it take a bit of time and space</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">downloadHSLS</span>(<span class="st">"."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">downloadHSLS</span>(<span class="st">"."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li>Once it’s downloaded and saved, you can open the file using the <code>readHSLS</code> function
@@ -1232,7 +1432,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>hsls <span class="ot">&lt;-</span> <span class="fu">readHSLS</span>(<span class="st">"HSLS/2009"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>hsls <span class="ot">&lt;-</span> <span class="fu">readHSLS</span>(<span class="st">"HSLS/2009"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li>The final step is to retrieve the variables you want out of this data
@@ -1241,33 +1441,33 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>data_hsls <span class="ot">&lt;-</span> <span class="fu">getData</span>(hsls, </span>
-<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>                     <span class="at">varnames =</span> <span class="fu">c</span>(<span class="st">"x4evratndclg"</span>, <span class="st">"x1paredexpct"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a>data_hsls <span class="ot">&lt;-</span> <span class="fu">getData</span>(hsls, </span>
+<span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a>                     <span class="at">varnames =</span> <span class="fu">c</span>(<span class="st">"x4evratndclg"</span>, <span class="st">"x1paredexpct"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li>Now we can look at distributions of these</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>data_hsls_plot <span class="ot">&lt;-</span> data_hsls <span class="sc">|&gt;</span></span>
-<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(x4evratndclg) <span class="sc">|&gt;</span></span>
-<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(x1stuedexpct) <span class="sc">|&gt;</span></span>
-<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">sum =</span> <span class="fu">sum</span>(n),</span>
-<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">perc =</span> n<span class="sc">/</span>sum<span class="sc">*</span><span class="dv">100</span>) <span class="sc">|&gt;</span></span>
-<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(x4evratndclg, x1stuedexpct, perc)</span>
-<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data_hsls_plot) <span class="sc">+</span></span>
-<span id="cb45-9"><a href="#cb45-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">y =</span> perc, <span class="at">x =</span> x1stuedexpct, <span class="at">fill =</span> x4evratndclg),</span>
-<span id="cb45-10"><a href="#cb45-10" aria-hidden="true" tabindex="-1"></a>           <span class="at">position =</span> <span class="st">"dodge"</span>) <span class="sc">+</span></span>
-<span id="cb45-11"><a href="#cb45-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"pink2"</span>, <span class="st">"navy"</span>)) <span class="sc">+</span></span>
-<span id="cb45-12"><a href="#cb45-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb45-13"><a href="#cb45-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>, <span class="at">size =</span> <span class="dv">6</span>)) <span class="sc">+</span></span>
-<span id="cb45-14"><a href="#cb45-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Student Educational Expectations in Wave 1"</span>,</span>
-<span id="cb45-15"><a href="#cb45-15" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"% of Students Respondants"</span>,</span>
-<span id="cb45-16"><a href="#cb45-16" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill =</span> <span class="fu">str_wrap</span>(<span class="st">"Did the Student Ever Attend College by Wave 4"</span>, <span class="dv">30</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>data_hsls_plot <span class="ot">&lt;-</span> data_hsls <span class="sc">|&gt;</span></span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(x4evratndclg) <span class="sc">|&gt;</span></span>
+<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(x1stuedexpct) <span class="sc">|&gt;</span></span>
+<span id="cb62-4"><a href="#cb62-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">sum =</span> <span class="fu">sum</span>(n),</span>
+<span id="cb62-5"><a href="#cb62-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">perc =</span> n<span class="sc">/</span>sum<span class="sc">*</span><span class="dv">100</span>) <span class="sc">|&gt;</span></span>
+<span id="cb62-6"><a href="#cb62-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(x4evratndclg, x1stuedexpct, perc)</span>
+<span id="cb62-7"><a href="#cb62-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb62-8"><a href="#cb62-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data_hsls_plot) <span class="sc">+</span></span>
+<span id="cb62-9"><a href="#cb62-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">y =</span> perc, <span class="at">x =</span> x1stuedexpct, <span class="at">fill =</span> x4evratndclg),</span>
+<span id="cb62-10"><a href="#cb62-10" aria-hidden="true" tabindex="-1"></a>           <span class="at">position =</span> <span class="st">"dodge"</span>) <span class="sc">+</span></span>
+<span id="cb62-11"><a href="#cb62-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"pink2"</span>, <span class="st">"navy"</span>)) <span class="sc">+</span></span>
+<span id="cb62-12"><a href="#cb62-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb62-13"><a href="#cb62-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>, <span class="at">size =</span> <span class="dv">6</span>)) <span class="sc">+</span></span>
+<span id="cb62-14"><a href="#cb62-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Student Educational Expectations in Wave 1"</span>,</span>
+<span id="cb62-15"><a href="#cb62-15" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"% of Students Respondants"</span>,</span>
+<span id="cb62-16"><a href="#cb62-16" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill =</span> <span class="fu">str_wrap</span>(<span class="st">"Did the Student Ever Attend College by Wave 4"</span>, <span class="dv">30</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="09-wrangle-iv_files/figure-html/unnamed-chunk-36-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="09-wrangle-iv_files/figure-html/unnamed-chunk-49-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -1288,21 +1488,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p>To download a URL in R, you simply have to add a URL and a name for the file once it’s downloaded (most often, you will be downloading a zip file)</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">download.file</span>(<span class="at">url =</span> <span class="st">"https://www.kaggle.com/api/v1/datasets/download/ben1989/target-store-dataset"</span>,</span>
-<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>              <span class="at">destfile =</span> <span class="st">"data/target-data.zip"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="fu">download.file</span>(<span class="at">url =</span> <span class="st">"https://www.kaggle.com/api/v1/datasets/download/ben1989/target-store-dataset"</span>,</span>
+<span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a>              <span class="at">destfile =</span> <span class="st">"data/target-data.zip"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>You then need to unzip it</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unzip</span>(<span class="st">"data/target-data.zip"</span>, <span class="at">exdir =</span> <span class="st">"data/"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unzip</span>(<span class="st">"data/target-data.zip"</span>, <span class="at">exdir =</span> <span class="st">"data/"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>You can then read it in like any other csv file</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>data_target <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/targets.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a>data_target <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/targets.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>And perform analyses with it</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>data_target <span class="sc">|&gt;</span></span>
-<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(SubTypeDescription)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>data_target <span class="sc">|&gt;</span></span>
+<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(SubTypeDescription)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 4 × 2
   SubTypeDescription     n
@@ -1445,661 +1645,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<!--
-
-### Data Wrangling I in `SQL`
-
-
-
-- In [Data Wrangling I](03-wrangle-i.qmd) we were given the following task
-
-> Using HSLS09 data, figure out average differences in college degree expectations
-> across census regions; for a first pass, ignore missing values and
-> use the higher of student and parental expectations if an
-> observation has both.
-
-- Our final piped together code to answer the question looked like this
-
-::: {.cell}
-
-```{.r .cell-code}
-df <- read_csv(file.path("data", "hsls-small.csv"))
-
-df |>
-  ## select columns we want
-  select(stu_id, x1stuedexpct, x1paredexpct, x1region) |>
-  ## If expectation is -8, -9. or 11, make it NA
-  mutate(student_exp = ifelse(x1stuedexpct %in% list(-8, -9, 11), NA, x1stuedexpct),
-         parent_exp = ifelse(x1paredexpct %in% list(-8, -9, 11), NA, x1paredexpct)) |>
-  ## Make a new variable called high_exp that is the higher or parent and student exp
-  mutate(high_exp = ifelse(student_exp > parent_exp, student_exp, parent_exp)) |>
-  ## If one exp is NA but the other isn't, keep the value not the NA
-  mutate(high_exp = ifelse(is.na(high_exp) & !is.na(student_exp), student_exp, high_exp),
-         high_exp = ifelse(is.na(high_exp) & !is.na(parent_exp), parent_exp, high_exp)) |>
-  ## Drop is high_exp is still NA (neither parent or student answered)
-  filter(!is.na(high_exp)) |>
-  ## Group the results by region
-  group_by(x1region) |>
-  ## Get the mean of high_exp (by region)
-  summarize(mean_exp = mean(high_exp))
-```
-
-::: {.cell-output .cell-output-stdout}
-
-```
-# A tibble: 4 × 2
-  x1region mean_exp
-     <dbl>    <dbl>
-1        1     7.39
-2        2     7.17
-3        3     7.36
-4        4     7.13
-```
-
-
-:::
-:::
-
-- Now, let's see what that looks like in `SQL`
-- First, we have to simulate an `SQL` database for `dbplyr`
-  - This tells `dbplyr` exactly how to translate our code
-  - For today's class, we will simulate a Microsoft Access database with the `simulate_access()` command
-- Second, instead of a normal `df`, we want R to pretend that `df` is a table in a database, which we do with the `memdb_frame()` command
-  - If you're curious what this command does, try `print(df)` and `print(db)` to see the difference
-
-
-
-::: {.cell}
-
-```{.r .cell-code}
-microsoft_access <- simulate_access()
-
-db <- memdb_frame(df)
-```
-:::
-
-- Now, let's use `dbplyr`'s `show_query()` function to see what this task would look like in `SQL`
-  - It's a little overwhelming, particularly because it's nested code (show some appreciation for the `|>` pipe)
-    - Honestly, you wouldn't often do something with this many steps in `SQL`
-  - But, as we walk through it piece by piece, you will see a lot of similarities to the `R` code we wrote
-
-::: {.cell}
-
-```{.r .cell-code}
-db |>
-  ## select columns we want
-  select(stu_id, x1stuedexpct, x1paredexpct, x1region) |>
-  ## If expectation is -8, -9. or 11, make it NA
-  mutate(student_exp = ifelse(x1stuedexpct %in% list(-8, -9, 11), NA, x1stuedexpct),
-         parent_exp = ifelse(x1paredexpct %in% list(-8, -9, 11), NA, x1paredexpct)) |>
-  ## Make a new variable called high_exp that is the higher or parent and student exp
-  mutate(high_exp = ifelse(student_exp > parent_exp, student_exp, parent_exp)) |>
-  ## If one exp is NA but the other isn't, keep the value not the NA
-  mutate(high_exp = ifelse(is.na(high_exp) & !is.na(student_exp), student_exp, high_exp),
-         high_exp = ifelse(is.na(high_exp) & !is.na(parent_exp), parent_exp, high_exp)) |>
-  ## Drop is high_exp is still NA (neither parent or student answereed)
-  filter(!is.na(high_exp)) |>
-  ## Group the results by region
-  group_by(x1region) |>
-  ## Get the mean of high_exp (by region)
-  summarize(mean_exp = mean(high_exp)) |>
-  show_query()
-```
-
-::: {.cell-output .cell-output-stdout}
-
-```
-<SQL>
-SELECT `x1region`, AVG(`high_exp`) AS `mean_exp`
-FROM (
-  SELECT `q01`.*
-  FROM (
-    SELECT
-      `stu_id`,
-      `x1stuedexpct`,
-      `x1paredexpct`,
-      `x1region`,
-      `student_exp`,
-      `parent_exp`,
-      CASE WHEN ((`high_exp` IS NULL) AND NOT((`parent_exp` IS NULL))) THEN `parent_exp` WHEN NOT ((`high_exp` IS NULL) AND NOT((`parent_exp` IS NULL))) THEN `high_exp` END AS `high_exp`
-    FROM (
-      SELECT
-        `stu_id`,
-        `x1stuedexpct`,
-        `x1paredexpct`,
-        `x1region`,
-        `student_exp`,
-        `parent_exp`,
-        CASE WHEN ((`high_exp` IS NULL) AND NOT((`student_exp` IS NULL))) THEN `student_exp` WHEN NOT ((`high_exp` IS NULL) AND NOT((`student_exp` IS NULL))) THEN `high_exp` END AS `high_exp`
-      FROM (
-        SELECT
-          `q01`.*,
-          CASE WHEN (`student_exp` > `parent_exp`) THEN `student_exp` WHEN NOT (`student_exp` > `parent_exp`) THEN `parent_exp` END AS `high_exp`
-        FROM (
-          SELECT
-            `stu_id`,
-            `x1stuedexpct`,
-            `x1paredexpct`,
-            `x1region`,
-            CASE WHEN (`x1stuedexpct` IN list(-8.0, -9.0, 11.0)) THEN NULL WHEN NOT (`x1stuedexpct` IN list(-8.0, -9.0, 11.0)) THEN `x1stuedexpct` END AS `student_exp`,
-            CASE WHEN (`x1paredexpct` IN list(-8.0, -9.0, 11.0)) THEN NULL WHEN NOT (`x1paredexpct` IN list(-8.0, -9.0, 11.0)) THEN `x1paredexpct` END AS `parent_exp`
-          FROM `dbplyr_icGSvatxvW`
-        ) AS `q01`
-      ) AS `q01`
-    ) AS `q01`
-  ) AS `q01`
-  WHERE (NOT((`high_exp` IS NULL)))
-) AS `q01`
-GROUP BY `x1region`
-```
-
-
-:::
-:::
-
-#### Step-by-Step Breakdown
-
-
-
-1. First, we selected our four variables from `dbplyr_001` (which is our database `db`)
-
-::: {.cell}
-
-```{.r .cell-code}
-db |>
-  ## select columns we want
-  select(stu_id, x1stuedexpct, x1paredexpct, x1region) |>
-  show_query()
-```
-
-::: {.cell-output .cell-output-stdout}
-
-```
-<SQL>
-SELECT `stu_id`, `x1stuedexpct`, `x1paredexpct`, `x1region`
-FROM `dbplyr_icGSvatxvW`
-```
-
-
-:::
-:::
-
-2. Second, we add in `CASE WHEN` statements, that work in place of our `ifelse()` statements to replace -8 -9 and 11 with `NA` (`NULL` in SQL-speak)
-  - These actually work just like the `case_when()` function we covered in the first part of the class
-
-::: {.cell}
-
-```{.r .cell-code}
-db |>
-  ## select columns we want
-  select(stu_id, x1stuedexpct, x1paredexpct, x1region) |>
-  ## If expectation is -8, -9. or 11, make it NA
-  mutate(student_exp = ifelse(x1stuedexpct %in% list(-8, -9, 11), NA, x1stuedexpct),
-         parent_exp = ifelse(x1paredexpct %in% list(-8, -9, 11), NA, x1paredexpct)) |>
-  show_query()
-```
-
-::: {.cell-output .cell-output-stdout}
-
-```
-<SQL>
-SELECT
-  `stu_id`,
-  `x1stuedexpct`,
-  `x1paredexpct`,
-  `x1region`,
-  CASE WHEN (`x1stuedexpct` IN list(-8.0, -9.0, 11.0)) THEN NULL WHEN NOT (`x1stuedexpct` IN list(-8.0, -9.0, 11.0)) THEN `x1stuedexpct` END AS `student_exp`,
-  CASE WHEN (`x1paredexpct` IN list(-8.0, -9.0, 11.0)) THEN NULL WHEN NOT (`x1paredexpct` IN list(-8.0, -9.0, 11.0)) THEN `x1paredexpct` END AS `parent_exp`
-FROM `dbplyr_icGSvatxvW`
-```
-
-
-:::
-:::
-
-3. Okay, all we have done here is add in the line that creates our `high_exp` variable (see the first full line of code)
-  - The confusing part is that `dbplyr` has created `q01` and `SELECT`-ed everything `.*` from it
-    - This (and any of time you see `q01`) is just a bit like if we assigned something into a new object midway through processing
-
-::: {.cell}
-
-```{.r .cell-code}
-db |>
-  ## select columns we want
-  select(stu_id, x1stuedexpct, x1paredexpct, x1region) |>
-  ## If expectation is -8, -9. or 11, make it NA
-  mutate(student_exp = ifelse(x1stuedexpct %in% list(-8, -9, 11), NA, x1stuedexpct),
-         parent_exp = ifelse(x1paredexpct %in% list(-8, -9, 11), NA, x1paredexpct)) |>
-  ## Make a new variable called high_exp that is the higher or parent and student exp
-  mutate(high_exp = ifelse(student_exp > parent_exp, student_exp, parent_exp)) |>
-  show_query()
-```
-
-::: {.cell-output .cell-output-stdout}
-
-```
-<SQL>
-SELECT
-  `q01`.*,
-  CASE WHEN (`student_exp` > `parent_exp`) THEN `student_exp` WHEN NOT (`student_exp` > `parent_exp`) THEN `parent_exp` END AS `high_exp`
-FROM (
-  SELECT
-    `stu_id`,
-    `x1stuedexpct`,
-    `x1paredexpct`,
-    `x1region`,
-    CASE WHEN (`x1stuedexpct` IN list(-8.0, -9.0, 11.0)) THEN NULL WHEN NOT (`x1stuedexpct` IN list(-8.0, -9.0, 11.0)) THEN `x1stuedexpct` END AS `student_exp`,
-    CASE WHEN (`x1paredexpct` IN list(-8.0, -9.0, 11.0)) THEN NULL WHEN NOT (`x1paredexpct` IN list(-8.0, -9.0, 11.0)) THEN `x1paredexpct` END AS `parent_exp`
-  FROM `dbplyr_icGSvatxvW`
-) AS `q01`
-```
-
-
-:::
-:::
-
-4. Here's where things become hard to untangle, mostly because `dbplyr` keeps assigning the results to `q01` then `SELECT`-ing everything back
-  - If you made it this far, you've got the main point of this exercise, so don't worry if this becomes too confusing
-  - This step we added the first two longer blocks of code that `SELECT` our variables again (as the previous step's output was saved back to `q01`) then perform a `CASE WHEN` that's equivalent to our `ifelse()` statements that took the non-`NA` value if from parent/student expectations if the other was `NA` (`NULL` in SQL-speak)
-
-::: {.cell}
-
-```{.r .cell-code}
-db |>
-  ## select columns we want
-  select(stu_id, x1stuedexpct, x1paredexpct, x1region) |>
-  ## If expectation is -8, -9. or 11, make it NA
-  mutate(student_exp = ifelse(x1stuedexpct %in% list(-8, -9, 11), NA, x1stuedexpct),
-         parent_exp = ifelse(x1paredexpct %in% list(-8, -9, 11), NA, x1paredexpct)) |>
-  ## Make a new variable called high_exp that is the higher or parent and student exp
-  mutate(high_exp = ifelse(student_exp > parent_exp, student_exp, parent_exp)) |>
-  ## If one exp is NA but the other isn't, keep the value not the NA
-  mutate(high_exp = ifelse(is.na(high_exp) & !is.na(student_exp), student_exp, high_exp),
-         high_exp = ifelse(is.na(high_exp) & !is.na(parent_exp), parent_exp, high_exp)) |>
-  show_query()
-```
-
-::: {.cell-output .cell-output-stdout}
-
-```
-<SQL>
-SELECT
-  `stu_id`,
-  `x1stuedexpct`,
-  `x1paredexpct`,
-  `x1region`,
-  `student_exp`,
-  `parent_exp`,
-  CASE WHEN ((`high_exp` IS NULL) AND NOT((`parent_exp` IS NULL))) THEN `parent_exp` WHEN NOT ((`high_exp` IS NULL) AND NOT((`parent_exp` IS NULL))) THEN `high_exp` END AS `high_exp`
-FROM (
-  SELECT
-    `stu_id`,
-    `x1stuedexpct`,
-    `x1paredexpct`,
-    `x1region`,
-    `student_exp`,
-    `parent_exp`,
-    CASE WHEN ((`high_exp` IS NULL) AND NOT((`student_exp` IS NULL))) THEN `student_exp` WHEN NOT ((`high_exp` IS NULL) AND NOT((`student_exp` IS NULL))) THEN `high_exp` END AS `high_exp`
-  FROM (
-    SELECT
-      `q01`.*,
-      CASE WHEN (`student_exp` > `parent_exp`) THEN `student_exp` WHEN NOT (`student_exp` > `parent_exp`) THEN `parent_exp` END AS `high_exp`
-    FROM (
-      SELECT
-        `stu_id`,
-        `x1stuedexpct`,
-        `x1paredexpct`,
-        `x1region`,
-        CASE WHEN (`x1stuedexpct` IN list(-8.0, -9.0, 11.0)) THEN NULL WHEN NOT (`x1stuedexpct` IN list(-8.0, -9.0, 11.0)) THEN `x1stuedexpct` END AS `student_exp`,
-        CASE WHEN (`x1paredexpct` IN list(-8.0, -9.0, 11.0)) THEN NULL WHEN NOT (`x1paredexpct` IN list(-8.0, -9.0, 11.0)) THEN `x1paredexpct` END AS `parent_exp`
-      FROM `dbplyr_icGSvatxvW`
-    ) AS `q01`
-  ) AS `q01`
-) AS `q01`
-```
-
-
-:::
-:::
-
-5. Here we added 2 lines of substance (`FROM (` just links to rest of the code)
-- First line: `SELECT q01.*`
-  - Select everything from q01 (a temporary object saved from the last step)
-- Last line: ``WHERE (NOT((`high_exp` IS NULL)))``
-  - Same as `filter(!is.na(high_exp))`
-- Note: the reason it's the first and last lines is that everything we have done so far is nested in the middle
-  - Revisit the introduction to the `|>` pipe in [Data Wrangling I](03-wrangle-i.qmd) for refresher on nested code
-
-
-::: {.cell}
-
-```{.r .cell-code}
-db |>
-  ## select columns we want
-  select(stu_id, x1stuedexpct, x1paredexpct, x1region) |>
-  ## If expectation is -8, -9. or 11, make it NA
-  mutate(student_exp = ifelse(x1stuedexpct %in% list(-8, -9, 11), NA, x1stuedexpct),
-         parent_exp = ifelse(x1paredexpct %in% list(-8, -9, 11), NA, x1paredexpct)) |>
-  ## Make a new variable called high_exp that is the higher or parent and student exp
-  mutate(high_exp = ifelse(student_exp > parent_exp, student_exp, parent_exp)) |>
-  ## If one exp is NA but the other isn't, keep the value not the NA
-  mutate(high_exp = ifelse(is.na(high_exp) & !is.na(student_exp), student_exp, high_exp),
-         high_exp = ifelse(is.na(high_exp) & !is.na(parent_exp), parent_exp, high_exp)) |>
-  ## Drop is high_exp is still NA (neither parent or student answereed)
-  filter(!is.na(high_exp)) |>
-  show_query()
-```
-
-::: {.cell-output .cell-output-stdout}
-
-```
-<SQL>
-SELECT `q01`.*
-FROM (
-  SELECT
-    `stu_id`,
-    `x1stuedexpct`,
-    `x1paredexpct`,
-    `x1region`,
-    `student_exp`,
-    `parent_exp`,
-    CASE WHEN ((`high_exp` IS NULL) AND NOT((`parent_exp` IS NULL))) THEN `parent_exp` WHEN NOT ((`high_exp` IS NULL) AND NOT((`parent_exp` IS NULL))) THEN `high_exp` END AS `high_exp`
-  FROM (
-    SELECT
-      `stu_id`,
-      `x1stuedexpct`,
-      `x1paredexpct`,
-      `x1region`,
-      `student_exp`,
-      `parent_exp`,
-      CASE WHEN ((`high_exp` IS NULL) AND NOT((`student_exp` IS NULL))) THEN `student_exp` WHEN NOT ((`high_exp` IS NULL) AND NOT((`student_exp` IS NULL))) THEN `high_exp` END AS `high_exp`
-    FROM (
-      SELECT
-        `q01`.*,
-        CASE WHEN (`student_exp` > `parent_exp`) THEN `student_exp` WHEN NOT (`student_exp` > `parent_exp`) THEN `parent_exp` END AS `high_exp`
-      FROM (
-        SELECT
-          `stu_id`,
-          `x1stuedexpct`,
-          `x1paredexpct`,
-          `x1region`,
-          CASE WHEN (`x1stuedexpct` IN list(-8.0, -9.0, 11.0)) THEN NULL WHEN NOT (`x1stuedexpct` IN list(-8.0, -9.0, 11.0)) THEN `x1stuedexpct` END AS `student_exp`,
-          CASE WHEN (`x1paredexpct` IN list(-8.0, -9.0, 11.0)) THEN NULL WHEN NOT (`x1paredexpct` IN list(-8.0, -9.0, 11.0)) THEN `x1paredexpct` END AS `parent_exp`
-        FROM `dbplyr_icGSvatxvW`
-      ) AS `q01`
-    ) AS `q01`
-  ) AS `q01`
-) AS `q01`
-WHERE (NOT((`high_exp` IS NULL)))
-```
-
-
-:::
-:::
-
-6. Finally, we want to get our mean expectation by region, so we add 2 lines of substance again
-  - Last line: ``GROUP BY `x1region``
-    - Group the data by region
-  - First line: ``SELECT `x1region`, AVG(`high_exp`) AS `mean_exp``
-    - Taking `x1region` as the first column and the `AVG` (mean) of `high_exp` as the second column
-
-::: {.cell}
-
-```{.r .cell-code}
-db |>
-  ## select columns we want
-  select(stu_id, x1stuedexpct, x1paredexpct, x1region) |>
-  ## If expectation is -8, -9. or 11, make it NA
-  mutate(student_exp = ifelse(x1stuedexpct %in% list(-8, -9, 11), NA, x1stuedexpct),
-         parent_exp = ifelse(x1paredexpct %in% list(-8, -9, 11), NA, x1paredexpct)) |>
-  ## Make a new variable called high_exp that is the higher or parent and student exp
-  mutate(high_exp = ifelse(student_exp > parent_exp, student_exp, parent_exp)) |>
-  ## If one exp is NA but the other isn't, keep the value not the NA
-  mutate(high_exp = ifelse(is.na(high_exp) & !is.na(student_exp), student_exp, high_exp),
-         high_exp = ifelse(is.na(high_exp) & !is.na(parent_exp), parent_exp, high_exp)) |>
-  ## Drop is high_exp is still NA (neither parent or student answered)
-  filter(!is.na(high_exp)) |>
-  ## Group the results by region
-  group_by(x1region) |>
-  summarize(mean_exp = mean(high_exp)) |>
-  show_query()
-```
-
-::: {.cell-output .cell-output-stdout}
-
-```
-<SQL>
-SELECT `x1region`, AVG(`high_exp`) AS `mean_exp`
-FROM (
-  SELECT `q01`.*
-  FROM (
-    SELECT
-      `stu_id`,
-      `x1stuedexpct`,
-      `x1paredexpct`,
-      `x1region`,
-      `student_exp`,
-      `parent_exp`,
-      CASE WHEN ((`high_exp` IS NULL) AND NOT((`parent_exp` IS NULL))) THEN `parent_exp` WHEN NOT ((`high_exp` IS NULL) AND NOT((`parent_exp` IS NULL))) THEN `high_exp` END AS `high_exp`
-    FROM (
-      SELECT
-        `stu_id`,
-        `x1stuedexpct`,
-        `x1paredexpct`,
-        `x1region`,
-        `student_exp`,
-        `parent_exp`,
-        CASE WHEN ((`high_exp` IS NULL) AND NOT((`student_exp` IS NULL))) THEN `student_exp` WHEN NOT ((`high_exp` IS NULL) AND NOT((`student_exp` IS NULL))) THEN `high_exp` END AS `high_exp`
-      FROM (
-        SELECT
-          `q01`.*,
-          CASE WHEN (`student_exp` > `parent_exp`) THEN `student_exp` WHEN NOT (`student_exp` > `parent_exp`) THEN `parent_exp` END AS `high_exp`
-        FROM (
-          SELECT
-            `stu_id`,
-            `x1stuedexpct`,
-            `x1paredexpct`,
-            `x1region`,
-            CASE WHEN (`x1stuedexpct` IN list(-8.0, -9.0, 11.0)) THEN NULL WHEN NOT (`x1stuedexpct` IN list(-8.0, -9.0, 11.0)) THEN `x1stuedexpct` END AS `student_exp`,
-            CASE WHEN (`x1paredexpct` IN list(-8.0, -9.0, 11.0)) THEN NULL WHEN NOT (`x1paredexpct` IN list(-8.0, -9.0, 11.0)) THEN `x1paredexpct` END AS `parent_exp`
-          FROM `dbplyr_icGSvatxvW`
-        ) AS `q01`
-      ) AS `q01`
-    ) AS `q01`
-  ) AS `q01`
-  WHERE (NOT((`high_exp` IS NULL)))
-) AS `q01`
-GROUP BY `x1region`
-```
-
-
-:::
-:::
-
-- There we have it, a walk through our first data wrangling session translated into `SQL`
-  - By no means are expected to have any working knowledge of `SQL` from this
-  - The point is to demonstrate how similar they are, and get your toes wet if you're interested in developing `SQL` skills (as any future institutional researchers should be)
-
-- Next, we will explore `Data Wrangling II` to see how `SQL` can be used for joining data
-
-#### Pivot-Longer with Compound Names
-
-
-
-- Finally, let's read in our an extra-wide version of our data into `df_3` and turn it into a simulated database
-
-::: {.cell}
-
-```{.r .cell-code}
-df_3 <- read_csv(file.path("data", "sch-test", "all-schools-wide.csv"))
-
-db_3 <- memdb_frame(df_3)
-
-print(db_3)
-```
-
-::: {.cell-output .cell-output-stdout}
-
-```
-# Source:   table<`dbplyr_VEQXMf793I`> [?? x 19]
-# Database: sqlite 3.51.1 [:memory:]
-  school       math_1980 read_1980 science_1980 math_1981 read_1981 science_1981
-  <chr>            <dbl>     <dbl>        <dbl>     <dbl>     <dbl>        <dbl>
-1 Bend Gate          515       281          808       503       312          814
-2 East Heights       501       318          782       487       323          813
-3 Niagara            514       292          787       499       268          762
-4 Spottsville        498       288          813       494       270          765
-# ℹ 12 more variables: math_1982 <dbl>, read_1982 <dbl>, science_1982 <dbl>,
-#   math_1983 <dbl>, read_1983 <dbl>, science_1983 <dbl>, math_1984 <dbl>,
-#   read_1984 <dbl>, science_1984 <dbl>, math_1985 <dbl>, read_1985 <dbl>,
-#   science_1985 <dbl>
-```
-
-
-:::
-:::
-
-- Now using the `contains()` function to `pivot_longer()` any columns with 19 in the name (all but school name)
-- We then take the column names and split (`names_sep`) them by the `_` putting the first half into new column `test` and the second half into new column `year`, with the values from all cells going into new column `score`
-
-::: {.cell}
-
-```{.r .cell-code}
-## Note: change from DWII,dbplyr can't translate separate, or any stringr commands, so we have to be more sophisticated with our pivot_longer
-df_long_fix <- db_3 |>
-    ## NB: contains() looks for "19" in name: if there, it adds it to cols
-    pivot_longer(cols = contains("19"),
-                 names_to = c("test", "year"),
-                 names_sep = "_",
-                 values_to = "score") |>
-  show_query()
-```
-
-::: {.cell-output .cell-output-stdout}
-
-``` SQL
-<SQL>
-SELECT `school`, 'math' AS `test`, '1980' AS `year`, `math_1980` AS `score`
-FROM `dbplyr_VEQXMf793I`
-
-UNION ALL
-
-SELECT `school`, 'read' AS `test`, '1980' AS `year`, `read_1980` AS `score`
-FROM `dbplyr_VEQXMf793I`
-
-UNION ALL
-
-SELECT
-  `school`,
-  'science' AS `test`,
-  '1980' AS `year`,
-  `science_1980` AS `score`
-FROM `dbplyr_VEQXMf793I`
-
-UNION ALL
-
-SELECT `school`, 'math' AS `test`, '1981' AS `year`, `math_1981` AS `score`
-FROM `dbplyr_VEQXMf793I`
-
-UNION ALL
-
-SELECT `school`, 'read' AS `test`, '1981' AS `year`, `read_1981` AS `score`
-FROM `dbplyr_VEQXMf793I`
-
-UNION ALL
-
-SELECT
-  `school`,
-  'science' AS `test`,
-  '1981' AS `year`,
-  `science_1981` AS `score`
-FROM `dbplyr_VEQXMf793I`
-
-UNION ALL
-
-SELECT `school`, 'math' AS `test`, '1982' AS `year`, `math_1982` AS `score`
-FROM `dbplyr_VEQXMf793I`
-
-UNION ALL
-
-SELECT `school`, 'read' AS `test`, '1982' AS `year`, `read_1982` AS `score`
-FROM `dbplyr_VEQXMf793I`
-
-UNION ALL
-
-SELECT
-  `school`,
-  'science' AS `test`,
-  '1982' AS `year`,
-  `science_1982` AS `score`
-FROM `dbplyr_VEQXMf793I`
-
-UNION ALL
-
-SELECT `school`, 'math' AS `test`, '1983' AS `year`, `math_1983` AS `score`
-FROM `dbplyr_VEQXMf793I`
-
-UNION ALL
-
-SELECT `school`, 'read' AS `test`, '1983' AS `year`, `read_1983` AS `score`
-FROM `dbplyr_VEQXMf793I`
-
-UNION ALL
-
-SELECT
-  `school`,
-  'science' AS `test`,
-  '1983' AS `year`,
-  `science_1983` AS `score`
-FROM `dbplyr_VEQXMf793I`
-
-UNION ALL
-
-SELECT `school`, 'math' AS `test`, '1984' AS `year`, `math_1984` AS `score`
-FROM `dbplyr_VEQXMf793I`
-
-UNION ALL
-
-SELECT `school`, 'read' AS `test`, '1984' AS `year`, `read_1984` AS `score`
-FROM `dbplyr_VEQXMf793I`
-
-UNION ALL
-
-SELECT
-  `school`,
-  'science' AS `test`,
-  '1984' AS `year`,
-  `science_1984` AS `score`
-FROM `dbplyr_VEQXMf793I`
-
-UNION ALL
-
-SELECT `school`, 'math' AS `test`, '1985' AS `year`, `math_1985` AS `score`
-FROM `dbplyr_VEQXMf793I`
-
-UNION ALL
-
-SELECT `school`, 'read' AS `test`, '1985' AS `year`, `read_1985` AS `score`
-FROM `dbplyr_VEQXMf793I`
-
-UNION ALL
-
-SELECT
-  `school`,
-  'science' AS `test`,
-  '1985' AS `year`,
-  `science_1985` AS `score`
-FROM `dbplyr_VEQXMf793I`
-```
-
-
-:::
-:::
-
-- Similarly to our previous pivot longer, we see the `SQL` effectively just creates a series of queries, one for each year/subject combination, then `UNION ALL` stacks them all together
-
-
--->
 
 
 
