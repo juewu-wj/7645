@@ -973,9 +973,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 </section>
 </section>
-<section id="section-two-using-ipedtas-to-automagically-retrive-labelled-ipeds-data-in-stata-r" class="level2">
-<h2 data-anchor-id="section-two-using-ipedtas-to-automagically-retrive-labelled-ipeds-data-in-stata-r">Section Two: Using IPEDtaS to Automagically Retrive Labelled IPEDS Data in Stata &amp; R</h2>
-<p>You have seen in our previous lessons that the labelled HSLS data can make your life much easier, and you probably wondered if we could have the labelled data for IPEDS too. Unfortunately, IPEDS does not provide official labelled data files, but, thanks to the work of our alumni <a href="https://capaldi.info">Dr.&nbsp;Matt Capaldi</a> we can now easily retrieve labelled IPEDS data in R (and in Stata as well)!</p>
+<section id="section-two-using-ipedtas-to-automagically-retrive-labelled-ipeds-data" class="level2">
+<h2 data-anchor-id="section-two-using-ipedtas-to-automagically-retrive-labelled-ipeds-data">Section Two: Using IPEDtaS to Automagically Retrive Labelled IPEDS Data</h2>
+<p>You have seen in our previous lessons that the labelled HSLS data can make your life much easier, and you probably wondered if we could have the labelled data for IPEDS too. Unfortunately, IPEDS does not provide official labelled data files. But, thanks to the work of our alumni <a href="https://capaldi.info">Dr.&nbsp;Matt Capaldi</a> we can now easily retrieve labelled IPEDS data in R (and in Stata as well)!</p>
 <p>First of all, download the <a href="https://raw.githubusercontent.com/ttalVlatt/IPEDtaS/main/R/IPEDtaS.R">IPEDtaS R script</a> and save it to your course project folder</p>
 <p>Then, open the R script. The only real change you have to make in the whole process to the scripts is selecting which files you want to download</p>
 <ul>
@@ -1010,7 +1010,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>Finally, save the script and hit run! The files you put in <code>selected_files</code> will be downloaded.</p>
 <p>Now we know how to download our labelled IPEDS data, let’s walk through a quick example.</p>
-<p>Let’s load our packages: haven (part of tidyverse, but requires loading separately), labelled (what haven uses behind the scenes), and gtsummary (to easily create output tables)</p>
+<p>Let’s load our packages: haven (part of tidyverse, but requires loading separately) and labelled (what haven uses behind the scenes).</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(haven)</span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(labelled)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1180,13 +1180,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="section-three-other-tools-packages-for-automated-data-retrieval" class="level2">
 <h2 data-anchor-id="section-three-other-tools-packages-for-automated-data-retrieval">Section Three: Other Tools &amp; Packages for Automated Data Retrieval</h2>
-<p>Hopefully you have found the IPEDtaS script useful in future research, but, IPEDS is not the only common source of open data for education research (there are some other ways to automatically retrieve IPEDS too).</p>
+<p>Hopefully you have found the IPEDtaS script useful for future research. But, IPEDS is not the only common source of open data for education research (there are some other ways to automatically retrieve IPEDS too).</p>
 <p>In the remaining session time we are going to cover a handful of API’s the can be used to download data from common educational research sources.</p>
 <section id="us-census-apis-tidycensus" class="level3">
 <h3 data-anchor-id="us-census-apis-tidycensus">US Census APIs &amp; tidycensus</h3>
-<blockquote class="blockquote">
-<p>We’re going to use this API in our final Data Viz lesson at the end of the semester, so time dependent, we may save this for this for then!</p>
-</blockquote>
 <ul>
 <li>So what exactly is an API?
 <ul>
@@ -1220,7 +1217,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 </ol></li>
 <li>There are a number of R packages that access the Census API</li>
-<li>Personally, I think <code>tidycensus</code> is the easiest to use, particularly if you generally use a <code>tidyverse</code> version R</li>
+<li><code>tidycensus</code> is probably the easiest to use, particularly if you generally use a <code>tidyverse</code> version R</li>
 <li>You can check out the full documentation website for <code>tidycensus</code> <a href="https://walker-data.com/tidycensus/">here</a></li>
 </ul>
 <div class="cell">
@@ -1245,7 +1242,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>More current and have more variables than the decennial Census</li>
 </ul></li>
 </ul></li>
-<li><p>For the sake of time, I have already found the variable names</p>
+<li><p>For the sake of time, we have already found the variable names</p>
 <ul>
 <li>If you want to look them up in the future, use this <a href="https://api.census.gov/data/2021/acs/acs5/profile/variables.html">Census API Variable List</a></li>
 <li>You can change the year in url to access different years</li>
@@ -1319,7 +1316,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>In a lot of cases, this will be nice, but as you will see below, it has a couple of issues associated with it</li>
 </ul></li>
-<li>To demonstrate the pros and cons of this, let’s download the same data we just used in the IPEDtaS section of the workshop</li>
+<li>To demonstrate the pros and cons of this, let’s download the same data we just used in the IPEDtaS section</li>
 </ul>
 <p>To use <code>educationdata</code> in R, we first will install their package</p>
 <ul>
@@ -1354,8 +1351,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code>[1] 16206</code></pre>
 </div>
 </div>
-<p>Our data_aid appears to be in long format, which if you inspect the data frame, you’ll see if due to <code>tuition_type</code> being in long format</p>
-<p>To get the out of state tuition percentage we need to either reshape of filter the data down</p>
+<p>Our data_aid appears to be in long format, which if you inspect the data frame, you’ll see it’s due to <code>tuition_type</code> being in long format</p>
+<p>To get the out of state tuition percentage we need to either reshape or filter the data down</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>data_aid <span class="ot">&lt;-</span> data_aid <span class="sc">|&gt;</span></span>
 <span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(tuition_type <span class="sc">==</span> <span class="st">"Out of state"</span>)</span>
@@ -1419,7 +1416,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"EdSurvey"</span>)</span>
 <span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(EdSurvey)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>A lot of the surveys in the EdSurvey package might be less common in higher education research (ECLS_K, NAEP, etc.), but, the public version of HSLS has some information on college access, so, let’s look at how we’d download that</p>
+<p>A lot of the surveys in the EdSurvey package might be less common in higher education research (ECLS_K, NAEP, etc.), but the public version of HSLS has some information on college access. So, let’s look at how we’d download that</p>
 <p>This is actually quite a limited function, as you can only download the whole thing (which is 325mb), so it take a bit of time and space</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">downloadHSLS</span>(<span class="st">"."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
