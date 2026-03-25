@@ -439,10 +439,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Side note: If combining variables like this in your own work, check the code book to ensure you know what you’re combining and why</li>
 <li>In this case, the variables we will be combining appear to be close equivalents</li>
 </ul></li>
-<li>First things first, let’s <code>select()</code> the relevant variables from the larger data set using the IPEDS dictionary files
-<ul>
-<li>Quick question: How can we find the variable names to use below?</li>
-</ul></li>
+<li>First things first, let’s <code>select()</code> the relevant variables from the larger data set using the IPEDS dictionary files</li>
 </ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>data_18 <span class="ot">&lt;-</span> data_18 <span class="sc">|&gt;</span></span>
@@ -590,7 +587,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 data-anchor-id="finding-if_any-issues">Finding <code>if_any()</code> Issues</h3>
 <ul>
 <li>Although compliance is a federal requirement, completeness of reporting remains a struggle when using IPEDS data</li>
-<li>From the snapshots of the data we have seen so far, it seems that there’s a good number of $0 reports for these values</li>
+<li>From the snapshots of the data we have seen so far, it seems that there’s a good number of $0 reported for these values</li>
 <li>Let’s try and get a data frame containing only institutions that reported $0 for one of these spending categories</li>
 </ul>
 <div class="cell">
@@ -897,10 +894,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Prevents “p-hacking” and other temptations during the statistical analysis which can lead to non-replicable results</li>
 <li>AERA Open list “Registered Reports” as an option in their <a href="https://journals.sagepub.com/author-instructions/ERO">submission guidelines</a></li>
 </ul></li>
-<li>In this workshop we will focus on a specific step towards achieving reproducibility: automating data retrieval?</li>
+<li>Today we will focus on a specific step towards achieving reproducibility: automating data retrieval</li>
 </ul>
 <blockquote class="blockquote">
-<h2 id="small-group-discussion-exercise-5-mins" data-anchor-id="to-enhance-replicability">Small Group Discussion Exercise (5 mins)</h2>
+<h2 id="discussion" data-anchor-id="to-enhance-replicability">Discussion</h2>
 <p>Find of a recent piece of published work you’re already familiar with</p>
 <ul>
 <li>If you wanted to, do you think you would be able to reproduce the results?
@@ -947,7 +944,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Even if we don’t want to go out and start reproducing and replicating other studies, we can help the cause by ensuring our studies are as reproducible as possible.</p></li>
 </ul>
 <blockquote class="blockquote">
-<h2 id="small-group-discussion-exercise-5-mins-1" data-anchor-id="if-we-do-all-this-will-anyone-ever-actually-reproduce-my-work">Small Group Discussion Exercise (5 mins)</h2>
+<h2 id="discussion-5-mins" data-anchor-id="if-we-do-all-this-will-anyone-ever-actually-reproduce-my-work">Discussion (5 mins)</h2>
 <p>Okay, we get it, reproducibility is awesome… But sometimes it isn’t possible</p>
 <ol type="1">
 <li>Think of a specific study or scenario (real or fictional) where true open reproducibility (e.g.&nbsp;sharing data) is either not possible or not practical</li>
