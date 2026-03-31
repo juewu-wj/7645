@@ -1,10 +1,9 @@
 ## -----------------------------------------------------------------------------
 ##
-##' [PROJ: EDH 7916]
+##' [PROJ: EDH 7645]
 ##' [FILE: Functions & Loops Solution]
-##' [INIT: March 18 2024]
-##' [AUTH: Matt Capaldi] @ttalVlatt
-##' [EDIT: Jue Wu]
+##' [INIT: March 24 2026]
+##' [AUTH: Jue Wu]
 ##
 ## -----------------------------------------------------------------------------
 
@@ -94,9 +93,9 @@ college <- function(id) {
   } else {
     if(is.na(parent_exp)|parent_exp == 11) {
       paste("This student did not go to college, and their parental expectation is unknown")
-    } else if(parent_exp >= 5) {
+    } else if(parent_exp >= 3) {
       paste("This student did not go to college, but their parents expected them to")
-    } else if(parent_exp < 5) {
+    } else if(parent_exp < 3) {
       paste("This student did not go to college, and their parents did not expect them to")
     }
   }
@@ -105,7 +104,7 @@ college <- function(id) {
 # test
 college(10031)
 
-# Optional
+# 2b3
 college <- function(id) {
   
   student <- data |> filter(stu_id == id) 
@@ -124,9 +123,9 @@ college <- function(id) {
   } else {
     if(is.na(parent_exp)|parent_exp == 11) {
       paste("This student did not go to college, and their parental expectation is unknown")
-    } else if(parent_exp >= 5) {
+    } else if(parent_exp >= 3) {
       paste("This student did not go to college, but their parents expected them to")
-    } else if(parent_exp < 5) {
+    } else if(parent_exp < 3) {
       paste("This student did not go to college, and their parents did not expect them to")
     }
   }
@@ -135,7 +134,7 @@ college <- function(id) {
 # test
 college(10007)
 
-# Super Optional
+# 2b4 optional
 college <- function(id) {
   
   student <- data |> filter(stu_id == id) 
@@ -161,9 +160,9 @@ college <- function(id) {
   } else {
     if(is.na(parent_exp)|parent_exp == 11) {
       paste("This student did not go to college, and their parental expectation is unknown")
-    } else if(parent_exp >= 5) {
+    } else if(parent_exp >= 3) {
       paste("This student did not go to college, but their parents expected them to")
-    } else if(parent_exp < 5) {
+    } else if(parent_exp < 3) {
       paste("This student did not go to college, and their parents did not expect them to")
     }
   }
